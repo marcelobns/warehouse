@@ -1,0 +1,2789 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2014-06-03 13:28+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: Controller/AccountsController.php:37;69;94
+msgid "Invalid account"
+msgstr ""
+
+#: Controller/AccountsController.php:52;73
+msgid "The account has been saved."
+msgstr ""
+
+#: Controller/AccountsController.php:55;76
+msgid "The account could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/AccountsController.php:98
+msgid "The account has been deleted."
+msgstr ""
+
+#: Controller/AccountsController.php:100
+msgid "The account could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/ModulesController.php:37;69;94
+msgid "Invalid module"
+msgstr ""
+
+#: Controller/ModulesController.php:52;73
+msgid "The module has been saved."
+msgstr ""
+
+#: Controller/ModulesController.php:55;76
+msgid "The module could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/ModulesController.php:98
+msgid "The module has been deleted."
+msgstr ""
+
+#: Controller/ModulesController.php:100
+msgid "The module could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/OrderDetailsController.php:15;36;57
+msgid "Invalid order detail"
+msgstr ""
+
+#: Controller/OrderDetailsController.php:25;40
+msgid "The order detail has been saved."
+msgstr ""
+
+#: Controller/OrderDetailsController.php:28;43
+msgid "The order detail could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/OrderDetailsController.php:61
+msgid "The order detail has been deleted."
+msgstr ""
+
+#: Controller/OrderDetailsController.php:63
+msgid "The order detail could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/OrderTypesController.php:18;42;63
+msgid "Invalid order type"
+msgstr ""
+
+#: Controller/OrderTypesController.php:28;46
+msgid "The order type has been saved."
+msgstr ""
+
+#: Controller/OrderTypesController.php:31;49
+msgid "The order type could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/OrderTypesController.php:67
+msgid "The order type has been deleted."
+msgstr ""
+
+#: Controller/OrderTypesController.php:69
+msgid "The order type could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/OrdersController.php:49;193;289
+msgid "Invalid order"
+msgstr ""
+
+#: Controller/OrdersController.php:139
+#: View/Elements/actions.orders.ctp:31
+#: View/Elements/actions.trades.ctp:8
+#: View/OrderDetails/add.ctp:24
+#: View/OrderDetails/edit.ctp:27
+#: View/OrderDetails/index.ctp:60
+#: View/OrderDetails/view.ctp:64
+#: View/Orders/index.ctp:14
+#: View/PaymentTypes/add.ctp:21
+#: View/PaymentTypes/edit.ctp:23
+#: View/PaymentTypes/index.ctp:48
+#: View/PaymentTypes/view.ctp:36;84
+#: View/Trades/index.ctp:58
+#: View/Trades/view.ctp:79
+msgid "New Order"
+msgstr ""
+
+#: Controller/OrdersController.php:159;197;330;375
+msgid "The order has been saved."
+msgstr ""
+
+#: Controller/OrdersController.php:162;200;333;378
+msgid "The order could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/OrdersController.php:357
+msgid "The order has been deleted."
+msgstr ""
+
+#: Controller/OrdersController.php:359
+msgid "The order could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/OrdersController.php:386
+#: View/Elements/actions.orders.ctp:24
+msgid "Cancel Order"
+msgstr ""
+
+#: Controller/OrganizationTypesController.php:37;69;94
+msgid "Invalid organization type"
+msgstr ""
+
+#: Controller/OrganizationTypesController.php:52;73
+msgid "The organization type has been saved."
+msgstr ""
+
+#: Controller/OrganizationTypesController.php:55;76
+msgid "The organization type could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/OrganizationTypesController.php:98
+msgid "The organization type has been deleted."
+msgstr ""
+
+#: Controller/OrganizationTypesController.php:100
+msgid "The organization type could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/OrganizationsController.php:36;61;88
+msgid "Invalid organization"
+msgstr ""
+
+#: Controller/OrganizationsController.php:49;65
+msgid "The organization has been saved."
+msgstr ""
+
+#: Controller/OrganizationsController.php:52;68
+msgid "The organization could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/OrganizationsController.php:92
+msgid "The organization has been deleted."
+msgstr ""
+
+#: Controller/OrganizationsController.php:94
+msgid "The organization could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/PaymentTypesController.php:37;71;98
+msgid "Invalid payment type"
+msgstr ""
+
+#: Controller/PaymentTypesController.php:52;75
+msgid "The payment type has been saved."
+msgstr ""
+
+#: Controller/PaymentTypesController.php:55;78
+msgid "The payment type could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/PaymentTypesController.php:102
+msgid "The payment type has been deleted."
+msgstr ""
+
+#: Controller/PaymentTypesController.php:104
+msgid "The payment type could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/RolesController.php:37;69;94
+msgid "Invalid role"
+msgstr ""
+
+#: Controller/RolesController.php:52;73
+msgid "The role has been saved."
+msgstr ""
+
+#: Controller/RolesController.php:55;76
+msgid "The role could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/RolesController.php:98
+msgid "The role has been deleted."
+msgstr ""
+
+#: Controller/RolesController.php:100
+msgid "The role could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/StockGroupsController.php:37;69;94
+msgid "Invalid stock group"
+msgstr ""
+
+#: Controller/StockGroupsController.php:52;73
+msgid "The stock group has been saved."
+msgstr ""
+
+#: Controller/StockGroupsController.php:55;76
+msgid "The stock group could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/StockGroupsController.php:98
+msgid "The stock group has been deleted."
+msgstr ""
+
+#: Controller/StockGroupsController.php:100
+msgid "The stock group could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/StockRatesController.php:37;71;98
+msgid "Invalid stock rate"
+msgstr ""
+
+#: Controller/StockRatesController.php:52;75
+msgid "The stock rate has been saved."
+msgstr ""
+
+#: Controller/StockRatesController.php:55;78
+msgid "The stock rate could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/StockRatesController.php:102
+msgid "The stock rate has been deleted."
+msgstr ""
+
+#: Controller/StockRatesController.php:104
+msgid "The stock rate could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/StockSituationsController.php:37;69;94
+msgid "Invalid stock situation"
+msgstr ""
+
+#: Controller/StockSituationsController.php:52;73
+msgid "The stock situation has been saved."
+msgstr ""
+
+#: Controller/StockSituationsController.php:55;76
+msgid "The stock situation could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/StockSituationsController.php:98
+msgid "The stock situation has been deleted."
+msgstr ""
+
+#: Controller/StockSituationsController.php:100
+msgid "The stock situation could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/StockTypesController.php:37;69;94
+msgid "Invalid stock type"
+msgstr ""
+
+#: Controller/StockTypesController.php:52;73
+msgid "The stock type has been saved."
+msgstr ""
+
+#: Controller/StockTypesController.php:55;76
+msgid "The stock type could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/StockTypesController.php:98
+msgid "The stock type has been deleted."
+msgstr ""
+
+#: Controller/StockTypesController.php:100
+msgid "The stock type could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/StockUnitsController.php:37;69;94
+msgid "Invalid stock unit"
+msgstr ""
+
+#: Controller/StockUnitsController.php:52;73
+msgid "The stock unit has been saved."
+msgstr ""
+
+#: Controller/StockUnitsController.php:55;76
+msgid "The stock unit could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/StockUnitsController.php:98
+msgid "The stock unit has been deleted."
+msgstr ""
+
+#: Controller/StockUnitsController.php:100
+msgid "The stock unit could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/StocksController.php:83;124;149
+msgid "Invalid stock"
+msgstr ""
+
+#: Controller/StocksController.php:105;128
+msgid "The stock has been saved."
+msgstr ""
+
+#: Controller/StocksController.php:108;131
+msgid "The stock could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/StocksController.php:153
+msgid "The stock has been deleted."
+msgstr ""
+
+#: Controller/StocksController.php:155
+msgid "The stock could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/TradesController.php:14;158;282
+msgid "Invalid trade"
+msgstr ""
+
+#: Controller/TradesController.php:44;77;79;121;123;226;240;248
+msgid "The trade has been saved."
+msgstr ""
+
+#: Controller/TradesController.php:47;83;127;229;243;251
+msgid "The trade could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/TradesController.php:286
+msgid "The trade has been deleted."
+msgstr ""
+
+#: Controller/TradesController.php:288
+msgid "The trade could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/UserRolesController.php:37;73;102
+msgid "Invalid user role"
+msgstr ""
+
+#: Controller/UserRolesController.php:52;77
+msgid "The user role has been saved."
+msgstr ""
+
+#: Controller/UserRolesController.php:55;80
+msgid "The user role could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/UserRolesController.php:106
+msgid "The user role has been deleted."
+msgstr ""
+
+#: Controller/UserRolesController.php:108
+msgid "The user role could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/UsersController.php:39;83;133
+msgid "Invalid user"
+msgstr ""
+
+#: Controller/UsersController.php:56;99;109
+msgid "The user has been saved."
+msgstr ""
+
+#: Controller/UsersController.php:59;102;105;112
+msgid "The user could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/UsersController.php:137
+msgid "The user has been deleted."
+msgstr ""
+
+#: Controller/UsersController.php:139
+msgid "The user could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/UsersController.php:193
+msgid "Invalid! username or password."
+msgstr ""
+
+#: View/Accounts/add.ctp:4
+msgid "Add Account"
+msgstr ""
+
+#: View/Accounts/add.ctp:10
+#: View/Accounts/edit.ctp:11
+#: View/Modules/add.ctp:9
+#: View/Modules/edit.ctp:10
+#: View/OrderDetails/add.ctp:16
+#: View/OrderDetails/edit.ctp:17
+#: View/OrderTypes/add.ctp:12
+#: View/OrderTypes/edit.ctp:12
+#: View/Orders/add.ctp:24
+#: View/Orders/add_type.ctp:9
+#: View/Orders/cancel.ctp:10
+#: View/Orders/edit.ctp:33
+#: View/OrganizationTypes/add.ctp:13
+#: View/OrganizationTypes/edit.ctp:14
+#: View/Organizations/add.ctp:16
+#: View/Organizations/edit.ctp:17
+#: View/PaymentTypes/add.ctp:11
+#: View/PaymentTypes/edit.ctp:12
+#: View/Roles/add.ctp:10
+#: View/Roles/edit.ctp:11
+#: View/StockGroups/add.ctp:11
+#: View/StockGroups/edit.ctp:12
+#: View/StockRates/add.ctp:11
+#: View/StockRates/edit.ctp:12
+#: View/StockSituations/add.ctp:11
+#: View/StockSituations/edit.ctp:12
+#: View/StockTypes/add.ctp:12
+#: View/StockTypes/edit.ctp:13
+#: View/StockUnits/add.ctp:10
+#: View/StockUnits/edit.ctp:11
+#: View/Stocks/add.ctp:14
+#: View/Stocks/edit.ctp:14
+#: View/Trades/add.ctp:49
+#: View/Trades/edit.ctp:52
+#: View/UserRoles/add.ctp:12
+#: View/UserRoles/edit.ctp:13
+#: View/Users/add.ctp:16
+#: View/Users/edit.ctp:24
+msgid "Submit"
+msgstr ""
+
+#: View/Accounts/add.ctp:13
+#: View/Accounts/edit.ctp:14
+#: View/Accounts/index.ctp:8;38
+#: View/Accounts/view.ctp:22;41
+#: View/Elements/actions.orders.ctp:1
+#: View/Elements/actions.trades.ctp:1
+#: View/Modules/add.ctp:12
+#: View/Modules/edit.ctp:13
+#: View/Modules/index.ctp:7;36
+#: View/Modules/view.ctp:17;37
+#: View/OrderDetails/add.ctp:19
+#: View/OrderDetails/edit.ctp:22
+#: View/OrderDetails/index.ctp:15;56
+#: View/OrderDetails/view.ctp:57
+#: View/OrderTypes/add.ctp:17
+#: View/OrderTypes/edit.ctp:17
+#: View/OrderTypes/index.ctp:46
+#: View/OrderTypes/view.ctp:32
+#: View/OrganizationTypes/add.ctp:16
+#: View/OrganizationTypes/edit.ctp:17
+#: View/OrganizationTypes/index.ctp:38
+#: View/OrganizationTypes/view.ctp:37;66
+#: View/Organizations/add.ctp:21
+#: View/Organizations/edit.ctp:22
+#: View/Organizations/index.ctp:42
+#: View/Organizations/view.ctp:77;114;174;238;294
+#: View/PaymentTypes/add.ctp:14
+#: View/PaymentTypes/edit.ctp:15
+#: View/PaymentTypes/index.ctp:9;42
+#: View/PaymentTypes/view.ctp:27;56
+#: View/Roles/add.ctp:13
+#: View/Roles/edit.ctp:14
+#: View/Roles/index.ctp:8;38
+#: View/Roles/view.ctp:22
+#: View/StockGroups/add.ctp:14
+#: View/StockGroups/edit.ctp:15
+#: View/StockGroups/index.ctp:9;40
+#: View/StockGroups/view.ctp:27;54
+#: View/StockRates/add.ctp:14
+#: View/StockRates/edit.ctp:15
+#: View/StockRates/index.ctp:9;42
+#: View/StockRates/view.ctp:27
+#: View/StockSituations/add.ctp:14
+#: View/StockSituations/edit.ctp:15
+#: View/StockSituations/index.ctp:9;40
+#: View/StockSituations/view.ctp:27;56;106
+#: View/StockTypes/add.ctp:15
+#: View/StockTypes/edit.ctp:16
+#: View/StockTypes/index.ctp:9;40
+#: View/StockTypes/view.ctp:32;59
+#: View/StockUnits/add.ctp:13
+#: View/StockUnits/edit.ctp:14
+#: View/StockUnits/index.ctp:8;38
+#: View/StockUnits/view.ctp:22;49
+#: View/Stocks/add.ctp:19
+#: View/Stocks/edit.ctp:19
+#: View/Stocks/index.ctp:51
+#: View/Stocks/view.ctp:38;66
+#: View/Trades/index.ctp:13;54
+#: View/Trades/view.ctp:72
+#: View/UserRoles/add.ctp:15
+#: View/UserRoles/edit.ctp:16
+#: View/UserRoles/index.ctp:10;48
+#: View/UserRoles/view.ctp:32
+#: View/Users/add.ctp:19
+#: View/Users/edit.ctp:29
+#: View/Users/index.ctp:9;42
+#: View/Users/view.ctp:52;74
+msgid "Actions"
+msgstr ""
+
+#: View/Accounts/add.ctp:16
+#: View/Accounts/edit.ctp:18
+#: View/Accounts/view.ctp:26
+#: View/PaymentTypes/add.ctp:18
+#: View/PaymentTypes/edit.ctp:20
+#: View/PaymentTypes/index.ctp:45
+#: View/PaymentTypes/view.ctp:33
+msgid "List Accounts"
+msgstr ""
+
+#: View/Accounts/add.ctp:17
+#: View/Accounts/edit.ctp:19
+#: View/Accounts/index.ctp:41
+#: View/Accounts/view.ctp:28
+#: View/PaymentTypes/add.ctp:17
+#: View/PaymentTypes/edit.ctp:19
+#: View/PaymentTypes/view.ctp:31
+msgid "List Payment Types"
+msgstr ""
+
+#: View/Accounts/add.ctp:18
+#: View/Accounts/edit.ctp:20
+#: View/Accounts/index.ctp:42
+#: View/Accounts/view.ctp:29;61
+#: View/PaymentTypes/index.ctp:44
+#: View/PaymentTypes/view.ctp:32
+msgid "New Payment Type"
+msgstr ""
+
+#: View/Accounts/edit.ctp:4
+#: View/Accounts/view.ctp:24
+msgid "Edit Account"
+msgstr ""
+
+#: View/Accounts/edit.ctp:17
+#: View/Accounts/index.ctp:18
+#: View/Accounts/view.ctp:52
+#: View/Elements/actions.orders.ctp:20
+#: View/Elements/actions.trades.ctp:5
+#: View/Modules/edit.ctp:16
+#: View/Modules/index.ctp:16
+#: View/Modules/view.ctp:49
+#: View/OrderDetails/edit.ctp:24
+#: View/OrderTypes/edit.ctp:19;51
+#: View/Orders/edit.ctp:67
+#: View/Orders/index.ctp:53
+#: View/OrganizationTypes/edit.ctp:19
+#: View/OrganizationTypes/view.ctp:87
+#: View/Organizations/edit.ctp:25
+#: View/Organizations/index.ctp:21
+#: View/Organizations/view.ctp:135;202;263;314
+#: View/PaymentTypes/edit.ctp:18
+#: View/PaymentTypes/index.ctp:22
+#: View/PaymentTypes/view.ctp:75
+#: View/Roles/edit.ctp:17
+#: View/Roles/index.ctp:18
+#: View/StockGroups/edit.ctp:18
+#: View/StockGroups/index.ctp:20
+#: View/StockGroups/view.ctp:73
+#: View/StockRates/edit.ctp:18
+#: View/StockRates/index.ctp:22
+#: View/StockSituations/edit.ctp:18
+#: View/StockSituations/index.ctp:20
+#: View/StockSituations/view.ctp:75;126
+#: View/StockTypes/edit.ctp:19
+#: View/StockTypes/index.ctp:20
+#: View/StockTypes/view.ctp:78
+#: View/StockUnits/edit.ctp:17
+#: View/StockUnits/index.ctp:18
+#: View/StockUnits/view.ctp:68
+#: View/Stocks/edit.ctp:21
+#: View/Trades/index.ctp:34
+#: View/UserRoles/edit.ctp:19
+#: View/UserRoles/index.ctp:28
+#: View/Users/edit.ctp:32
+#: View/Users/index.ctp:22
+#: View/Users/view.ctp:86
+msgid "Delete"
+msgstr ""
+
+#: View/Accounts/edit.ctp:17
+#: View/Accounts/index.ctp:18
+#: View/Accounts/view.ctp:25;52
+#: View/Elements/actions.orders.ctp:21
+#: View/Elements/actions.trades.ctp:5
+#: View/Modules/edit.ctp:16
+#: View/Modules/index.ctp:16
+#: View/Modules/view.ctp:20;49
+#: View/OrderDetails/edit.ctp:24
+#: View/OrderDetails/view.ctp:60
+#: View/OrderTypes/edit.ctp:19;51
+#: View/OrderTypes/view.ctp:35
+#: View/Orders/edit.ctp:67
+#: View/Orders/index.ctp:54
+#: View/OrganizationTypes/edit.ctp:19
+#: View/OrganizationTypes/view.ctp:40;87
+#: View/Organizations/edit.ctp:25
+#: View/Organizations/index.ctp:21
+#: View/Organizations/view.ctp:80;135;202;263;314
+#: View/PaymentTypes/edit.ctp:18
+#: View/PaymentTypes/index.ctp:22
+#: View/PaymentTypes/view.ctp:30;75
+#: View/Roles/edit.ctp:17
+#: View/Roles/index.ctp:18
+#: View/Roles/view.ctp:25
+#: View/StockGroups/edit.ctp:18
+#: View/StockGroups/index.ctp:20
+#: View/StockGroups/view.ctp:30;73
+#: View/StockRates/edit.ctp:18
+#: View/StockRates/index.ctp:22
+#: View/StockRates/view.ctp:30
+#: View/StockSituations/edit.ctp:18
+#: View/StockSituations/index.ctp:20
+#: View/StockSituations/view.ctp:30;75;126
+#: View/StockTypes/edit.ctp:19
+#: View/StockTypes/index.ctp:20
+#: View/StockTypes/view.ctp:35;78
+#: View/StockUnits/edit.ctp:17
+#: View/StockUnits/index.ctp:18
+#: View/StockUnits/view.ctp:25;68
+#: View/Stocks/edit.ctp:21
+#: View/Stocks/view.ctp:41
+#: View/Trades/index.ctp:34
+#: View/Trades/view.ctp:75
+#: View/UserRoles/edit.ctp:19
+#: View/UserRoles/index.ctp:28
+#: View/UserRoles/view.ctp:35
+#: View/Users/edit.ctp:32
+#: View/Users/index.ctp:22
+#: View/Users/view.ctp:55;86
+msgid "Are you sure you want to delete # %s?"
+msgstr ""
+
+#: View/Accounts/index.ctp:2
+msgid "Accounts"
+msgstr ""
+
+#: View/Accounts/index.ctp:16
+#: View/Accounts/view.ctp:50
+#: View/Modules/index.ctp:14
+#: View/Modules/view.ctp:47
+#: View/OrderTypes/edit.ctp:49
+#: View/OrderTypes/index.ctp:24
+#: View/Orders/index.ctp:41
+#: View/OrganizationTypes/index.ctp:16
+#: View/OrganizationTypes/view.ctp:85
+#: View/Organizations/index.ctp:19
+#: View/Organizations/view.ctp:133;200;261;312
+#: View/PaymentTypes/index.ctp:20
+#: View/PaymentTypes/view.ctp:73
+#: View/Roles/index.ctp:16
+#: View/StockGroups/index.ctp:18
+#: View/StockGroups/view.ctp:71
+#: View/StockRates/index.ctp:20
+#: View/StockSituations/index.ctp:18
+#: View/StockSituations/view.ctp:73;124
+#: View/StockTypes/index.ctp:18
+#: View/StockTypes/view.ctp:76
+#: View/StockUnits/index.ctp:16
+#: View/StockUnits/view.ctp:66
+#: View/Stocks/index.ctp:29
+#: View/Stocks/view.ctp:87
+#: View/Trades/index.ctp:32
+#: View/UserRoles/index.ctp:26
+#: View/Users/index.ctp:20
+#: View/Users/view.ctp:84
+msgid "View"
+msgstr ""
+
+#: View/Accounts/index.ctp:17
+#: View/Accounts/view.ctp:51
+#: View/Elements/actions.orders.ctp:7;15
+#: View/Modules/index.ctp:15
+#: View/Modules/view.ctp:48
+#: View/OrderTypes/edit.ctp:50
+#: View/OrderTypes/index.ctp:25
+#: View/Orders/edit.ctp:66
+#: View/Orders/index.ctp:49
+#: View/OrganizationTypes/index.ctp:17
+#: View/OrganizationTypes/view.ctp:86
+#: View/Organizations/edit.ctp:4
+#: View/Organizations/index.ctp:20
+#: View/Organizations/view.ctp:134;201;262;313
+#: View/PaymentTypes/index.ctp:21
+#: View/PaymentTypes/view.ctp:74
+#: View/Roles/index.ctp:17
+#: View/StockGroups/index.ctp:19
+#: View/StockGroups/view.ctp:72
+#: View/StockRates/index.ctp:21
+#: View/StockSituations/index.ctp:19
+#: View/StockSituations/view.ctp:74;125
+#: View/StockTypes/index.ctp:19
+#: View/StockTypes/view.ctp:77
+#: View/StockUnits/index.ctp:17
+#: View/StockUnits/view.ctp:67
+#: View/Stocks/index.ctp:30
+#: View/Trades/index.ctp:33
+#: View/UserRoles/index.ctp:27
+#: View/Users/index.ctp:21
+#: View/Users/view.ctp:85
+msgid "Edit"
+msgstr ""
+
+#: View/Accounts/index.ctp:26
+#: View/Modules/index.ctp:24
+#: View/OrderDetails/index.ctp:44
+#: View/OrderTypes/index.ctp:34
+#: View/Orders/index.ctp:69
+#: View/OrganizationTypes/index.ctp:26
+#: View/Organizations/index.ctp:30
+#: View/PaymentTypes/index.ctp:30
+#: View/Roles/index.ctp:26
+#: View/StockGroups/index.ctp:28
+#: View/StockRates/index.ctp:30
+#: View/StockSituations/index.ctp:28
+#: View/StockTypes/index.ctp:28
+#: View/StockUnits/index.ctp:26
+#: View/Stocks/index.ctp:39
+#: View/Trades/index.ctp:42
+#: View/UserRoles/index.ctp:36
+#: View/Users/index.ctp:30
+msgid "Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}"
+msgstr ""
+
+#: View/Accounts/index.ctp:31
+#: View/Modules/index.ctp:29
+#: View/OrderDetails/index.ctp:49
+#: View/OrderTypes/index.ctp:39
+#: View/Orders/index.ctp:74
+#: View/OrganizationTypes/index.ctp:31
+#: View/Organizations/index.ctp:35
+#: View/PaymentTypes/index.ctp:35
+#: View/Roles/index.ctp:31
+#: View/StockGroups/index.ctp:33
+#: View/StockRates/index.ctp:35
+#: View/StockSituations/index.ctp:33
+#: View/StockTypes/index.ctp:33
+#: View/StockUnits/index.ctp:31
+#: View/Stocks/index.ctp:44
+#: View/Trades/index.ctp:47
+#: View/UserRoles/index.ctp:41
+#: View/Users/index.ctp:35
+msgid "previous"
+msgstr ""
+
+#: View/Accounts/index.ctp:33
+#: View/Modules/index.ctp:31
+#: View/OrderDetails/index.ctp:51
+#: View/OrderTypes/index.ctp:41
+#: View/Orders/index.ctp:76
+#: View/OrganizationTypes/index.ctp:33
+#: View/Organizations/index.ctp:37
+#: View/PaymentTypes/index.ctp:37
+#: View/Roles/index.ctp:33
+#: View/StockGroups/index.ctp:35
+#: View/StockRates/index.ctp:37
+#: View/StockSituations/index.ctp:35
+#: View/StockTypes/index.ctp:35
+#: View/StockUnits/index.ctp:33
+#: View/Stocks/index.ctp:46
+#: View/Trades/index.ctp:49
+#: View/UserRoles/index.ctp:43
+#: View/Users/index.ctp:37
+msgid "next"
+msgstr ""
+
+#: View/Accounts/index.ctp:40
+#: View/Accounts/view.ctp:27
+#: View/PaymentTypes/add.ctp:19
+#: View/PaymentTypes/edit.ctp:21
+#: View/PaymentTypes/index.ctp:46
+#: View/PaymentTypes/view.ctp:34
+msgid "New Account"
+msgstr ""
+
+#: View/Accounts/view.ctp:2
+#: View/PaymentTypes/view.ctp:14
+msgid "Account"
+msgstr ""
+
+#: View/Accounts/view.ctp:4;37
+#: View/Modules/view.ctp:4;32
+#: View/OrderDetails/view.ctp:4
+#: View/OrderTypes/edit.ctp:34
+#: View/OrderTypes/view.ctp:4;51
+#: View/OrganizationTypes/view.ctp:4;52
+#: View/Organizations/view.ctp:4;100;153;220;281
+#: View/PaymentTypes/view.ctp:4;44
+#: View/Roles/view.ctp:4
+#: View/StockGroups/view.ctp:4;42
+#: View/StockRates/view.ctp:4
+#: View/StockSituations/view.ctp:4;44;93
+#: View/StockTypes/view.ctp:4;47
+#: View/StockUnits/view.ctp:4;37
+#: View/Trades/view.ctp:4
+#: View/UserRoles/view.ctp:4
+#: View/Users/view.ctp:4;69
+msgid "Id"
+msgstr ""
+
+#: View/Accounts/view.ctp:9;38
+#: View/Modules/view.ctp:9
+#: View/OrderDetails/view.ctp:14
+#: View/OrderTypes/edit.ctp:35
+#: View/OrderTypes/view.ctp:9;52
+#: View/OrganizationTypes/view.ctp:9;55
+#: View/Organizations/view.ctp:19;103;157;282
+#: View/PaymentTypes/view.ctp:9
+#: View/Roles/view.ctp:9
+#: View/StockGroups/view.ctp:9;46
+#: View/StockRates/view.ctp:14
+#: View/StockSituations/view.ctp:9;48
+#: View/StockTypes/view.ctp:9;51
+#: View/StockUnits/view.ctp:9;41
+#: View/Trades/edit.ctp:33
+#: View/Users/view.ctp:9
+msgid "Name"
+msgstr ""
+
+#: View/Accounts/view.ctp:14;40
+#: View/OrderDetails/view.ctp:49
+#: View/OrderTypes/view.ctp:57
+#: View/OrganizationTypes/view.ctp:24
+#: View/PaymentTypes/view.ctp:19
+#: View/Roles/view.ctp:14
+#: View/StockGroups/view.ctp:19
+#: View/StockSituations/view.ctp:14
+msgid "Sort"
+msgstr ""
+
+#: View/Accounts/view.ctp:25
+msgid "Delete Account"
+msgstr ""
+
+#: View/Accounts/view.ctp:33
+msgid "Related Payment Types"
+msgstr ""
+
+#: View/Accounts/view.ctp:39
+msgid "Account Id"
+msgstr ""
+
+#: View/Elements/actions.orders.ctp:3
+#: View/Elements/actions.trades.ctp:3
+#: View/Stocks/view.ctp:35
+msgid "Back"
+msgstr ""
+
+#: View/Elements/actions.orders.ctp:5
+msgid "Print Order"
+msgstr ""
+
+#: View/Elements/actions.orders.ctp:8
+msgid "Reuse Order"
+msgstr ""
+
+#: View/Elements/actions.orders.ctp:10
+#: View/Orders/index.ctp:44
+msgid "Reuse"
+msgstr ""
+
+#: View/Elements/actions.orders.ctp:13
+msgid "Edit Order"
+msgstr ""
+
+#: View/Elements/actions.orders.ctp:18
+msgid "Delete Order"
+msgstr ""
+
+#: View/Elements/actions.orders.ctp:26
+#: View/OrderDetails/edit.ctp:18
+#: View/OrderTypes/add.ctp:13
+#: View/OrderTypes/edit.ctp:13
+#: View/Orders/add.ctp:25
+#: View/Orders/edit.ctp:34
+#: View/Orders/index.ctp:58
+#: View/Organizations/add.ctp:17
+#: View/Organizations/edit.ctp:18
+#: View/Stocks/add.ctp:15
+#: View/Stocks/edit.ctp:15
+#: View/Trades/add.ctp:50
+#: View/Trades/edit.ctp:53
+#: View/Users/edit.ctp:25
+msgid "Cancel"
+msgstr ""
+
+#: View/Elements/actions.orders.ctp:30
+#: View/Elements/actions.trades.ctp:7
+#: View/OrderDetails/add.ctp:23
+#: View/OrderDetails/edit.ctp:26
+#: View/OrderDetails/index.ctp:59
+#: View/OrderDetails/view.ctp:63
+#: View/PaymentTypes/add.ctp:20
+#: View/PaymentTypes/edit.ctp:22
+#: View/PaymentTypes/index.ctp:47
+#: View/PaymentTypes/view.ctp:35
+#: View/Stocks/add.ctp:30
+#: View/Stocks/edit.ctp:31
+#: View/Stocks/index.ctp:61
+#: View/Trades/index.ctp:57
+#: View/Trades/view.ctp:78
+msgid "List Orders"
+msgstr ""
+
+#: View/Elements/actions.orders.ctp:32
+#: View/Elements/actions.trades.ctp:9
+#: View/Organizations/add.ctp:27
+#: View/Organizations/edit.ctp:31
+#: View/Organizations/index.ctp:48
+#: View/Organizations/view.ctp:87
+#: View/StockGroups/add.ctp:18
+#: View/StockGroups/edit.ctp:20
+#: View/StockGroups/index.ctp:43
+#: View/StockGroups/view.ctp:33
+#: View/StockRates/add.ctp:18
+#: View/StockRates/edit.ctp:20
+#: View/StockRates/index.ctp:45
+#: View/StockRates/view.ctp:33
+#: View/StockSituations/add.ctp:18
+#: View/StockSituations/edit.ctp:20
+#: View/StockSituations/index.ctp:43
+#: View/StockSituations/view.ctp:33
+#: View/StockTypes/add.ctp:19
+#: View/StockTypes/edit.ctp:21
+#: View/StockTypes/index.ctp:43
+#: View/StockTypes/view.ctp:38
+#: View/StockUnits/add.ctp:17
+#: View/StockUnits/edit.ctp:19
+#: View/StockUnits/index.ctp:41
+#: View/StockUnits/view.ctp:28
+#: View/Stocks/add.ctp:21
+#: View/Stocks/edit.ctp:22
+#: View/Stocks/view.ctp:42
+#: View/Trades/index.ctp:59
+#: View/Trades/view.ctp:80
+msgid "List Stocks"
+msgstr ""
+
+#: View/Elements/actions.orders.ctp:33
+#: View/Elements/actions.trades.ctp:10
+#: View/Organizations/add.ctp:28
+#: View/Organizations/edit.ctp:32
+#: View/Organizations/index.ctp:49
+#: View/Organizations/view.ctp:88;211
+#: View/StockGroups/add.ctp:19
+#: View/StockGroups/edit.ctp:21
+#: View/StockGroups/index.ctp:44
+#: View/StockGroups/view.ctp:34;82
+#: View/StockRates/add.ctp:19
+#: View/StockRates/edit.ctp:21
+#: View/StockRates/index.ctp:46
+#: View/StockRates/view.ctp:34
+#: View/StockSituations/add.ctp:19
+#: View/StockSituations/edit.ctp:21
+#: View/StockSituations/index.ctp:44
+#: View/StockSituations/view.ctp:34;84
+#: View/StockTypes/add.ctp:20
+#: View/StockTypes/edit.ctp:22
+#: View/StockTypes/index.ctp:44
+#: View/StockTypes/view.ctp:39;87
+#: View/StockUnits/add.ctp:18
+#: View/StockUnits/edit.ctp:20
+#: View/StockUnits/index.ctp:42
+#: View/StockUnits/view.ctp:29;77
+#: View/Stocks/index.ctp:15
+#: View/Stocks/view.ctp:43
+#: View/Trades/index.ctp:60
+#: View/Trades/view.ctp:81
+msgid "New Stock"
+msgstr ""
+
+#: View/Elements/actions.trades.ctp:12
+#: View/StockSituations/add.ctp:17
+#: View/StockSituations/edit.ctp:19
+#: View/StockSituations/view.ctp:31
+#: View/Stocks/add.ctp:28
+#: View/Stocks/edit.ctp:29
+#: View/Stocks/index.ctp:59
+#: View/Stocks/view.ctp:50
+#: View/Trades/index.ctp:61
+#: View/Trades/view.ctp:82
+msgid "List Stock Situations"
+msgstr ""
+
+#: View/Elements/actions.trades.ctp:13
+#: View/StockSituations/index.ctp:42
+#: View/StockSituations/view.ctp:32
+#: View/Stocks/add.ctp:29
+#: View/Stocks/edit.ctp:30
+#: View/Stocks/index.ctp:60
+#: View/Trades/index.ctp:62
+#: View/Trades/view.ctp:83
+msgid "New Stock Situation"
+msgstr ""
+
+#: View/Elements/actions.trades.ctp:15
+#: View/StockGroups/add.ctp:17
+#: View/StockGroups/edit.ctp:19
+#: View/StockGroups/view.ctp:31
+#: View/Stocks/add.ctp:24
+#: View/Stocks/edit.ctp:25
+#: View/Stocks/index.ctp:55
+#: View/Stocks/view.ctp:46
+msgid "List Stock Groups"
+msgstr ""
+
+#: View/Elements/actions.trades.ctp:16
+#: View/StockGroups/index.ctp:42
+#: View/StockGroups/view.ctp:32
+#: View/Stocks/add.ctp:25
+#: View/Stocks/edit.ctp:26
+#: View/Stocks/index.ctp:56
+#: View/Stocks/view.ctp:47
+msgid "New Stock Group"
+msgstr ""
+
+#: View/Elements/filter.date.ctp:9
+#: View/Elements/filter.select.ctp:9
+msgid "Apply"
+msgstr ""
+
+#: View/Elements/filter.date.ctp:12
+#: View/Elements/filter.select.ctp:12
+msgid "Clear"
+msgstr ""
+
+#: View/Elements/filter.date.ctp:17
+msgid "Begin"
+msgstr ""
+
+#: View/Elements/filter.date.ctp:19
+msgid "End"
+msgstr ""
+
+#: View/Elements/form.search.ctp:3
+msgid "Search"
+msgstr ""
+
+#: View/Layouts/default.ctp:2
+msgid "Warehouse"
+msgstr ""
+
+#: View/Layouts/default.ctp:38
+#: View/Orders/index.ctp:2
+msgid "Orders"
+msgstr ""
+
+#: View/Layouts/default.ctp:41
+#: View/OrderTypes/index.ctp:2
+msgid "Order Types"
+msgstr ""
+
+#: View/Layouts/default.ctp:44
+#: View/Stocks/index.ctp:2
+msgid "Stocks"
+msgstr ""
+
+#: View/Layouts/default.ctp:47
+#: View/StockTypes/index.ctp:2
+msgid "Stock Types"
+msgstr ""
+
+#: View/Layouts/default.ctp:54
+msgid "ENTRIES"
+msgstr ""
+
+#: View/Layouts/default.ctp:57
+msgid "Organizations"
+msgstr ""
+
+#: View/Layouts/default.ctp:66
+#: View/OrganizationTypes/index.ctp:2
+msgid "Organization Types"
+msgstr ""
+
+#: View/Layouts/default.ctp:69
+#: View/StockGroups/index.ctp:2
+msgid "Stock Groups"
+msgstr ""
+
+#: View/Layouts/default.ctp:72
+#: View/StockUnits/index.ctp:2
+msgid "Stock Units"
+msgstr ""
+
+#: View/Layouts/default.ctp:75
+#: View/Users/index.ctp:2
+msgid "Users"
+msgstr ""
+
+#: View/Layouts/default.ctp:78
+#: View/Modules/index.ctp:2
+msgid "Modules"
+msgstr ""
+
+#: View/Modules/add.ctp:4
+msgid "Add Module"
+msgstr ""
+
+#: View/Modules/add.ctp:15
+#: View/Modules/edit.ctp:17
+#: View/Modules/view.ctp:21
+#: View/OrderTypes/add.ctp:22
+#: View/OrderTypes/edit.ctp:23
+#: View/OrderTypes/index.ctp:51
+#: View/OrderTypes/view.ctp:40
+#: View/UserRoles/add.ctp:21
+#: View/UserRoles/edit.ctp:23
+#: View/UserRoles/index.ctp:53
+#: View/UserRoles/view.ctp:40
+msgid "List Modules"
+msgstr ""
+
+#: View/Modules/add.ctp:16
+#: View/Modules/edit.ctp:18
+#: View/Modules/index.ctp:39
+#: View/Modules/view.ctp:23
+#: View/UserRoles/add.ctp:18
+#: View/UserRoles/edit.ctp:20
+#: View/UserRoles/view.ctp:36
+#: View/Users/add.ctp:25
+#: View/Users/edit.ctp:36
+#: View/Users/index.ctp:47
+#: View/Users/view.ctp:60
+msgid "List User Roles"
+msgstr ""
+
+#: View/Modules/add.ctp:17
+#: View/Modules/edit.ctp:19
+#: View/Modules/index.ctp:40
+#: View/Modules/view.ctp:24;58
+#: View/UserRoles/index.ctp:50
+#: View/UserRoles/view.ctp:37
+#: View/Users/add.ctp:26
+#: View/Users/edit.ctp:37
+#: View/Users/index.ctp:48
+#: View/Users/view.ctp:61;95
+msgid "New User Role"
+msgstr ""
+
+#: View/Modules/edit.ctp:4
+#: View/Modules/view.ctp:19
+msgid "Edit Module"
+msgstr ""
+
+#: View/Modules/index.ctp:38
+#: View/Modules/view.ctp:22
+#: View/OrderTypes/add.ctp:23
+#: View/OrderTypes/edit.ctp:24
+#: View/OrderTypes/index.ctp:52
+#: View/OrderTypes/view.ctp:41
+#: View/UserRoles/add.ctp:22
+#: View/UserRoles/edit.ctp:24
+#: View/UserRoles/index.ctp:54
+#: View/UserRoles/view.ctp:41
+msgid "New Module"
+msgstr ""
+
+#: View/Modules/view.ctp:2
+#: View/OrderTypes/view.ctp:14
+#: View/UserRoles/view.ctp:14
+msgid "Module"
+msgstr ""
+
+#: View/Modules/view.ctp:20
+msgid "Delete Module"
+msgstr ""
+
+#: View/Modules/view.ctp:28
+#: View/Users/view.ctp:65
+msgid "Related User Roles"
+msgstr ""
+
+#: View/Modules/view.ctp:33
+#: View/Users/view.ctp:70
+msgid "User Id"
+msgstr ""
+
+#: View/Modules/view.ctp:34
+#: View/Users/view.ctp:71
+msgid "Module Id"
+msgstr ""
+
+#: View/Modules/view.ctp:35
+#: View/Users/view.ctp:72
+msgid "Role Id"
+msgstr ""
+
+#: View/Modules/view.ctp:36
+#: View/UserRoles/view.ctp:24
+#: View/Users/view.ctp:73
+msgid "Last Signin"
+msgstr ""
+
+#: View/OrderDetails/add.ctp:4
+msgid "Add Order Detail"
+msgstr ""
+
+#: View/OrderDetails/add.ctp:22
+#: View/OrderDetails/edit.ctp:25
+#: View/OrderDetails/view.ctp:61
+#: View/OrderTypes/add.ctp:24
+#: View/OrderTypes/edit.ctp:25
+#: View/OrderTypes/index.ctp:53
+#: View/OrderTypes/view.ctp:42
+msgid "List Order Details"
+msgstr ""
+
+#: View/OrderDetails/add.ctp:25
+#: View/OrderDetails/edit.ctp:28
+#: View/OrderDetails/index.ctp:61
+#: View/OrderDetails/view.ctp:65
+#: View/OrderTypes/add.ctp:19
+#: View/OrderTypes/edit.ctp:20
+#: View/OrderTypes/view.ctp:36
+msgid "List Order Types"
+msgstr ""
+
+#: View/OrderDetails/add.ctp:26
+#: View/OrderDetails/edit.ctp:29
+#: View/OrderDetails/index.ctp:62
+#: View/OrderDetails/view.ctp:66
+#: View/OrderTypes/index.ctp:10
+#: View/OrderTypes/view.ctp:37
+msgid "New Order Type"
+msgstr ""
+
+#: View/OrderDetails/edit.ctp:4
+#: View/OrderDetails/view.ctp:59
+msgid "Edit Order Detail"
+msgstr ""
+
+#: View/OrderDetails/index.ctp:2
+msgid "Order Details"
+msgstr ""
+
+#: View/OrderDetails/index.ctp:58
+#: View/OrderDetails/view.ctp:62
+#: View/OrderTypes/add.ctp:25
+#: View/OrderTypes/edit.ctp:26;39
+#: View/OrderTypes/index.ctp:54
+#: View/OrderTypes/view.ctp:43
+msgid "New Order Detail"
+msgstr ""
+
+#: View/OrderDetails/view.ctp:2
+msgid "Order Detail"
+msgstr ""
+
+#: View/OrderDetails/view.ctp:9
+#: View/Orders/view.ctp:2
+#: View/Stocks/view.ctp:59
+#: View/Trades/view.ctp:9
+msgid "Order"
+msgstr ""
+
+#: View/OrderDetails/view.ctp:19
+#: View/StockRates/view.ctp:19
+msgid "Value"
+msgstr ""
+
+#: View/OrderDetails/view.ctp:24
+#: View/OrderTypes/view.ctp:2
+#: View/Orders/view.ctp:14
+msgid "Order Type"
+msgstr ""
+
+#: View/OrderDetails/view.ctp:29
+#: View/OrderTypes/edit.ctp:36
+#: View/OrderTypes/view.ctp:53
+msgid "Input Type"
+msgstr ""
+
+#: View/OrderDetails/view.ctp:34
+#: View/OrderTypes/view.ctp:54
+msgid "Input Mask"
+msgstr ""
+
+#: View/OrderDetails/view.ctp:39
+#: View/OrderTypes/view.ctp:55
+msgid "Required"
+msgstr ""
+
+#: View/OrderDetails/view.ctp:44
+#: View/OrderTypes/edit.ctp:37
+#: View/OrderTypes/view.ctp:56
+msgid "Css Class"
+msgstr ""
+
+#: View/OrderDetails/view.ctp:60
+msgid "Delete Order Detail"
+msgstr ""
+
+#: View/OrderTypes/add.ctp:4
+msgid "Add Order Type"
+msgstr ""
+
+#: View/OrderTypes/add.ctp:8;9
+#: View/Orders/add.ctp:8;9
+#: View/Orders/add_type.ctp:6
+#: View/Orders/edit.ctp:13;14
+#: View/Organizations/add.ctp:7
+#: View/Organizations/edit.ctp:8
+#: View/Stocks/add.ctp:6;8
+#: View/Stocks/edit.ctp:7;9
+#: View/Trades/add.ctp:10;20;22;31;35;42
+#: View/Trades/edit.ctp:9;18;25;46
+#: View/Users/edit.ctp:19;20
+msgid "Select an Item..."
+msgstr ""
+
+#: View/OrderTypes/add.ctp:20
+#: View/OrderTypes/edit.ctp:21
+#: View/OrderTypes/index.ctp:49
+#: View/OrderTypes/view.ctp:38
+#: View/OrganizationTypes/add.ctp:19
+#: View/OrganizationTypes/edit.ctp:20
+#: View/OrganizationTypes/view.ctp:41
+#: View/Organizations/add.ctp:23
+#: View/Organizations/edit.ctp:27
+#: View/Organizations/index.ctp:44
+#: View/Organizations/view.ctp:83
+msgid "List Organization Types"
+msgstr ""
+
+#: View/OrderTypes/add.ctp:21
+#: View/OrderTypes/edit.ctp:22
+#: View/OrderTypes/index.ctp:50
+#: View/OrderTypes/view.ctp:39
+msgid "New Seller Type"
+msgstr ""
+
+#: View/OrderTypes/edit.ctp:4
+#: View/OrderTypes/view.ctp:34
+msgid "Edit Order Type"
+msgstr ""
+
+#: View/OrderTypes/edit.ctp:30
+#: View/OrderTypes/view.ctp:47
+msgid "Related Order Details"
+msgstr ""
+
+#: View/OrderTypes/view.ctp:19
+msgid "Seller Type"
+msgstr ""
+
+#: View/OrderTypes/view.ctp:24
+msgid "Buyer Type"
+msgstr ""
+
+#: View/OrderTypes/view.ctp:35
+msgid "Delete Order Type"
+msgstr ""
+
+#: View/Orders/edit.ctp:43
+#: View/Orders/view.ctp:58
+msgid "StockGroup"
+msgstr ""
+
+#: View/Orders/edit.ctp:44
+#: View/Orders/view.ctp:4;59
+#: View/Trades/edit.ctp:31
+msgid "Num"
+msgstr ""
+
+#: View/Orders/edit.ctp:45
+#: View/Orders/view.ctp:60
+#: View/StockRates/view.ctp:9
+#: View/Stocks/view.ctp:2
+#: View/Trades/view.ctp:14
+msgid "Stock"
+msgstr ""
+
+#: View/Orders/edit.ctp:46
+#: View/Orders/view.ctp:61
+msgid "Amount"
+msgstr ""
+
+#: View/Orders/edit.ctp:47
+#: View/Orders/view.ctp:62
+#: View/Organizations/view.ctp:161
+#: View/StockGroups/view.ctp:50
+#: View/StockSituations/view.ctp:52
+#: View/StockTypes/view.ctp:55
+#: View/StockUnits/view.ctp:45
+#: View/Stocks/view.ctp:24;63
+#: View/Trades/edit.ctp:37
+msgid "Price"
+msgstr ""
+
+#: View/Orders/edit.ctp:50
+#: View/Organizations/add.ctp:30
+#: View/Organizations/edit.ctp:34
+#: View/Organizations/index.ctp:51
+#: View/Organizations/view.ctp:90;272
+#: View/StockSituations/add.ctp:21
+#: View/StockSituations/edit.ctp:23
+#: View/StockSituations/index.ctp:46
+#: View/StockSituations/view.ctp:36;135
+#: View/Stocks/add.ctp:35
+#: View/Stocks/edit.ctp:36
+#: View/Stocks/index.ctp:66
+#: View/Trades/index.ctp:56
+#: View/Trades/view.ctp:77
+msgid "New Trade"
+msgstr ""
+
+#: View/Orders/view.ctp:9
+#: View/PaymentTypes/view.ctp:45
+msgid "Datetime"
+msgstr ""
+
+#: View/Orders/view.ctp:19
+msgid "Seller"
+msgstr ""
+
+#: View/Orders/view.ctp:24
+#: View/Stocks/view.ctp:60
+msgid "Buyer"
+msgstr ""
+
+#: View/Orders/view.ctp:39
+#: View/Organizations/view.ctp:169;230
+#: View/PaymentTypes/view.ctp:52
+msgid "Note"
+msgstr ""
+
+#: View/Orders/view.ctp:44
+#: View/Organizations/view.ctp:232
+#: View/PaymentTypes/view.ctp:54
+#: View/StockSituations/view.ctp:104
+#: View/Trades/view.ctp:59
+msgid "Canceled Note"
+msgstr ""
+
+#: View/OrganizationTypes/add.ctp:4
+msgid "Add Organization Type"
+msgstr ""
+
+#: View/OrganizationTypes/add.ctp:20
+#: View/OrganizationTypes/edit.ctp:21
+#: View/OrganizationTypes/index.ctp:40
+#: View/OrganizationTypes/view.ctp:43
+#: View/Organizations/add.ctp:25
+#: View/Organizations/edit.ctp:26;29
+#: View/Organizations/index.ctp:46
+#: View/Organizations/view.ctp:81;85
+#: View/Trades/index.ctp:63
+#: View/Trades/view.ctp:84
+#: View/Users/add.ctp:23
+#: View/Users/edit.ctp:34
+#: View/Users/index.ctp:45
+#: View/Users/view.ctp:58
+msgid "List Organizations"
+msgstr ""
+
+#: View/OrganizationTypes/add.ctp:21
+#: View/OrganizationTypes/edit.ctp:22
+#: View/OrganizationTypes/index.ctp:41
+#: View/OrganizationTypes/view.ctp:44;96
+#: View/Organizations/view.ctp:82
+#: View/Trades/index.ctp:64
+#: View/Trades/view.ctp:85
+#: View/Users/add.ctp:24
+#: View/Users/edit.ctp:35
+#: View/Users/index.ctp:46
+#: View/Users/view.ctp:59
+msgid "New Organization"
+msgstr ""
+
+#: View/OrganizationTypes/edit.ctp:4
+#: View/OrganizationTypes/view.ctp:39
+msgid "Edit Organization Type"
+msgstr ""
+
+#: View/OrganizationTypes/index.ctp:8
+#: View/OrganizationTypes/view.ctp:42
+#: View/Organizations/add.ctp:24
+#: View/Organizations/edit.ctp:28
+#: View/Organizations/index.ctp:45
+#: View/Organizations/view.ctp:84
+msgid "New Organization Type"
+msgstr ""
+
+#: View/OrganizationTypes/view.ctp:2
+#: View/Organizations/view.ctp:9
+msgid "Organization Type"
+msgstr ""
+
+#: View/OrganizationTypes/view.ctp:14
+msgid "Register Type"
+msgstr ""
+
+#: View/OrganizationTypes/view.ctp:19
+msgid "Register Mask"
+msgstr ""
+
+#: View/OrganizationTypes/view.ctp:29
+msgid "Internal"
+msgstr ""
+
+#: View/OrganizationTypes/view.ctp:40
+msgid "Delete Organization Type"
+msgstr ""
+
+#: View/OrganizationTypes/view.ctp:48
+#: View/Organizations/view.ctp:96
+msgid "Related Organizations"
+msgstr ""
+
+#: View/OrganizationTypes/view.ctp:53
+#: View/Organizations/view.ctp:101
+msgid "Organization Type Id"
+msgstr ""
+
+#: View/OrganizationTypes/view.ctp:54
+#: View/Organizations/view.ctp:14;102
+msgid "Unique Code"
+msgstr ""
+
+#: View/OrganizationTypes/view.ctp:56
+#: View/Organizations/view.ctp:24;104
+msgid "Nickname"
+msgstr ""
+
+#: View/OrganizationTypes/view.ctp:57
+#: View/Organizations/view.ctp:29;105
+#: View/StockUnits/view.ctp:14
+msgid "Acronym"
+msgstr ""
+
+#: View/OrganizationTypes/view.ctp:58
+#: View/Organizations/view.ctp:34;106
+msgid "Responsible"
+msgstr ""
+
+#: View/OrganizationTypes/view.ctp:59
+#: View/Organizations/view.ctp:39;107;285
+#: View/Users/view.ctp:24
+msgid "Email"
+msgstr ""
+
+#: View/OrganizationTypes/view.ctp:60
+#: View/Organizations/view.ctp:44;108
+msgid "Image"
+msgstr ""
+
+#: View/OrganizationTypes/view.ctp:61
+#: View/Organizations/view.ctp:49;109;286
+#: View/Users/view.ctp:29
+msgid "Phone"
+msgstr ""
+
+#: View/OrganizationTypes/view.ctp:62
+#: View/Organizations/view.ctp:54;110
+msgid "Address"
+msgstr ""
+
+#: View/OrganizationTypes/view.ctp:63
+#: View/Organizations/view.ctp:111
+msgid "Parent Id"
+msgstr ""
+
+#: View/OrganizationTypes/view.ctp:64
+#: View/Organizations/view.ctp:64;112
+msgid "Parent Array"
+msgstr ""
+
+#: View/OrganizationTypes/view.ctp:65
+#: View/Organizations/view.ctp:69;113
+msgid "Id Old"
+msgstr ""
+
+#: View/Organizations/add.ctp:4
+msgid "Add"
+msgstr ""
+
+#: View/Organizations/add.ctp:26
+#: View/Organizations/edit.ctp:30
+#: View/Organizations/index.ctp:47
+#: View/Organizations/view.ctp:86
+msgid "New Parent Organization"
+msgstr ""
+
+#: View/Organizations/add.ctp:29
+#: View/Organizations/edit.ctp:33
+#: View/Organizations/index.ctp:50
+#: View/Organizations/view.ctp:89
+#: View/StockSituations/add.ctp:20
+#: View/StockSituations/edit.ctp:22
+#: View/StockSituations/index.ctp:45
+#: View/StockSituations/view.ctp:35
+#: View/Stocks/add.ctp:34
+#: View/Stocks/edit.ctp:35
+#: View/Stocks/index.ctp:65
+#: View/Trades/view.ctp:76
+msgid "List Trades"
+msgstr ""
+
+#: View/Organizations/add.ctp:31
+#: View/Organizations/edit.ctp:35
+#: View/Organizations/index.ctp:52
+#: View/Organizations/view.ctp:91
+#: View/Trades/index.ctp:65
+#: View/Trades/view.ctp:86
+#: View/UserRoles/add.ctp:19
+#: View/UserRoles/edit.ctp:21
+#: View/UserRoles/index.ctp:51
+#: View/UserRoles/view.ctp:38
+#: View/Users/add.ctp:22
+#: View/Users/edit.ctp:33
+#: View/Users/view.ctp:56
+msgid "List Users"
+msgstr ""
+
+#: View/Organizations/add.ctp:32
+#: View/Organizations/edit.ctp:36
+#: View/Organizations/index.ctp:53
+#: View/Organizations/view.ctp:92;323
+#: View/UserRoles/add.ctp:20
+#: View/UserRoles/edit.ctp:22
+#: View/UserRoles/index.ctp:52
+#: View/UserRoles/view.ctp:39
+#: View/Users/index.ctp:44
+#: View/Users/view.ctp:57
+msgid "New User"
+msgstr ""
+
+#: View/Organizations/index.ctp:8
+#: View/Pages/check.ctp:166
+msgid "New"
+msgstr ""
+
+#: View/Organizations/view.ctp:2
+#: View/Trades/view.ctp:44
+#: View/Users/view.ctp:34
+msgid "Organization"
+msgstr ""
+
+#: View/Organizations/view.ctp:59
+msgid "Parent Organization"
+msgstr ""
+
+#: View/Organizations/view.ctp:79
+msgid "Edit Organization"
+msgstr ""
+
+#: View/Organizations/view.ctp:80
+msgid "Delete Organization"
+msgstr ""
+
+#: View/Organizations/view.ctp:144
+msgid "New Child Organization"
+msgstr ""
+
+#: View/Organizations/view.ctp:149
+#: View/StockGroups/view.ctp:38
+#: View/StockSituations/view.ctp:40
+#: View/StockTypes/view.ctp:43
+#: View/StockUnits/view.ctp:33
+msgid "Related Stocks"
+msgstr ""
+
+#: View/Organizations/view.ctp:154
+#: View/StockGroups/view.ctp:43
+#: View/StockSituations/view.ctp:45
+#: View/StockTypes/view.ctp:48
+#: View/StockUnits/view.ctp:38
+msgid "Stock Type Id"
+msgstr ""
+
+#: View/Organizations/view.ctp:155
+#: View/StockGroups/view.ctp:44
+#: View/StockSituations/view.ctp:46
+#: View/StockTypes/view.ctp:49
+#: View/StockUnits/view.ctp:39
+msgid "Stock Group Id"
+msgstr ""
+
+#: View/Organizations/view.ctp:156
+#: View/StockGroups/view.ctp:45
+#: View/StockSituations/view.ctp:47
+#: View/StockTypes/view.ctp:50
+#: View/StockUnits/view.ctp:40
+msgid "Code"
+msgstr ""
+
+#: View/Organizations/view.ctp:158
+#: View/StockGroups/view.ctp:47
+#: View/StockSituations/view.ctp:49
+#: View/StockTypes/view.ctp:52
+#: View/StockUnits/view.ctp:42
+#: View/Stocks/view.ctp:9
+#: View/Trades/edit.ctp:35
+msgid "Description"
+msgstr ""
+
+#: View/Organizations/view.ctp:159
+#: View/StockGroups/view.ctp:48
+#: View/StockSituations/view.ctp:50
+#: View/StockTypes/view.ctp:53
+#: View/StockUnits/view.ctp:43
+msgid "Stock Unit Id"
+msgstr ""
+
+#: View/Organizations/view.ctp:160
+#: View/StockGroups/view.ctp:49
+#: View/StockSituations/view.ctp:51
+#: View/StockTypes/view.ctp:54
+#: View/StockUnits/view.ctp:44
+#: View/Stocks/view.ctp:19
+msgid "Units"
+msgstr ""
+
+#: View/Organizations/view.ctp:162
+#: View/StockGroups/view.ctp:51
+#: View/StockSituations/view.ctp:53
+#: View/StockTypes/view.ctp:56
+#: View/StockUnits/view.ctp:46
+msgid "Markup"
+msgstr ""
+
+#: View/Organizations/view.ctp:163;227
+#: View/StockGroups/view.ctp:52
+#: View/StockSituations/view.ctp:54;100
+#: View/StockTypes/view.ctp:57
+#: View/StockUnits/view.ctp:47
+#: View/Stocks/view.ctp:64
+msgid "Stock Situation Id"
+msgstr ""
+
+#: View/Organizations/view.ctp:164
+msgid "Depreciation Date"
+msgstr ""
+
+#: View/Organizations/view.ctp:165
+#: View/StockGroups/view.ctp:53
+#: View/StockSituations/view.ctp:55
+#: View/StockTypes/view.ctp:58
+#: View/StockUnits/view.ctp:48
+msgid "Buy Order Id"
+msgstr ""
+
+#: View/Organizations/view.ctp:166;287
+#: View/PaymentTypes/view.ctp:49
+#: View/StockSituations/view.ctp:101
+msgid "Organization Id"
+msgstr ""
+
+#: View/Organizations/view.ctp:167
+msgid "Reference Year"
+msgstr ""
+
+#: View/Organizations/view.ctp:168
+msgid "Last Inventory"
+msgstr ""
+
+#: View/Organizations/view.ctp:170;234;290
+msgid "Created"
+msgstr ""
+
+#: View/Organizations/view.ctp:171;235;291
+msgid "Creator Id"
+msgstr ""
+
+#: View/Organizations/view.ctp:172;236;292
+msgid "Updated"
+msgstr ""
+
+#: View/Organizations/view.ctp:173;237;293
+msgid "Updater Id"
+msgstr ""
+
+#: View/Organizations/view.ctp:216
+#: View/StockSituations/view.ctp:89
+#: View/Stocks/view.ctp:54
+msgid "Related Trades"
+msgstr ""
+
+#: View/Organizations/view.ctp:221
+#: View/StockSituations/view.ctp:94
+msgid "Order Id"
+msgstr ""
+
+#: View/Organizations/view.ctp:222
+#: View/StockSituations/view.ctp:95
+msgid "Stock Id"
+msgstr ""
+
+#: View/Organizations/view.ctp:223
+#: View/StockSituations/view.ctp:96
+#: View/Stocks/view.ctp:61
+#: View/Trades/view.ctp:19
+msgid "Buy Amount"
+msgstr ""
+
+#: View/Organizations/view.ctp:224
+#: View/StockSituations/view.ctp:97
+#: View/Trades/view.ctp:24
+msgid "Buy Price"
+msgstr ""
+
+#: View/Organizations/view.ctp:225
+#: View/StockSituations/view.ctp:98
+#: View/Stocks/view.ctp:62
+#: View/Trades/view.ctp:29
+msgid "Sell Amount"
+msgstr ""
+
+#: View/Organizations/view.ctp:226
+#: View/StockSituations/view.ctp:99
+#: View/Trades/view.ctp:34
+msgid "Sell Price"
+msgstr ""
+
+#: View/Organizations/view.ctp:228
+msgid "Buyer Id"
+msgstr ""
+
+#: View/Organizations/view.ctp:229
+#: View/PaymentTypes/view.ctp:51
+#: View/StockSituations/view.ctp:102
+#: View/Stocks/view.ctp:65
+#: View/Trades/view.ctp:49
+msgid "Done"
+msgstr ""
+
+#: View/Organizations/view.ctp:231
+#: View/PaymentTypes/view.ctp:53
+#: View/StockSituations/view.ctp:103
+#: View/Trades/view.ctp:54
+msgid "Canceled"
+msgstr ""
+
+#: View/Organizations/view.ctp:233
+#: View/PaymentTypes/view.ctp:55
+#: View/StockSituations/view.ctp:105
+msgid "Canceled Auth Id"
+msgstr ""
+
+#: View/Organizations/view.ctp:277
+msgid "Related Users"
+msgstr ""
+
+#: View/Organizations/view.ctp:283
+#: View/Users/sign_in.ctp:9
+#: View/Users/view.ctp:14
+msgid "Username"
+msgstr ""
+
+#: View/Organizations/view.ctp:284
+#: View/Users/sign_in.ctp:10
+#: View/Users/view.ctp:19
+msgid "Password"
+msgstr ""
+
+#: View/Organizations/view.ctp:288
+#: View/Users/view.ctp:39
+msgid "Broker"
+msgstr ""
+
+#: View/Organizations/view.ctp:289
+#: View/Users/view.ctp:44
+msgid "Comission"
+msgstr ""
+
+#: View/PaymentTypes/add.ctp:4
+msgid "Add Payment Type"
+msgstr ""
+
+#: View/PaymentTypes/edit.ctp:4
+#: View/PaymentTypes/view.ctp:29
+msgid "Edit Payment Type"
+msgstr ""
+
+#: View/PaymentTypes/index.ctp:2
+msgid "Payment Types"
+msgstr ""
+
+#: View/PaymentTypes/view.ctp:2
+msgid "Payment Type"
+msgstr ""
+
+#: View/PaymentTypes/view.ctp:30
+msgid "Delete Payment Type"
+msgstr ""
+
+#: View/PaymentTypes/view.ctp:40
+msgid "Related Orders"
+msgstr ""
+
+#: View/PaymentTypes/view.ctp:46
+msgid "Order Type Id"
+msgstr ""
+
+#: View/PaymentTypes/view.ctp:47
+msgid "Capitalist Id"
+msgstr ""
+
+#: View/PaymentTypes/view.ctp:48
+msgid "Payment Type Id"
+msgstr ""
+
+#: View/PaymentTypes/view.ctp:50
+msgid "Broker Id"
+msgstr ""
+
+#: View/Roles/add.ctp:4
+msgid "Add Role"
+msgstr ""
+
+#: View/Roles/add.ctp:15
+#: View/Roles/edit.ctp:18
+#: View/Roles/view.ctp:26
+#: View/UserRoles/add.ctp:23
+#: View/UserRoles/edit.ctp:25
+#: View/UserRoles/index.ctp:55
+#: View/UserRoles/view.ctp:42
+msgid "List Roles"
+msgstr ""
+
+#: View/Roles/edit.ctp:4
+#: View/Roles/view.ctp:24
+msgid "Edit Role"
+msgstr ""
+
+#: View/Roles/index.ctp:2
+msgid "Roles"
+msgstr ""
+
+#: View/Roles/index.ctp:40
+#: View/Roles/view.ctp:27
+#: View/UserRoles/add.ctp:24
+#: View/UserRoles/edit.ctp:26
+#: View/UserRoles/index.ctp:56
+#: View/UserRoles/view.ctp:43
+msgid "New Role"
+msgstr ""
+
+#: View/Roles/view.ctp:2
+#: View/UserRoles/view.ctp:19
+msgid "Role"
+msgstr ""
+
+#: View/Roles/view.ctp:25
+msgid "Delete Role"
+msgstr ""
+
+#: View/StockGroups/add.ctp:4
+msgid "Add Stock Group"
+msgstr ""
+
+#: View/StockGroups/edit.ctp:4
+#: View/StockGroups/view.ctp:29
+msgid "Edit Stock Group"
+msgstr ""
+
+#: View/StockGroups/view.ctp:2
+msgid "Stock Group"
+msgstr ""
+
+#: View/StockGroups/view.ctp:14
+#: View/StockSituations/view.ctp:19
+msgid "Inventory"
+msgstr ""
+
+#: View/StockGroups/view.ctp:30
+msgid "Delete Stock Group"
+msgstr ""
+
+#: View/StockRates/add.ctp:4
+msgid "Add Stock Rate"
+msgstr ""
+
+#: View/StockRates/add.ctp:17
+#: View/StockRates/edit.ctp:19
+#: View/StockRates/view.ctp:31
+#: View/Stocks/add.ctp:32
+#: View/Stocks/edit.ctp:33
+#: View/Stocks/index.ctp:63
+msgid "List Stock Rates"
+msgstr ""
+
+#: View/StockRates/edit.ctp:4
+#: View/StockRates/view.ctp:29
+msgid "Edit Stock Rate"
+msgstr ""
+
+#: View/StockRates/index.ctp:2
+msgid "Stock Rates"
+msgstr ""
+
+#: View/StockRates/index.ctp:44
+#: View/StockRates/view.ctp:32
+#: View/Stocks/add.ctp:33
+#: View/Stocks/edit.ctp:34
+#: View/Stocks/index.ctp:64
+msgid "New Stock Rate"
+msgstr ""
+
+#: View/StockRates/view.ctp:2
+msgid "Stock Rate"
+msgstr ""
+
+#: View/StockRates/view.ctp:30
+msgid "Delete Stock Rate"
+msgstr ""
+
+#: View/StockSituations/add.ctp:4
+msgid "Add Stock Situation"
+msgstr ""
+
+#: View/StockSituations/edit.ctp:4
+#: View/StockSituations/view.ctp:29
+msgid "Edit Stock Situation"
+msgstr ""
+
+#: View/StockSituations/index.ctp:2
+msgid "Stock Situations"
+msgstr ""
+
+#: View/StockSituations/view.ctp:2
+#: View/Stocks/view.ctp:29
+#: View/Trades/view.ctp:39
+msgid "Stock Situation"
+msgstr ""
+
+#: View/StockSituations/view.ctp:30
+msgid "Delete Stock Situation"
+msgstr ""
+
+#: View/StockTypes/add.ctp:4
+msgid "Add Stock Type"
+msgstr ""
+
+#: View/StockTypes/add.ctp:18
+#: View/StockTypes/edit.ctp:20
+#: View/StockTypes/view.ctp:36
+#: View/Stocks/add.ctp:22
+#: View/Stocks/edit.ctp:23
+#: View/Stocks/index.ctp:53
+#: View/Stocks/view.ctp:44
+msgid "List Stock Types"
+msgstr ""
+
+#: View/StockTypes/edit.ctp:4
+#: View/StockTypes/view.ctp:34
+msgid "Edit Stock Type"
+msgstr ""
+
+#: View/StockTypes/index.ctp:42
+#: View/StockTypes/view.ctp:37
+#: View/Stocks/add.ctp:23
+#: View/Stocks/edit.ctp:24
+#: View/Stocks/index.ctp:54
+#: View/Stocks/view.ctp:45
+msgid "New Stock Type"
+msgstr ""
+
+#: View/StockTypes/view.ctp:2
+#: View/Stocks/view.ctp:4
+msgid "Stock Type"
+msgstr ""
+
+#: View/StockTypes/view.ctp:14
+msgid "Avg Markup"
+msgstr ""
+
+#: View/StockTypes/view.ctp:19
+msgid "Depreciation"
+msgstr ""
+
+#: View/StockTypes/view.ctp:24
+msgid "Consumer Goods"
+msgstr ""
+
+#: View/StockTypes/view.ctp:35
+msgid "Delete Stock Type"
+msgstr ""
+
+#: View/StockUnits/add.ctp:4
+msgid "Add Stock Unit"
+msgstr ""
+
+#: View/StockUnits/add.ctp:16
+#: View/StockUnits/edit.ctp:18
+#: View/StockUnits/view.ctp:26
+#: View/Stocks/add.ctp:26
+#: View/Stocks/edit.ctp:27
+#: View/Stocks/index.ctp:57
+#: View/Stocks/view.ctp:48
+msgid "List Stock Units"
+msgstr ""
+
+#: View/StockUnits/edit.ctp:4
+#: View/StockUnits/view.ctp:24
+msgid "Edit Stock Unit"
+msgstr ""
+
+#: View/StockUnits/index.ctp:40
+#: View/StockUnits/view.ctp:27
+#: View/Stocks/add.ctp:27
+#: View/Stocks/edit.ctp:28
+#: View/Stocks/index.ctp:58
+#: View/Stocks/view.ctp:49
+msgid "New Stock Unit"
+msgstr ""
+
+#: View/StockUnits/view.ctp:2
+#: View/Stocks/view.ctp:14
+msgid "Stock Unit"
+msgstr ""
+
+#: View/StockUnits/view.ctp:25
+msgid "Delete Stock Unit"
+msgstr ""
+
+#: View/Stocks/add.ctp:4
+msgid "Add Stock"
+msgstr ""
+
+#: View/Stocks/add.ctp:31
+#: View/Stocks/edit.ctp:32
+#: View/Stocks/index.ctp:62
+msgid "New Buy Order"
+msgstr ""
+
+#: View/Stocks/edit.ctp:4
+#: View/Stocks/view.ctp:40
+msgid "Edit Stock"
+msgstr ""
+
+#: View/Stocks/view.ctp:41
+msgid "Delete Stock"
+msgstr ""
+
+#: View/Stocks/view.ctp:58
+msgid "Date"
+msgstr ""
+
+#: View/Trades/add.ctp:4
+msgid "Add Trade"
+msgstr ""
+
+#: View/Trades/edit.ctp:4
+#: View/Trades/view.ctp:74
+msgid "Edit Trade"
+msgstr ""
+
+#: View/Trades/index.ctp:2
+msgid "Trades"
+msgstr ""
+
+#: View/Trades/index.ctp:66
+#: View/Trades/view.ctp:87
+msgid "New Canceled Auth"
+msgstr ""
+
+#: View/Trades/view.ctp:2
+msgid "Trade"
+msgstr ""
+
+#: View/Trades/view.ctp:64
+msgid "Canceled Auth"
+msgstr ""
+
+#: View/Trades/view.ctp:75
+msgid "Delete Trade"
+msgstr ""
+
+#: View/UserRoles/add.ctp:4
+msgid "Add User Role"
+msgstr ""
+
+#: View/UserRoles/edit.ctp:4
+#: View/UserRoles/view.ctp:34
+msgid "Edit User Role"
+msgstr ""
+
+#: View/UserRoles/index.ctp:2
+msgid "User Roles"
+msgstr ""
+
+#: View/UserRoles/view.ctp:2
+msgid "User Role"
+msgstr ""
+
+#: View/UserRoles/view.ctp:9
+#: View/Users/view.ctp:2
+msgid "User"
+msgstr ""
+
+#: View/UserRoles/view.ctp:35
+msgid "Delete User Role"
+msgstr ""
+
+#: View/Users/add.ctp:4
+msgid "Add User"
+msgstr ""
+
+#: View/Users/edit.ctp:4
+#: View/Users/view.ctp:54
+msgid "Edit User"
+msgstr ""
+
+#: View/Users/edit.ctp:15
+msgid "edit password"
+msgstr ""
+
+#: View/Users/edit.ctp:16
+msgid "close password"
+msgstr ""
+
+#: View/Users/sign_in.ctp:12
+msgid "Enter"
+msgstr ""
+
+#: View/Users/view.ctp:55
+msgid "Delete User"
+msgstr ""
+
+#: Model/Account.php:validation for field name
+#: Model/Module.php:validation for field name
+#: Model/OrderDetail.php:validation for field name
+#: Model/OrderType.php:validation for field name
+#: Model/Organization.php:validation for field name
+#: Model/OrganizationType.php:validation for field name;validation for field register_type;validation for field register_mask
+#: Model/PaymentType.php:validation for field name
+#: Model/Role.php:validation for field name
+#: Model/Stock.php:validation for field stock_type_id;validation for field description
+#: Model/StockRate.php:validation for field name
+#: Model/StockSituation.php:validation for field name
+#: Model/StockType.php:validation for field name
+#: Model/StockUnit.php:validation for field name;validation for field acronym
+#: Model/User.php:validation for field name;validation for field username;validation for field password
+msgid "notEmpty"
+msgstr ""
+
+#: Model/Account.php:validation for field sort
+#: Model/Order.php:validation for field order_type_id;validation for field seller_id;validation for field buyer_id
+#: Model/Organization.php:validation for field organization_type_id
+#: Model/OrganizationType.php:validation for field sort
+#: Model/PaymentType.php:validation for field account_id;validation for field sort
+#: Model/Role.php:validation for field sort
+#: Model/Stock.php:validation for field units;validation for field price
+#: Model/StockRate.php:validation for field stock_id;validation for field value
+#: Model/StockSituation.php:validation for field sort
+#: Model/StockType.php:validation for field avg_markup;validation for field depreciation
+#: Model/Trade.php:validation for field order_id;validation for field stock_id;validation for field buy_amount;validation for field buy_price;validation for field sell_amount;validation for field sell_price
+#: Model/User.php:validation for field organization_id;validation for field percent
+#: Model/UserRole.php:validation for field user_id;validation for field module_id;validation for field role_id
+msgid "numeric"
+msgstr ""
+
+#: Model/Order.php:validation for field done
+#: Model/StockType.php:validation for field consumer_goods
+#: Model/Trade.php:validation for field done;validation for field canceled
+#: Model/User.php:validation for field broker
+msgid "boolean"
+msgstr ""
+
+#: Model/Trade.php:validation for field order_id
+msgid "Este Item já faz parte do Movimento!"
+msgstr ""
+
+#: Plugin/debug_kit/Console/Command/BenchmarkShell.php:41
+msgid "-> Testing :url"
+msgstr ""
+
+#: Plugin/debug_kit/Console/Command/BenchmarkShell.php:67
+msgid "Total Requests made: :requests"
+msgstr ""
+
+#: Plugin/debug_kit/Console/Command/BenchmarkShell.php:68
+msgid "Total Time elapsed: :duration (seconds)"
+msgstr ""
+
+#: Plugin/debug_kit/Console/Command/BenchmarkShell.php:72
+msgid "Requests/Second: :rps req/sec"
+msgstr ""
+
+#: Plugin/debug_kit/Console/Command/BenchmarkShell.php:76
+msgid "Average request time: :average-time seconds"
+msgstr ""
+
+#: Plugin/debug_kit/Console/Command/BenchmarkShell.php:80
+msgid "Standard deviation of average request time: :std-dev"
+msgstr ""
+
+#: Plugin/debug_kit/Console/Command/BenchmarkShell.php:84
+msgid "Longest/shortest request: :longest sec/:shortest sec"
+msgstr ""
+
+#: Plugin/debug_kit/Console/Command/BenchmarkShell.php:134
+msgid "Allows you to obtain some rough benchmarking statisticsabout a fully qualified URL."
+msgstr ""
+
+#: Plugin/debug_kit/Console/Command/BenchmarkShell.php:139
+msgid "The URL to request."
+msgstr ""
+
+#: Plugin/debug_kit/Console/Command/BenchmarkShell.php:144
+msgid "Number of iterations to perform."
+msgstr ""
+
+#: Plugin/debug_kit/Console/Command/BenchmarkShell.php:148
+msgid "Maximum total time for all iterations, in seconds.If a single iteration takes more than the timeout, only one request will be made"
+msgstr ""
+
+#: Plugin/debug_kit/Console/Command/BenchmarkShell.php:152
+msgid "Example Use: `cake benchmark --n 10 --t 100 http://localhost/testsite`. <info>Note:</info> this benchmark does not include browser render times."
+msgstr ""
+
+#: Plugin/debug_kit/Controller/Component/ToolbarComponent.php:159
+msgid "Component initialization"
+msgstr ""
+
+#: Plugin/debug_kit/Controller/Component/ToolbarComponent.php:281
+msgid "Controller action"
+msgstr ""
+
+#: Plugin/debug_kit/Controller/Component/ToolbarComponent.php:284
+msgid "Controller action start"
+msgstr ""
+
+#: Plugin/debug_kit/Controller/Component/ToolbarComponent.php:304
+msgid "Processing toolbar state"
+msgstr ""
+
+#: Plugin/debug_kit/Controller/Component/ToolbarComponent.php:327
+msgid "Processing toolbar data"
+msgstr ""
+
+#: Plugin/debug_kit/Controller/Component/ToolbarComponent.php:362
+msgid "Controller render start"
+msgstr ""
+
+#: Plugin/debug_kit/Controller/Component/ToolbarComponent.php:446
+msgid "Could not load DebugToolbar panel %s"
+msgstr ""
+
+#: Plugin/debug_kit/Lib/DebugTimer.php:128
+msgid "Core Processing (Derived from $_SERVER[\"REQUEST_TIME\"])"
+msgstr ""
+
+#: Plugin/debug_kit/Lib/FireCake.php:310
+msgid "Headers already sent in %s on line %s. Cannot send log data to FirePHP."
+msgstr ""
+
+#: Plugin/debug_kit/Lib/FireCake.php:331
+msgid "Incorrect parameter count for FireCake::fb()"
+msgstr ""
+
+#: Plugin/debug_kit/Lib/FireCake.php:410
+msgid "Maximum number (99,999) of messages reached!"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/debug_toolbar.ctp:23
+msgid "There are no active panels. You must enable a panel to see its output."
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/environment_panel.ctp:20
+msgid "App Constants"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/environment_panel.ctp:36
+msgid "CakePHP Constants"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/environment_panel.ctp:52
+msgid "PHP Environment"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/environment_panel.ctp:70
+msgid "Hidef Environment"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/history_panel.ctp:19
+msgid "Request History"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/history_panel.ctp:21
+msgid "No previous requests logged."
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/history_panel.ctp:23
+msgid "previous requests available"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/history_panel.ctp:25
+msgid "Restore to current request"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/include_panel.ctp:19
+msgid "Included Files"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/log_panel.ctp:19
+msgid "Logs"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/log_panel.ctp:27
+msgid "Time"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/log_panel.ctp:27
+#: Plugin/debug_kit/View/Elements/timer_panel.ctp:42;66
+msgid "Message"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/log_panel.ctp:38
+msgid "There were no log entries made this request"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/request_panel.ctp:19
+msgid "Request"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/request_panel.ctp:27
+msgid "No post data."
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/request_panel.ctp:36
+msgid "No querystring data."
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/request_panel.ctp:49
+msgid "Current Route"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/session_panel.ctp:19
+msgid "Session"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/sql_log_panel.ctp:24
+msgid "Sql Logs"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/sql_log_panel.ctp:39
+msgid "No query logs when debug < 2."
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/sql_log_panel.ctp:41
+msgid "No query logs."
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/sql_log_panel.ctp:45
+msgid "Total Time: %s ms <br />Total Queries: %s queries"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/sql_log_panel.ctp:54
+msgid "Query Explain:"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/sql_log_panel.ctp:57
+msgid "Click an \"Explain\" link above, to see the query explanation."
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/sql_log_panel.ctp:63
+msgid "No active database connections"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/timer_panel.ctp:35
+msgid "Memory"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/timer_panel.ctp:38
+msgid "Peak Memory Use"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/timer_panel.ctp:42
+msgid "Memory use"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/timer_panel.ctp:55
+msgid "Timers"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/timer_panel.ctp:57
+msgid "%s (ms)"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/timer_panel.ctp:58
+msgid "Total Request Time:"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/timer_panel.ctp:67
+msgid "Time in ms"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/timer_panel.ctp:68
+msgid "Graph"
+msgstr ""
+
+#: Plugin/debug_kit/View/Elements/variables_panel.ctp:19
+msgid "View Variables"
+msgstr ""
+
+#: Plugin/debug_kit/View/Helper/DebugTimerHelper.php:45
+msgid "Rendering View"
+msgstr ""
+
+#: Plugin/debug_kit/View/Helper/DebugTimerHelper.php:60
+msgid "Rendering %s"
+msgstr ""
+
+#: Plugin/debug_kit/View/Helper/DebugTimerHelper.php:86
+msgid "View render complete"
+msgstr ""
+
+#: Plugin/debug_kit/View/Helper/HtmlToolbarHelper.php:226
+msgid "Explain"
+msgstr ""
+
+#: Plugin/debug_kit/View/Helper/SimpleGraphHelper.php:80
+msgid "Starting %sms into the request, taking %sms"
+msgstr ""
+
+#: Plugin/debug_kit/View/Helper/TidyHelper.php:99
+msgid "No markup errors found"
+msgstr ""
+
+#: Plugin/debug_kit/View/Helper/ToolbarHelper.php:189
+msgid "maybe slow"
+msgstr ""
+
+#: Plugin/debug_kit/Console/Command/WhitespaceShell.php:90
+msgid "Absolute path or relative to APP."
+msgstr ""
+
+#: View/Errors/error400.ctp:21
+#: View/Errors/error500.ctp:21
+msgid "Error"
+msgstr ""
+
+#: View/Errors/error400.ctp:23
+msgid "The requested address %s was not found on this server."
+msgstr ""
+
+#: View/Errors/error500.ctp:22
+msgid "An Internal Error Has Occurred."
+msgstr ""
+
+#: View/Layouts/error.ctp:19
+msgid "CakePHP: the rapid development php framework"
+msgstr ""
+
+#: View/Layouts/sign_in.ctp:2
+msgid "Sign in"
+msgstr ""
+
+#: View/Pages/check.ctp:16
+msgid "Release Notes for CakePHP %s."
+msgstr ""
+
+#: View/Pages/check.ctp:18
+msgid "Read the changelog"
+msgstr ""
+
+#: View/Pages/check.ctp:29
+msgid "URL rewriting is not properly configured on your server."
+msgstr ""
+
+#: View/Pages/check.ctp:40
+msgid "Your version of PHP is 5.2.8 or higher."
+msgstr ""
+
+#: View/Pages/check.ctp:44
+msgid "Your version of PHP is too low. You need PHP 5.2.8 or higher to use CakePHP."
+msgstr ""
+
+#: View/Pages/check.ctp:53
+msgid "Your tmp directory is writable."
+msgstr ""
+
+#: View/Pages/check.ctp:57
+msgid "Your tmp directory is NOT writable."
+msgstr ""
+
+#: View/Pages/check.ctp:67
+msgid "The %s is being used for core caching. To change the config edit %s"
+msgstr ""
+
+#: View/Pages/check.ctp:71
+msgid "Your cache is NOT working. Please check the settings in %s"
+msgstr ""
+
+#: View/Pages/check.ctp:81
+msgid "Your database configuration file is present."
+msgstr ""
+
+#: View/Pages/check.ctp:86
+msgid "Your database configuration file is NOT present."
+msgstr ""
+
+#: View/Pages/check.ctp:88
+msgid "Rename %s to %s"
+msgstr ""
+
+#: View/Pages/check.ctp:113
+msgid "CakePHP is able to connect to the database."
+msgstr ""
+
+#: View/Pages/check.ctp:117
+msgid "CakePHP is NOT able to connect to the database."
+msgstr ""
+
+#: View/Pages/check.ctp:129
+msgid "PCRE has not been compiled with Unicode support."
+msgstr ""
+
+#: View/Pages/check.ctp:131
+msgid "Recompile PCRE with Unicode support by adding <code>--enable-unicode-properties</code> when configuring"
+msgstr ""
+
+#: View/Pages/check.ctp:140
+msgid "DebugKit plugin is present"
+msgstr ""
+
+#: View/Pages/check.ctp:144
+msgid "DebugKit is not installed. It will help you inspect and debug different aspects of your application."
+msgstr ""
+
+#: View/Pages/check.ctp:146
+msgid "You can install it from %s"
+msgstr ""
+
+#: View/Pages/check.ctp:152
+msgid "Editing this Page"
+msgstr ""
+
+#: View/Pages/check.ctp:155
+msgid "To change the content of this page, edit: %s.<br />\nTo change its layout, edit: %s.<br />\nYou can also add some CSS styles for your pages at: %s."
+msgstr ""
+
+#: View/Pages/check.ctp:162
+msgid "Getting Started"
+msgstr ""
+
+#: View/Pages/check.ctp:166
+msgid "CakePHP 2.0 Docs"
+msgstr ""
+
+#: View/Pages/check.ctp:175
+msgid "The 15 min Blog Tutorial"
+msgstr ""
+
+#: View/Pages/check.ctp:182
+msgid "Official Plugins"
+msgstr ""
+
+#: View/Pages/check.ctp:187
+msgid "provides a debugging toolbar and enhanced debugging tools for CakePHP applications."
+msgstr ""
+
+#: View/Pages/check.ctp:191
+msgid "contains various localized validation classes and translations for specific countries"
+msgstr ""
+
+#: View/Pages/check.ctp:196
+msgid "More about CakePHP"
+msgstr ""
+
+#: View/Pages/check.ctp:198
+msgid "CakePHP is a rapid development framework for PHP which uses commonly known design patterns like Active Record, Association Data Mapping, Front Controller and MVC."
+msgstr ""
+
+#: View/Pages/check.ctp:201
+msgid "Our primary goal is to provide a structured framework that enables PHP users at all levels to rapidly develop robust web applications, without any loss to flexibility."
+msgstr ""
+
+#: View/Pages/check.ctp:206
+msgid "The Rapid Development Framework"
+msgstr ""
+
+#: View/Pages/check.ctp:207
+msgid "CakePHP Documentation"
+msgstr ""
+
+#: View/Pages/check.ctp:208
+msgid "Your Rapid Development Cookbook"
+msgstr ""
+
+#: View/Pages/check.ctp:209
+msgid "CakePHP API"
+msgstr ""
+
+#: View/Pages/check.ctp:210
+msgid "Quick API Reference"
+msgstr ""
+
+#: View/Pages/check.ctp:211
+msgid "The Bakery"
+msgstr ""
+
+#: View/Pages/check.ctp:212
+msgid "Everything CakePHP"
+msgstr ""
+
+#: View/Pages/check.ctp:213
+msgid "CakePHP Plugins"
+msgstr ""
+
+#: View/Pages/check.ctp:214
+msgid "A comprehensive list of all CakePHP plugins created by the community"
+msgstr ""
+
+#: View/Pages/check.ctp:215
+msgid "CakePHP Community Center"
+msgstr ""
+
+#: View/Pages/check.ctp:216
+msgid "Everything related to the CakePHP community in one place"
+msgstr ""
+
+#: View/Pages/check.ctp:217
+msgid "CakePHP Google Group"
+msgstr ""
+
+#: View/Pages/check.ctp:218
+msgid "Community mailing list"
+msgstr ""
+
+#: View/Pages/check.ctp:220
+msgid "Live chat about CakePHP"
+msgstr ""
+
+#: View/Pages/check.ctp:221
+msgid "CakePHP Code"
+msgstr ""
+
+#: View/Pages/check.ctp:222
+msgid "Find the CakePHP code on GitHub and contribute to the framework"
+msgstr ""
+
+#: View/Pages/check.ctp:223;224
+msgid "CakePHP Issues"
+msgstr ""
+
+#: View/Pages/check.ctp:225;226
+msgid "CakePHP Roadmaps"
+msgstr ""
+
+#: View/Pages/check.ctp:227
+msgid "Training"
+msgstr ""
+
+#: View/Pages/check.ctp:228
+msgid "Join a live session and get skilled with the framework"
+msgstr ""
+
+#: View/Pages/check.ctp:229
+msgid "CakeFest"
+msgstr ""
+
+#: View/Pages/check.ctp:230
+msgid "Don't miss our annual CakePHP conference"
+msgstr ""
+
+#: View/Pages/check.ctp:231
+msgid "Cake Software Foundation"
+msgstr ""
+
+#: View/Pages/check.ctp:232
+msgid "Promoting development related to CakePHP"
+msgstr ""
+
+#: webroot/test.php:93
+msgid "Debug setting does not allow access to this url."
+msgstr ""
+
