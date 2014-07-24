@@ -24,7 +24,8 @@ class OrganizationsController extends AppController {
         if(@$_GET['q']){
             $conditions = array(
                 'Organization.enabled'=>true,
-                'OrganizationType.id'=>$organization_type_id
+                'OrganizationType.id'=>$organization_type_id,
+                'OR' => array('Organization.name ilike \'%'.$_GET['q'].'%\'', 'ParentOrganization.name ilike \''.$_GET['q'].'\'')
             );
             if($organizationType['OrganizationType']['internal'])
                 $conditions = array(
@@ -110,4 +111,5 @@ class OrganizationsController extends AppController {
 			$this->Session->setFlash(__('The organization could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

@@ -29,15 +29,7 @@
 	</dl>
 </div>
 <div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Stock Type'), array('action' => 'edit', $stockType['StockType']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Stock Type'), array('action' => 'delete', $stockType['StockType']['id']), null, __('Are you sure you want to delete # %s?', $stockType['StockType']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Stock Types'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Stock Type'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Stocks'), array('controller' => 'stocks', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Stock'), array('controller' => 'stocks', 'action' => 'add')); ?> </li>
-	</ul>
+    <?=$this->element('actions.stocks');?>
 </div>
 <div class="related">
 	<h3><?php echo __('Related Stocks'); ?></h3>

@@ -20,7 +20,7 @@
  */
 
 App::uses('Model', 'Model');
-
+App::uses('CakeSession', 'Model/Datasource');
 /**
  * Application model for Cake.
  *
@@ -31,23 +31,64 @@ App::uses('Model', 'Model');
  */
 class AppModel extends Model {
 
-    public function beforeSave($options = array()) {
+    public $recursive = 0;
 
-        App::uses('CakeSession', 'Model/Datasource');
-        $user = CakeSession::read('Auth.User');
+    public function beforeSave($options = array()) {
         if (!isset($this->data[$this->alias]['id'])) {
             $this->data[$this->alias]['created'] = date('Y-m-d H:i:s');
-            $this->data[$this->alias]['creator_id'] = $user['id'];
-            $this->data[$this->alias]['updater_id'] = $user['id'];
+            $this->data[$this->alias]['creator_id'] = CakeSession::read('Auth.User.id');
+            $this->data[$this->alias]['updater_id'] = CakeSession::read('Auth.User.id');
         } else {
             $this->data[$this->alias]['updated'] = date('Y-m-d H:i:s');
-            $this->data[$this->alias]['updater_id'] = $user['id'];
+            $this->data[$this->alias]['updater_id'] = CakeSession::read('Auth.User.id');
+        }
+        return true;
+    }
+
+    public function afterSave($created, $options = array()) {
+        if($this->alias != 'Log'){
+            foreach($this->hasMany as $v){
+                if($v['className'] == 'Log'){
+                    $this->Log->save(array(
+                        'date_time'=>date('Y-m-d H:i:s'),
+                        'schema'=>'public',
+                        'alias'=>$this->alias,
+                        'action'=>$created?'INSERT':'UPDATE',
+                        'oid'=>$this->data[$this->alias]['id'],
+                        'content'=> json_encode($this->data[$this->alias]),
+                        'user_id'=>CakeSession::read('Auth.User.id'),
+                        'username'=>CakeSession::read('Auth.User.username'),
+                        'client_ip'=>CakeSession::read('ClientIp')
+                    ));
+                }
+            }
+        }
+    }
+
+    public function beforeDelete($cascade = false) {
+        if($this->alias != 'Log'){
+            foreach($this->hasMany as $v){
+                if($v['className'] == 'Log'){
+                    $data = $this->find('first', array('conditions'=>array('id'=>$this->id)));
+                    $this->Log->save(array(
+                        'date_time'=>date('Y-m-d H:i:s'),
+                        'schema'=>'public',
+                        'alias'=>$this->alias,
+                        'action'=>'DELETE',
+                        'oid'=>$this->id,
+                        'content'=> json_encode($data[$this->alias]),
+                        'user_id'=>CakeSession::read('Auth.User.id'),
+                        'username'=>CakeSession::read('Auth.User.username'),
+                        'client_ip'=>CakeSession::read('ClientIp')
+                    ));
+                }
+            }
         }
         return true;
     }
 
     public function beforeFind($query){
-
+        return true;
     }
 
     public function afterFind($results, $primary = false){

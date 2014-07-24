@@ -55,7 +55,22 @@ class StockUnit extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
+		),
+        'Log' => array(
+            'className' => 'Log',
+            'foreignKey' => 'oid',
+            'dependent' => false,
+            'conditions' => array(
+                'Log.alias = \'StockUnit\''
+            ),
+            'fields' => '',
+            'order' => array('Log.date_time'=>'DESC'),
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        )
 	);
 
 }

@@ -9,7 +9,7 @@
 			<th><?php echo $this->Paginator->sort('organization_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('enabled'); ?></th>
 			<th class="action-add">
-                <?php echo $this->Html->link('<i class="fa fa-plus fa-lg"></i> '.__('New User'), array('action' => 'add'), array('escape'=>false)); ?>
+                <?php echo $this->Html->link('<i class="fa fa-plus-square-o"></i> '.__('New User'), array('action' => 'add'), array('escape'=>false)); ?>
             </th>
 	    </tr>
     </thead>
@@ -19,9 +19,7 @@
             <td><?php echo h($user['User']['id']); ?>&nbsp;</td>
             <td><?php echo h($user['User']['name']); ?>&nbsp;</td>
             <td><?php echo h($user['User']['username']); ?>&nbsp;</td>
-            <td>
-                <?php echo $this->Html->link($user['Organization']['name'], array('controller' => 'organizations', 'action' => 'view', $user['Organization']['id'])); ?>
-            </td>
+            <td><?php echo h($user['Organization']['name']); ?></td>
             <td><?php echo h($user['User']['enabled']); ?>&nbsp;</td>
             <td class="actions">
                 <?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?>

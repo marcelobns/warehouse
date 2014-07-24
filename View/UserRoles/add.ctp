@@ -6,6 +6,7 @@
             echo $this->Form->input('user_id', array('type'=>'text', 'value'=>@$user_id, 'hidden', 'label'=>false));
             echo $this->Form->input('module_id', array('class'=>'select2'));
             echo $this->Form->input('role_id', array('class'=>'select2'));
+            echo $this->Form->input('organization_scope_id', array('class'=>'select2'));
 	    ?>
         <?php echo $this->Form->button(__('Submit'), array('class'=>'btn btn-success')); ?>
         <?php echo $this->Html->link(__('Cancel'), array('controller'=>'users', 'action'=>'edit', @$user_id), array('class'=>'btn btn-default')); ?>

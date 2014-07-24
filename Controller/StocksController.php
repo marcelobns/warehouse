@@ -4,26 +4,33 @@ class StocksController extends AppController {
 
 	public $components = array('Paginator');
 
-	public function index() {
+	public function index(){
         $conditions = array(
             'StockType.module_id'=>AppController::getModule(),
-            'Stock.updated > \'2014-01-01\'',
+            'Stock.updated > \''.date('Y-m-d', strtotime('- 6 months')).'\'',
+            AppController::getScope(). ' = any(Organization.parent_array)'
+
         );
         if(@$_GET['q']){
-            $_GET['q'] = is_numeric($_GET['q']) ? $_GET['q'] : '%'.$_GET['q'].'%';
+            $q = is_numeric($_GET['q']) ? $_GET['q'] : '%'.$_GET['q'].'%';
             $conditions = array(
                 'StockType.module_id'=>AppController::getModule(),
                 'OR'=>array(
-                    'Stock.num::text ilike \''.$_GET['q'].'\'',
-                    'Stock.id::text ilike \''.$_GET['q'].'\'',
-                    'Stock.description ilike \''.$_GET['q'].'\'',
+                    'Stock.num::text ilike \''.$q.'\'',
+                    'Stock.id::text ilike \''.$q.'\'',
+                    'Stock.description ilike \''.$q.'\'',
                 )
             );
         }
+        $this->Stock->unBindModel(array(
+            'belongsTo'=>array('BuyOrder')
+        ));
         $this->paginate = array(
-            'recursive'=>-1,
+            'recursive'=>0,
             'fields'=>array(
                 'Stock.id', 'Stock.num', 'Stock.description', 'Stock.units', 'Stock.price', 'Stock.stock_group_id',
+                'MAX("Order"."reference_year") as "Stock__last_inventory"',
+                '(array_agg("Organization"."name" ORDER BY "Trade"."id" DESC))[1] as "Organization__name"',
                 'StockType.name',
                 'StockType.gen_code',
                 'StockGroup.name',
@@ -31,30 +38,6 @@ class StocksController extends AppController {
                 'CASE WHEN sum(Trade.buy_amount) is null THEN 0 ELSE (sum(Trade.buy_amount) - sum(Trade.sell_amount)) END as "Stock__balance"'
             ),
             'joins'=>array(
-                array(
-                    'table' => 'stock_types',
-                    'alias' => 'StockType',
-                    'type' => 'LEFT',
-                    'conditions' => array(
-                        'StockType.id = Stock.stock_type_id'
-                    )
-                ),
-                array(
-                    'table' => 'stock_groups',
-                    'alias' => 'StockGroup',
-                    'type' => 'LEFT',
-                    'conditions' => array(
-                        'StockGroup.id = Stock.stock_group_id'
-                    )
-                ),
-                array(
-                    'table' => 'stock_units',
-                    'alias' => 'StockUnit',
-                    'type' => 'LEFT',
-                    'conditions' => array(
-                        'StockUnit.id = Stock.stock_unit_id'
-                    )
-                ),
                 array(
                     'table' => 'trades',
                     'alias' => 'Trade',
@@ -64,34 +47,57 @@ class StocksController extends AppController {
                         'Trade.canceled = false'
                     )
                 ),
+                array(
+                    'table' => 'organizations',
+                    'alias' => 'Organization',
+                    'type' => 'LEFT',
+                    'conditions' => array(
+                        'Organization.id = Trade.buyer_id',
+                    )
+                ),
+                array(
+                    'table' => 'orders',
+                    'alias' => 'Order',
+                    'type' => 'LEFT',
+                    'conditions' => array(
+                        'Order.id = Trade.order_id',
+                        'Order.order_type_id = 9'
+                    )
+                ),
             ),
             'conditions'=>$conditions,
             'group'=>array('Stock.id', 'StockType.name', 'StockType.gen_code', 'StockGroup.name', 'StockUnit.acronym', 'StockGroup.sort', 'Stock.num', 'Stock.description'),
             'order'=>array('Stock.updated'=>'DESC', 'Stock.num'=>'DESC', 'Stock.description'=>'ASC')
         );
         $stocks = $this->Paginator->paginate();
-        foreach($this->Session->Read('Config.Modules') as $i=>$value){
-            if($value['Module']['id'] == AppController::getModule()){
-                $stock_add = $value['Module']['stock_add'];
-            }
-        }
-		$this->set(compact('stocks', 'stock_add'));
+        $last_inventory = $this->Stock->Trade->Order->find('all', array(
+            'recursive'=>-1,
+            'fields'=>array(
+                'MAX(Order.id) as "Order__id"',
+                'MAX(reference_year) as "Order__year"'
+            ),
+            'conditions'=>array('order_type_id'=>9)
+        ));
+		$this->set(compact('stocks', 'stock_add', 'last_inventory'));
+        $this->filters();
 	}
+
+    public function filters(){
+        $stockGroups = $this->Stock->StockGroup->find('list', array());
+        $this->set(compact('stockGroups'));
+    }
 
 	public function view($id = null) {
 		if (!$this->Stock->exists($id)) {
 			throw new NotFoundException(__('Invalid stock'));
 		}
         $this->Stock->unBindModel(array(
+            'belongsTo'=>array('BuyOrder'),
             'hasMany'=>array('Trade', 'StockRate')
         ));
         $stock = $this->Stock->find('first', array('conditions' => array('Stock.' . $this->Stock->primaryKey => $id)));
-        $this->Stock->Trade->unBindModel(array(
-            'belongsTo'=>array('Stock'),
-            'hasMany'=>array('Trade', 'StockRate')
-        ));
         $stock['Trade'] = $this->Stock->Trade->find('all', array(
-            'fields'=>array('Trade.*', 'Order.date_time', 'Order.num', 'Order.reference_year', 'Buyer.name', 'StockSituation.name'),
+            'fields'=>array('Trade.*', 'OrderType.name', 'OrderType.sort', 'Order.date_time', 'Order.num', 'Order.reference_year', 'Buyer.name', 'StockSituation.name'),
             'conditions' => array('Trade.stock_id'=>$id),
             'order'=>array('Order.date_time'=>'DESC', 'Trade.id'=>'DESC')
         ));
@@ -180,5 +186,9 @@ class StocksController extends AppController {
             return new CakeResponse(array('body' => json_encode($result[0])));
         }
         return new CakeResponse(array('body' => '{}'));
+    }
+
+    public function reports(){
+
     }
 }

@@ -11,18 +11,31 @@ class UsersController extends AppController {
 	public $components = array('Paginator');
 
     public function index() {
-        $this->User->recursive = 0;
+        $conditions = array(
+            AppController::getScope().' = ANY(Organization.parent_array)',
+            'User.enabled'
+        );
+        if(@$_GET['q']){
+            $_GET['q'] = is_numeric($_GET['q']) ? $_GET['q'] : '%'.$_GET['q'].'%';
+            $conditions = array(
+                AppController::getScope().' = ANY(Organization.parent_array)',
+                'OR'=>array(
+                    'User.id::text ilike \''.$_GET['q'].'\'',
+                    'User.name::text ilike \''.$_GET['q'].'\'',
+                    'User.username::text ilike \''.$_GET['q'].'\'',
+                )
+            );
+        }
         $this->paginate = array(
+            'recursive'=>0,
             'fields' => array(
                 'User.id',
                 'User.name',
                 'User.username',
                 'User.enabled',
-                'Organization.*',
+                'Organization.name',
             ),
-            'conditions' => array(
-                AppController::getScope().' = ANY(Organization.parent_array)'
-            ),
+            'conditions' => $conditions,
             'order' => array('name'=>'ASC')
         );
         $this->set('users', $this->Paginator->paginate());
@@ -125,27 +138,37 @@ class UsersController extends AppController {
                 'belongsTo' => array('Creator','Updater')
             ));
             $user = $this->User->find('first', array(
-                    'conditions' => array(
+                    'recursive'=>0,
+                    'conditions'=>array(
                         'User.username' => $this->data['User']['username'],
                         'User.password' => Security::hash($this->data['User']['password'], 'md5', false)
                     )
                 )
             );
+            $this->User->UserRole->unBindModel(array(
+                'belongsTo' => array('User','Module','OrganizationScope')
+            ));
+            $user['UserRole'] = $this->User->UserRole->find('all', array(
+                    'conditions'=>array(
+                        'UserRole.user_id' => $user['User']['id']
+                    )
+                )
+            );
             if($user != false){
                 unset($user['User']['password']);
-                $signin = array(
-                    'id' => $user['User']['id'],
-                    'last_signin' => date('Y-m-d H:i:s')
-                );
-                if($this->User->save($signin)){
-                    if(sizeof($user['UserRole']) == 0){
-                        $this->Session->destroy();
-                        $this->Session->setFlash(__('Invalid! Role(s) not found'));
-                        $this->redirect($this->Auth->logout());
-                    }
-                    foreach($user['UserRole'] as $value){
-                        $roles[$value['module_id']] = $value;
-                    }
+                if(sizeof($user['UserRole']) == 0){
+                    $this->Session->destroy();
+                    $this->Session->setFlash(__('Invalid! Role(s) not found'));
+                    $this->redirect($this->Auth->logout());
+                }
+                foreach($user['UserRole'] as $i=>$value){
+                    $role_sort = $user['UserRole'][$i]['Role']['sort'];
+                    $user['UserRole'][$i] = $user['UserRole'][$i]['UserRole'];
+                    $user['UserRole'][$i]['last_signin'] = date('Y-m-d H:i:s');
+                    $user['UserRole'][$i]['role_sort'] = $role_sort;
+                    $roles[$user['UserRole'][$i]['module_id']] = $user['UserRole'][$i];
+                }
+                if($this->User->UserRole->saveAll($user['UserRole'])){
                     $user['User']['Roles'] = $roles;
                     $user['User']['Organization'] = $user['Organization'];
                     $organization_types = $this->User->Organization->OrganizationType->find('list', array(

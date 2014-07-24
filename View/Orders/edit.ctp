@@ -46,22 +46,22 @@
             <th><?php echo __('Amount'); ?></th>
             <th><?php echo __('Price'); ?></th>
             <th></th>
-            <th class="action-add" style="font-size: 1.25em;">
-                <?php echo $this->Html->link('<i class="fa fa-plus"></i> '.__('New Trade'),
+            <th class="action-add" style="font-size: 1.2em; max-width: 90px;">
+                <?php echo $this->Html->link('<i class="fa fa-plus-square-o"></i> '.__('New Trade'),
                     array('controller' => 'trades', 'action' => 'add', $this->request->data['Order']['id']),
                     array('escape'=>false)); ?>
             </th>
         </tr>
         <?php $total = 0;?>
         <?php foreach ($this->request->data['Trade'] as $trade): ?>
-        <?php $total += ($trade['Trade']['buy_amount']+$trade['Trade']['sell_amount']) * ($trade['Trade']['buy_price']+$trade['Trade']['sell_price'])?>
+        <?php $total += ($trade['Trade']['buy_amount']+$trade['Trade']['sell_amount'])/$trade['Stock']['units'] * ($trade['Trade']['buy_price']+$trade['Trade']['sell_price'])?>
             <tr>
                 <td style="width: 10%"><?php echo isset($trade['StockGroup']['name']) ? $trade['StockGroup']['name'] : $trade['StockType']['name']; ?></td>
                 <td><?php echo isset($trade['Stock']['num']) ? $trade['Stock']['num'] : $trade['Stock']['id']; ?></td>
                 <td style="width: 50%"><?php echo $trade['Stock']['description']; ?></td>
                 <td><?php echo ($trade['Trade']['buy_amount']+$trade['Trade']['sell_amount']); ?></td>
                 <td><?php echo number_format(($trade['Trade']['buy_price']+$trade['Trade']['sell_price']), 2, ',', '.'); ?></td>
-                <td><?php echo isset($trade['StockSituation']['name']) ? $trade['StockSituation']['name'] : number_format(($trade['Trade']['buy_amount']+$trade['Trade']['sell_amount']) * ($trade['Trade']['buy_price']+$trade['Trade']['sell_price']), 2, ',', '.'); ?></td>
+                <td><?php echo isset($trade['StockSituation']['name']) ? $trade['StockSituation']['name'] : number_format((($trade['Trade']['buy_amount']+$trade['Trade']['sell_amount'])/$trade['Stock']['units']) * ($trade['Trade']['buy_price']+$trade['Trade']['sell_price']), 2, ',', '.'); ?></td>
                 <td class="actions">
                     <?php echo $this->Html->link(__('Edit'), array('controller' => 'trades', 'action' => 'edit', $trade['Trade']['id'])); ?>
                     <?php echo $this->Form->postLink(__('Delete'), array('controller' => 'trades', 'action' => 'delete', $trade['Trade']['id']), null, __('Are you sure you want to delete # %s?', $trade['Trade']['id'])); ?>

@@ -24,15 +24,7 @@
 	</dl>
 </div>
 <div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Stock Group'), array('action' => 'edit', $stockGroup['StockGroup']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Stock Group'), array('action' => 'delete', $stockGroup['StockGroup']['id']), null, __('Are you sure you want to delete # %s?', $stockGroup['StockGroup']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Stock Groups'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Stock Group'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Stocks'), array('controller' => 'stocks', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Stock'), array('controller' => 'stocks', 'action' => 'add')); ?> </li>
-	</ul>
+    <?=$this->element('actions.stocks');?>
 </div>
 <div class="related">
 	<h3><?php echo __('Related Stocks'); ?></h3>

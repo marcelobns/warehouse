@@ -1,26 +1,7 @@
 <?php
 App::uses('AppModel', 'Model');
-/**
- * Stock Model
- *
- * @property StockType $StockType
- * @property StockGroup $StockGroup
- * @property StockUnit $StockUnit
- * @property StockSituation $StockSituation
- * @property BuyOrder $BuyOrder
- * @property Organization $Organization
- * @property Creator $Creator
- * @property Updater $Updater
- * @property StockRate $StockRate
- * @property Trade $Trade
- */
 class Stock extends AppModel {
 
-/**
- * Validation rules
- *
- * @var array
- */
 	public $validate = array(
         'num' => array(
             'unique' => array(
@@ -84,41 +65,15 @@ class Stock extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-//		'BuyOrder' => array(
-//			'className' => 'Order',
-//			'foreignKey' => 'buy_order_id',
-//			'conditions' => '',
-//			'fields' => '',
-//			'order' => ''
-//		),
-//		'Organization' => array(
-//			'className' => 'Organization',
-//			'foreignKey' => 'organization_id',
-//			'conditions' => '',
-//			'fields' => '',
-//			'order' => ''
-//		),
-//		'Creator' => array(
-//			'className' => 'User',
-//			'foreignKey' => 'creator_id',
-//			'conditions' => '',
-//			'fields' => '',
-//			'order' => ''
-//		),
-//		'Updater' => array(
-//			'className' => 'User',
-//			'foreignKey' => 'updater_id',
-//			'conditions' => '',
-//			'fields' => '',
-//			'order' => ''
-//		)
+		'BuyOrder' => array(
+			'className' => 'Order',
+			'foreignKey' => 'buy_order_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
 	);
 
-/**
- * hasMany associations
- *
- * @var array
- */
 	public $hasMany = array(
 		'StockRate' => array(
 			'className' => 'StockRate',
@@ -145,26 +100,33 @@ class Stock extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
+		),
+        'Log' => array(
+            'className' => 'Log',
+            'foreignKey' => 'oid',
+            'dependent' => false,
+            'conditions' => array(
+                'Log.alias = \'Stock\''
+            ),
+            'fields' => '',
+            'order' => array('Log.date_time'=>'DESC'),
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        )
 	);
 
     function getStockList($module_id = null) {
         $stocks = $this->find('all', array(
-            'recursive'=>-1,
+            'recursive'=>0,
             'fields'=>array(
                 'Stock.id',
                 'Stock.description',
                 'CASE WHEN sum(Trade.buy_amount) is null THEN 0 ELSE (sum(Trade.buy_amount) - sum(Trade.sell_amount)) END as "Stock__balance"'
             ),
             'joins'=>array(
-                array(
-                    'table' => 'stock_types',
-                    'alias' => 'StockType',
-                    'type' => 'LEFT',
-                    'conditions' => array(
-                        'StockType.id = Stock.stock_type_id'
-                    )
-                ),
                 array(
                     'table' => 'trades',
                     'alias' => 'Trade',
@@ -177,7 +139,7 @@ class Stock extends AppModel {
             ),
             'conditions'=>array(
                 'StockType.module_id'=>$module_id,
-                'Stock.updated > \'2014-01-01\'',
+                'Stock.updated > \''.date('Y-m-d', strtotime('- 6 months')).'\'',
                 'Stock.enabled'
             ),
             'group'=>array('Stock.id', 'Stock.description'),

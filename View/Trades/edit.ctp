@@ -30,12 +30,12 @@
                 <dl>
                     <dt><?php echo __('Num'); ?></dt>
                         <dd><?php echo h($order['Stock']['num']); ?>&nbsp;</dd>
-                    <dt><?php echo __('Name'); ?></dt>
-                        <dd><?php echo h($order['Stock']['name']); ?>&nbsp;</dd>
                     <dt><?php echo __('Description'); ?></dt>
                         <dd><?php echo h($order['Stock']['description']); ?>&nbsp;</dd>
                     <dt><?php echo __('Price'); ?></dt>
-                        <dd><?php echo h($order['Stock']['price']); ?>&nbsp;</dd>
+                        <dd><?php echo h(number_format($order['Stock']['price'], 2, ',', '.')); ?>&nbsp;</dd>
+<!--                    <dt>--><?php //echo __('Situation'); ?><!--</dt>-->
+<!--                        <dd>--><?php //echo h($order['StockSituation']['name']); ?><!--&nbsp;</dd>-->
                 </dl>
                 <?php
                 if($isBuy) {
@@ -95,14 +95,14 @@
             $('#TradeAmountUnit').val(stock_units-1);
             amount_unit = stock_units-1;
         }
-        $('#TradeTotal').val( ((amount*stock_units+ amount_unit) * price).toFixed(2) );
+        $('#TradeTotal').val( ((amount*stock_units+amount_unit) * price/stock_units).toFixed(2) );
     }
     function calcTotalInverse(){
         var total = $('#TradeTotal').val();
         var amount = parseInt($('#TradeAmount').val());
         var amount_unit = parseInt($('#TradeAmountUnit').val());
         var stock_units = parseInt($('#StockUnits').val());
-        $('#TradePrice').val( (total / (amount*stock_units+ amount_unit)).toFixed(2) );
+        $('#TradePrice').val( (total*stock_units / (amount*stock_units+amount_unit)).toFixed(2) );
     }
     $("#StockStockGroupId").change(function(e){
         getMaxCode();

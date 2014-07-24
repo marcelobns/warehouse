@@ -35,20 +35,7 @@
     <?php echo $this->Html->link('<i class="fa fa-arrow-left"></i> '.__('Back'), array('action'=>'index'), array('class'=>'btn btn-default', 'escape'=>false)); ?>
 </div>
 <div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Stock'), array('action' => 'edit', $stock['Stock']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Stock'), array('action' => 'delete', $stock['Stock']['id']), null, __('Are you sure you want to delete # %s?', $stock['Stock']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Stocks'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Stock'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Stock Types'), array('controller' => 'stock_types', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Stock Type'), array('controller' => 'stock_types', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Stock Groups'), array('controller' => 'stock_groups', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Stock Group'), array('controller' => 'stock_groups', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Stock Units'), array('controller' => 'stock_units', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Stock Unit'), array('controller' => 'stock_units', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Stock Situations'), array('controller' => 'stock_situations', 'action' => 'index')); ?> </li>
-	</ul>
+    <?=$this->element('actions.stocks');?>
 </div>
 <div class="related">
 	<h3><?php echo __('Related Trades'); ?></h3>
@@ -56,6 +43,7 @@
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
 		<th><?php echo __('Date'); ?></th>
+        <th><?php echo __('Order Type'); ?></th>
 		<th><?php echo __('Order'); ?></th>
         <th><?php echo __('Buyer'); ?></th>
 		<th><?php echo __('Buy Amount'); ?></th>
@@ -68,6 +56,7 @@
 	<?php foreach ($stock['Trade'] as $trade): ?>
 		<tr>
             <td><?php echo $trade['Order']['date_time']; ?></td>
+            <td><?php echo $trade['OrderType']['name']; ?></td>
 			<td><?php echo ( isset($trade['Order']['num']) ?  $trade['Order']['num'].'/' : $trade['Order']['num']).$trade['Order']['reference_year']; ?></td>
             <td><?php echo $trade['Buyer']['name']; ?></td>
 			<td><?php echo $trade['Trade']['buy_amount']; ?></td>
@@ -84,7 +73,9 @@
                 ?>&nbsp;
 			</td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'orders', 'action' => 'view', $trade['Trade']['order_id'])); ?>
+                <?php if($trade['OrderType']['sort'] <= 3 ) {
+                    echo $this->Html->link(__('View'), array('controller' => 'orders', 'action' => 'view', $trade['Trade']['order_id']));
+                }?>
 			</td>
 		</tr>
 	<?php endforeach; ?>

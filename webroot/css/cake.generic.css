@@ -81,7 +81,7 @@ p {
 	clear: both;
 	color: #333;
 	padding: 5px 20px 40px 20px;
-	overflow: hidden;
+    background-color: #FEFEFE;
 }
 #footer {
     background: #404040;
@@ -131,7 +131,6 @@ th {
 	border:0;
 	border-bottom:2px solid #555;
 	text-align: left;
-    padding: 4px 4px 4px 0px;
 }
 th a {
 	display: block;
@@ -273,8 +272,11 @@ fieldset {
 }
 legend {
 	color: #e32!important;
-	font-size: 1.8em!important;
+	font-size: 1.9em!important;
     font-family: 'Gill Sans','lucida grande', helvetica, arial, sans-serif;
+}
+legend i {
+    color: #d3d3d3
 }
 fieldset fieldset {
 	margin-top: 0;
@@ -414,7 +416,7 @@ form .error-message {
 	font-size: 110%;
 	font-weight: bold;
     position: fixed;
-    right: 20px;
+    margin-left: 2%;
     z-index: 999;
 }
 .message span{
@@ -777,17 +779,18 @@ pre {
     width: 10px;
 }
 .refresh {
-    float: right;
-    margin-right: 45px;
-    color: #999;
+    color: #d3d3d3;
+}
+.refresh:hover {
+    color: #bbb;
 }
 .uppercase {
     text-transform: uppercase!important;
 }
 .filter .btn-link{
     font-family: 'lucida grande',verdana,helvetica,arial,sans-serif;
-    padding: 0px;
-    font-size: 0.9em;
+    padding: 0px 6px 0px 0px;
+    font-size: 1em;
     text-decoration: none!important;
 }
 .filter span{

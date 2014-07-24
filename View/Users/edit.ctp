@@ -43,7 +43,6 @@
                         <td><?php echo $userRole['Role']['name']; ?></td>
                         <td><?php echo $userRole['UserRole']['last_signin']; ?></td>
                         <td class="actions">
-                            <?php echo $this->Html->link(__('Edit'), array('controller' => 'user_roles', 'action' => 'edit', $userRole['UserRole']['id'])); ?>
                             <?php echo $this->Form->postLink(__('Delete'), array('controller' => 'user_roles', 'action' => 'delete', $userRole['UserRole']['id']), null, __('Are you sure you want to delete # %s?', $userRole['UserRole']['id'])); ?>
                         </td>
                     </tr>

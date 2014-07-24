@@ -6,15 +6,15 @@
 		echo $this->Form->input('Trade.order_id', array('type'=>'text', 'value'=>$order['Order']['id'], 'hidden'=>true, 'label'=>false));
         switch($order['OrderType']['trade_mode']){
             case 'select' :
-                echo $this->Form->input('Trade.stock_code', array('type'=>'number'));
+                echo $this->Form->input('Trade.stock_code', array('type'=>'number', 'label'=>__('Num')));
                 echo $this->Form->input('Trade.stock_id', array('class'=>'select2', 'empty'=>__('Select an Item...')));
 
                 echo $this->Form->input('Trade.amount', array('type'=>'number', 'value'=> 1, 'min'=>0, 'required'=>'required', 'style'=>'width: 30%'));
                 echo $this->Form->input('Trade.amount_unit', array('type'=>'number', 'value'=> 0, 'min'=>0, 'required'=>'required', 'style'=>'width: 30%', 'disabled'=>true));
                 echo $this->Form->input('Stock.units', array('value'=>1, 'hidden'=>true, 'label'=>false));
-                echo $this->Form->input('Trade.price', array('type'=>'number', 'value'=> 0, 'step'=>0.01, 'required'=>'required', 'style'=>'width: 30%'));
+                echo $this->Form->input('Trade.price', array('type'=>'number', 'value'=>0, 'step'=>0.01, 'required'=>'required', 'style'=>'width: 30%'));
 
-                echo $this->Form->input('Trade.total', array('type'=>'number', 'value'=> 0, 'step'=>0.01, 'style'=>'width: 30%'));
+                echo $this->Form->input('Trade.total', array('type'=>'number', 'value'=>0, 'step'=>0.01, 'style'=>'width: 30%'));
                 break;
             case 'create' :
                 echo $this->Form->input('Stock.stock_type_id', array('class'=>'select2', 'empty'=>__('Select an Item...')));
@@ -29,6 +29,9 @@
                     echo $this->Form->input('Trade.stock_situation_id', array('hidden'=>true, 'label'=>false));
                 } else {
                     echo $this->Form->input('Trade.stock_situation_id', array('class'=>'select2', 'empty'=>__('Select an Item...'), 'required'=>'required'));
+                }
+                if(@$isInventory) {
+                    echo $this->Form->input('Trade.buyer_id', array('class'=>'select2', 'empty'=>__('Select an Item...'), 'required'=>'required'));
                 }
                 break;
             case 'num' :
@@ -47,7 +50,7 @@
 	?>
 	</fieldset>
     <?php echo $this->Form->button(__('Submit'), array('class'=>'btn btn-success')); ?>
-    <?php echo $this->Html->link(__('Cancel'), array('controller'=>'orders', 'action'=>'edit', $order['Order']['id']), array('class'=>'btn btn-default')); ?>
+    <?php echo $this->Html->link(__('Cancel'), $this->request->referer(), array('class'=>'btn btn-default')); ?>
     <?php echo $this->Form->end(); ?>
 </div>
 <div class="actions">
@@ -55,6 +58,10 @@
 </div>
 <?php $this->start('script'); ?>
 <script type="text/javascript">
+    $(function(){
+        StockUnitsEnable();
+        calcTotal();
+    });
     function getMaxCode(){
         $.ajax({
             url: '<?php echo Router::url(array('controller' => 'stocks', 'action' => 'getMaxCode')); ?>'+'/'+$("#StockStockGroupId").val()
@@ -88,14 +95,14 @@
             $('#TradeAmountUnit').val(stock_units-1);
             amount_unit = stock_units-1;
         }
-        $('#TradeTotal').val( ((amount*stock_units+ amount_unit) * price).toFixed(2) );
+        $('#TradeTotal').val( ((amount*stock_units+amount_unit) * price/stock_units).toFixed(2) );
     }
     function calcTotalInverse(){
         var total = $('#TradeTotal').val();
         var amount = parseInt($('#TradeAmount').val());
         var amount_unit = parseInt($('#TradeAmountUnit').val());
         var stock_units = parseInt($('#StockUnits').val());
-        $('#TradePrice').val( (total / (amount*stock_units+ amount_unit)).toFixed(2) );
+        $('#TradePrice').val( (total*stock_units / (amount*stock_units+amount_unit)).toFixed(2) );
     }
     $("#StockStockGroupId").change(function(e){
         getMaxCode();
@@ -120,6 +127,7 @@
     $('#TradeTotal').blur(function(){
         calcTotalInverse();
     });
+
     function StockUnitsEnable(){
         if($('#StockUnits').val()-1 > 0){
             $('#TradeAmountUnit').prop('disabled', false);

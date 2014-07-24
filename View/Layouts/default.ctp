@@ -27,7 +27,7 @@ $cakeDescription = __d('cake_dev', __('Warehouse'));
 		<div id="header" class="navbar navbar-static-top" role="navigation">
             <div class="navbar-header">
                 <?php echo $this->Html->link('<i class="fa fa-cubes fa-2x" style="line-height: 0.5;"></i>',
-                    array('controller'=>'pages', 'action' => 'home'),
+                    array('controller'=>'orders', 'action' => 'index'),
                     array('escape'=>false, 'class'=>'navbar-brand', 'style'=>'height: 0; color: #404040; text-shadow: 1px 1px darkgray, -1px -1px black;')); ?>
             </div>
             <div class="navbar-collapse collapse">
@@ -49,6 +49,14 @@ $cakeDescription = __d('cake_dev', __('Warehouse'));
                             <li><?php echo $this->Html->link(__('Stock Types'),
                                     array('controller'=>'stock_types', 'action' => 'index', '?' =>  array('@'=>$value['Module']['id'])),
                                     array('escape'=>false)); ?></li>
+                            <li class="divider"></li>
+                            <?//TODO Sale & Finacial?>
+<!--                            <li>--><?php //echo $this->Html->link(__('Sale'),
+//                                    array('controller'=>'trades', 'action' => 'sale', '?' =>  array('@'=>$value['Module']['id'])),
+//                                    array('escape'=>false)); ?><!--</li>-->
+<!--                            <li>--><?php //echo $this->Html->link(__('Financial'),
+//                                    array('controller'=>'orders', 'action' => 'financial', '?' =>  array('@'=>$value['Module']['id'])),
+//                                    array('escape'=>false)); ?><!--</li>-->
                         </ul>
                     </li>
                     <?php endforeach;?>
@@ -104,11 +112,11 @@ $cakeDescription = __d('cake_dev', __('Warehouse'));
 			?>
 		</div>
 	</div>
-<!--	--><?php //echo $this->element('sql_dump'); ?>
+	<?php echo $this->element('sql_dump'); ?>
     <?php
     echo $this->Html->script('modules/jquery-1.11.0.min');
     echo $this->Html->script('modules/jquery-ui-1.10.4.custom.min');
-    echo $this->Html->script('modules/bootstrap.min');
+    echo $this->Html->script('modules/bootstrap');
     echo $this->Html->script('modules/select2');
     echo $this->Html->script('modules/jquery.maskedinput');
     echo $this->Html->script('modules/jquery.maskmoney');

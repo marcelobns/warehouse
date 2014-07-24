@@ -14,9 +14,9 @@
         <li>
             <div class="input-group">
                 <label><?=__('Begin')?></label>
-                <?php echo $this->Form->input($fields[0], array('label'=>false,'class'=>'date filter-normalized'));?>
+                <?php echo $this->Form->input($fields[0], array('label'=>false,'class'=>'filter-normalized'));?>
                 <label><?=__('End')?></label>
-                <?php echo $this->Form->input($fields[1], array('label'=>false,'class'=>'date filter-normalized'));?>
+                <?php echo $this->Form->input($fields[1], array('label'=>false,'class'=>'filter-normalized'));?>
             </div>
         </li>
     </ul>

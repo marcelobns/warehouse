@@ -1,17 +1,37 @@
 <div class="orders index large">
-	<legend><?php echo __('Orders'); ?> <div class="pull-right"><?=$this->element('form.search', array('model'=>'Order'));?></div></legend>
+	<legend>
+        <?php echo __('Orders'); ?>
+        <?php echo $this->Html->link(' <i class="fa fa-refresh refresh"></i>', array('action' => 'index'), array('escape'=>false)); ?>
+        <?php echo $this->Html->link(' <i style="color: #d3d3d3" class="fa fa-print"></i>', array('action' => 'index'), array('escape'=>false)); ?>
+        <div class="pull-right"><?=$this->element('form.search', array('model'=>'Order'));?></div>
+    </legend>
 	<table cellpadding="0" cellspacing="0" class="table-hover">
         <thead>
             <tr>
                 <th><?php echo $this->Paginator->sort('id'); ?></th>
-                <th><?php echo $this->Paginator->sort('datetime'); ?></th>
-                <th><?php echo $this->Paginator->sort('order_type_id'); ?></th>
+                <th><?php echo $this->element('filter.date', array(
+                        'id' => 'datetime',
+                        'label' => __('Datetime'),
+                        'fields' => array('datetime_begin', 'datetime_end'),
+                    )); ?>
+                </th>
+                <th><?php echo $this->element('filter.select', array(
+                        'label' => __('Order Type'),
+                        'field' => 'order_type_id',
+                        'options' => @$orderTypes
+                    )); ?>
+                </th>
                 <th style="text-align: center"><?php echo $this->Paginator->sort('num'); ?></th>
                 <th><?php echo $this->Paginator->sort('seller_id'); ?></th>
-                <th><?php echo $this->Paginator->sort('buyer_id'); ?></th>
+                <th><?php echo $this->element('filter.select', array(
+                        'label' => __('Buyer'),
+                        'field' => 'buyer_id',
+                        'options' => @$buyers
+                    )); ?>
+                </th>
                 <th><?php echo $this->Paginator->sort('done'); ?></th>
                 <th class="action-add">
-                    <?php echo $this->Html->link('<i class="fa fa-plus"></i> '.__('New Order'),
+                    <?php echo $this->Html->link('<i class="fa fa-plus-square-o"></i> '.__('New Order'),
                         array('action' => 'add_type'),
                         array('data-toggle'=>'modal', 'data-target'=>'#modal', 'escape'=>false)); ?>
                 </th>
@@ -43,7 +63,7 @@
                     array('action' => 'add_type', $order['Order']['id']),
                     array('title'=>__('Reuse'), 'data-toggle'=>'modal', 'data-target'=>'#modal', 'escape'=>false)); ?>
                 <?php
-                    if($order['Order']['id'] >= $lasts[1]['Order']['id'] && !$order['Order']['canceled'])
+                    if($order['Order']['id'] >= $lasts[5]['Order']['id'] && !$order['Order']['canceled'])
                         echo $this->Html->link('<i class="fa fa-pencil fa-lg"></i>',
                         array('action' => 'edit', $order['Order']['id']),
                         array('title'=>__('Edit'), 'escape'=>false));

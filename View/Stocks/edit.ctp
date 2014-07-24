@@ -16,23 +16,5 @@
     <?php echo $this->Form->end(); ?>
 </div>
 <div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Stock.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Stock.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('List Stocks'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Stock Types'), array('controller' => 'stock_types', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Stock Type'), array('controller' => 'stock_types', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Stock Groups'), array('controller' => 'stock_groups', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Stock Group'), array('controller' => 'stock_groups', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Stock Units'), array('controller' => 'stock_units', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Stock Unit'), array('controller' => 'stock_units', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Stock Situations'), array('controller' => 'stock_situations', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Stock Situation'), array('controller' => 'stock_situations', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Orders'), array('controller' => 'orders', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Buy Order'), array('controller' => 'orders', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Stock Rates'), array('controller' => 'stock_rates', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Stock Rate'), array('controller' => 'stock_rates', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Trades'), array('controller' => 'trades', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Trade'), array('controller' => 'trades', 'action' => 'add')); ?> </li>
-	</ul>
+    <?=$this->element('actions.stocks');?>
 </div>

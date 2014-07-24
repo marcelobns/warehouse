@@ -35,7 +35,8 @@ class UserRolesController extends AppController {
 		}
 		$modules = $this->UserRole->Module->find('list');
 		$roles = $this->UserRole->Role->find('list');
-		$this->set(compact('users', 'modules', 'roles', 'user_id'));
+		$organizationScopes = $this->UserRole->OrganizationScope->getChildOrganization(1, AppController::getScope());
+		$this->set(compact('modules', 'roles', 'user_id', 'organizationScopes'));
 	}
 
 	public function edit($id = null) {
@@ -45,7 +46,7 @@ class UserRolesController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->UserRole->save($this->request->data)) {
 				$this->Session->setFlash(__('The user role has been saved.'));
-				return $this->redirect(array('controller'=>'user', 'action' => 'edit', $this->request->data['UserRole']['user_id']));
+				return $this->redirect(array('controller'=>'users', 'action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The user role could not be saved. Please, try again.'));
 			}
@@ -53,10 +54,10 @@ class UserRolesController extends AppController {
 			$options = array('conditions' => array('UserRole.' . $this->UserRole->primaryKey => $id));
 			$this->request->data = $this->UserRole->find('first', $options);
 		}
-		$users = $this->UserRole->User->find('list');
 		$modules = $this->UserRole->Module->find('list');
 		$roles = $this->UserRole->Role->find('list');
-		$this->set(compact('users', 'modules', 'roles'));
+        $organizationScopes = $this->UserRole->OrganizationScope->getChildOrganization(1);
+        $this->set(compact('modules', 'roles', 'organizationScopes'));
 	}
 
 	public function delete($id = null) {

@@ -31,22 +31,10 @@ class Organization extends AppModel {
 		'name' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
 	);
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
-/**
- * belongsTo associations
- *
- * @var array
- */
 	public $belongsTo = array(
 		'OrganizationType' => array(
 			'className' => 'OrganizationType',
@@ -64,11 +52,6 @@ class Organization extends AppModel {
 		)
 	);
 
-/**
- * hasMany associations
- *
- * @var array
- */
 	public $hasMany = array(
 		'ChildOrganization' => array(
 			'className' => 'Organization',
@@ -149,6 +132,7 @@ class Organization extends AppModel {
                     $acronym = ' - '.$child['acronym'];
                 }
                 $return[$organization[$alias]['name']][$child['id']] = $child['name'].$acronym;
+                $acronym = ' ';
             }
         }
         if(sizeof($return) != 0){

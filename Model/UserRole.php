@@ -1,12 +1,5 @@
 <?php
 App::uses('AppModel', 'Model');
-/**
- * UserRole Model
- *
- * @property User $User
- * @property Module $Module
- * @property Role $Role
- */
 class UserRole extends AppModel {
 
 	public $validate = array(
@@ -23,21 +16,11 @@ class UserRole extends AppModel {
 		'module_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
 		'role_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
 	);
@@ -60,6 +43,13 @@ class UserRole extends AppModel {
 		'Role' => array(
 			'className' => 'Role',
 			'foreignKey' => 'role_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+        'OrganizationScope' => array(
+			'className' => 'Organization',
+			'foreignKey' => 'organization_scope_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

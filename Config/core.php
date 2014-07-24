@@ -270,6 +270,7 @@ Configure::write('Session', array(
  * any date & time related errors.
  */
 	//date_default_timezone_set('UTC');
+    date_default_timezone_set('America/Boa_Vista');
 
 /**
  * `Config.timezone` is available in which you can set users' timezone string.
