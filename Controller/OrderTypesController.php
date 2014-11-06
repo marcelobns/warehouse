@@ -49,7 +49,9 @@ class OrderTypesController extends AppController {
 				$this->Session->setFlash(__('The order type could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('OrderType.' . $this->OrderType->primaryKey => $id));
+			$options = array(
+                'recursive' => 1,
+                'conditions' => array('OrderType.' . $this->OrderType->primaryKey => $id));
 			$this->request->data = $this->OrderType->find('first', $options);
 		}
 		$sellerTypes = $this->OrderType->SellerType->find('list');

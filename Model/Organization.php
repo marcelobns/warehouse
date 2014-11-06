@@ -104,16 +104,31 @@ class Organization extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
+		),
+        'Log' => array(
+            'className' => 'Log',
+            'foreignKey' => 'oid',
+            'dependent' => false,
+            'conditions' => array(
+                'Log.alias = \'Organization\''
+            ),
+            'fields' => '',
+            'order' => array('Log.date_time'=>'DESC'),
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        )
 	);
-
     function getChildOrganization($organization_type_id = null, $parent_id = 1) {
         $alias = $this->tableToModel['organizations'];
         $this->unBindModel(array(
-            'hasMany' => array('Stock', 'Trade', 'User'),
+            'hasMany' => array('Stock', 'Trade', 'User', 'Log'),
             'belongsTo' => array('ParentOrganization', 'OrganizationType')
         ));
         $organizations = $this->find('all', array(
+                'recursive' => 1,
                 'conditions' => array(
                     $alias.'.organization_type_id' => $organization_type_id,
                     $parent_id.' = ANY('.$alias.'.parent_array)',

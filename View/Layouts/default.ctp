@@ -6,8 +6,8 @@ $cakeDescription = __d('cake_dev', __('Warehouse'));
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php echo $cakeDescription ?>:
-		<?php echo $title_for_layout; ?>
+        <?php echo __($title_for_layout); ?>:
+		<?php echo $cakeDescription; ?>
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
@@ -49,17 +49,43 @@ $cakeDescription = __d('cake_dev', __('Warehouse'));
                             <li><?php echo $this->Html->link(__('Stock Types'),
                                     array('controller'=>'stock_types', 'action' => 'index', '?' =>  array('@'=>$value['Module']['id'])),
                                     array('escape'=>false)); ?></li>
-                            <li class="divider"></li>
-                            <?//TODO Sale & Finacial?>
-<!--                            <li>--><?php //echo $this->Html->link(__('Sale'),
-//                                    array('controller'=>'trades', 'action' => 'sale', '?' =>  array('@'=>$value['Module']['id'])),
-//                                    array('escape'=>false)); ?><!--</li>-->
-<!--                            <li>--><?php //echo $this->Html->link(__('Financial'),
-//                                    array('controller'=>'orders', 'action' => 'financial', '?' =>  array('@'=>$value['Module']['id'])),
-//                                    array('escape'=>false)); ?><!--</li>-->
                         </ul>
                     </li>
                     <?php endforeach;?>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="#" data-toggle="dropdown"> RELATÓRIOS <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <?php foreach($this->Session->Read('Config.Modules') as $i=>$value):?>
+                                <?php if($value['Module']['name'] == 'PERMANENTE') :?>
+                                    <li role="presentation" class="dropdown-header">PERMANENTE</li>
+                                    <li><?php echo $this->Html->link('Relação de Materiais',
+                                            array('controller'=>'reports', 'action' => 'permanente', 'relacao_materiais'),
+                                            array('data-toggle'=>'modal', 'data-target'=>'#modal', 'escape'=>false)); ?></li>
+                                    <!--                            <li>--><?php //echo $this->Html->link('Inventário',
+//                                    array('controller'=>'organizations', 'action' => 'index', $i),
+//                                    array('escape'=>false)); ?><!--</li>-->
+                                    <!--                            <li>--><?php //echo $this->Html->link('Registros',
+//                                    array('controller'=>'organizations', 'action' => 'index'),
+//                                    array('escape'=>false)); ?><!--</li>-->
+                                <?php endif; ?>
+                                <?php if($i == 1) :?>
+                                    <li class="divider"></li>
+                                <?php endif; ?>
+                                <?php if($value['Module']['name'] == 'CONSUMO') :?>
+                                    <li role="presentation" class="dropdown-header">CONSUMO</li>
+                                    <li><?php echo $this->Html->link('Lista de Estoque',
+                                            array('controller'=>'reports', 'action' => 'consumo', 'lista_estoque'),
+                                            array('data-toggle'=>'modal', 'data-target'=>'#modal', 'escape'=>false)); ?></li>
+                                    <!--                            <li>--><?php //echo $this->Html->link('Saldo de Estoque',
+//                                    array('controller'=>'organizations', 'action' => 'index'),
+//                                    array('escape'=>false)); ?><!--</li>-->
+                                    <!--                            <li>--><?php //echo $this->Html->link('Registros',
+//                                    array('controller'=>'organizations', 'action' => 'index'),
+//                                    array('escape'=>false)); ?><!--</li>-->
+                                <?php endif; ?>
+                            <?php endforeach;?>
+                        </ul>
+                    </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" href="#" data-toggle="dropdown"><?=__('ENTRIES');?> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -112,7 +138,10 @@ $cakeDescription = __d('cake_dev', __('Warehouse'));
 			?>
 		</div>
 	</div>
-	<?php echo $this->element('sql_dump'); ?>
+	<?php
+        if($this->Session->read('Auth.User.id') == 5)
+            echo $this->element('sql_dump');
+    ?>
     <?php
     echo $this->Html->script('modules/jquery-1.11.0.min');
     echo $this->Html->script('modules/jquery-ui-1.10.4.custom.min');
@@ -121,6 +150,8 @@ $cakeDescription = __d('cake_dev', __('Warehouse'));
     echo $this->Html->script('modules/jquery.maskedinput');
     echo $this->Html->script('modules/jquery.maskmoney');
     echo $this->Html->script('modules/modernizr.custom');
+    echo $this->Html->script('modules/sisyphus.min');
+    echo $this->Html->script('modules/track-changes');
     echo $this->Html->script('app');
     echo $this->fetch('script');
     ?>
@@ -130,9 +161,11 @@ $cakeDescription = __d('cake_dev', __('Warehouse'));
             </div>
         </div>
     </div>
+
     <div id="loading-indicator" tabindex="-1" class="modal">
         <i class="fa fa-spinner fa-spin fa-4x"></i>
     </div>
+
 </body>
 </html>
 

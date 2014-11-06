@@ -1,12 +1,15 @@
 <div class="stocks index large">
-    <legend>
-        <?php echo __('Stocks'); ?>
-        <?php echo $this->Html->link(' <i class="fa fa-refresh refresh"></i>', array('action' => 'index'), array('escape'=>false)); ?>
-        <?php echo $this->Html->link(' <i class="fa fa-print"></i>', array('action' => 'index'), array('escape'=>false)); ?>
+    <legend class="row">
+        <span class="col-lg-8">
+            <?php echo __('Stocks'); ?>
+            <?php echo $this->Html->link(' <i class="fa fa-refresh refresh"></i>', array('action' => 'index'), array('escape'=>false)); ?>
+            <?php echo $this->Html->link(' <i class="fa fa-print"></i>', array('action' => 'index'), array('escape'=>false)); ?>
+        </span>
         <?=$this->element('form.search', array('model'=>'Stock'));?>
     </legend>
 	<table cellpadding="0" cellspacing="0" class="table-hover">
         <thead>
+        <?php echo $this->Form->create('Stock', array('action'=>'filter', 'type'=>'GET', 'class'=>'formFilter')); ?>
         <tr>
             <th><?php echo $this->element('filter.select', array(
                     'label' => __('Stock Group'),
@@ -34,18 +37,24 @@
             </th>
             <?php endif; ?>
             <?php if($this->Session->read('Config.module') == 1) : ?>
-            <th><?php echo $this->Paginator->sort('Local'); ?></th>
+            <th><?php echo $this->element('filter.select', array(
+                    'label' => __('Local'),
+                    'field' => 'organization_id',
+                    'options' => @$organizations
+                )); ?>
+            </th>
             <?php endif; ?>
-            <th class="action-add col-lg-2">
+            <th class="action-add col-lg-2 no-print">
                 <?php
                     if($this->Session->read('Config.module') == 1) {
-                        echo $this->Html->link('<i class="fa fa-plus fa-lg"></i> '.__('New Stock'), array('controller'=>'trades', 'action' => 'add', $last_inventory[0]['Order']['id']), array('escape'=>false));
+                        echo $this->Html->link('<i class="fa fa-plus-square-o fa-lg"></i> '.__('New Stock'), array('controller'=>'trades', 'action' => 'add', $last_inventory[0]['Order']['id']), array('escape'=>false));
                     } else {
-                        echo $this->Html->link('<i class="fa fa-plus fa-lg"></i> '.__('New Stock'), array('action' => 'add'), array('escape'=>false));
+                        echo $this->Html->link('<i class="fa fa-plus-square-o fa-lg"></i> '.__('New Stock'), array('action' => 'add'), array('escape'=>false));
                     }
                 ?>
             </th>
         </tr>
+        <?php echo $this->Form->end(); ?>
         </thead>
         <tbody>
         <?php foreach ($stocks as $stock): ?>

@@ -25,13 +25,21 @@ class OrganizationsController extends AppController {
             $conditions = array(
                 'Organization.enabled'=>true,
                 'OrganizationType.id'=>$organization_type_id,
-                'OR' => array('Organization.name ilike \'%'.$_GET['q'].'%\'', 'ParentOrganization.name ilike \''.$_GET['q'].'\'')
+                'OR' => array(
+                    'ParentOrganization.name ilike \''.$_GET['q'].'\'',
+                    'Organization.name ilike \'%'.$_GET['q'].'%\'',
+                )
             );
             if($organizationType['OrganizationType']['internal'])
                 $conditions = array(
                     AppController::getScope().' = ANY(Organization.parent_array)',
                     'OrganizationType.id'=>$organization_type_id,
-                    'OR' => array('Organization.name ilike \'%'.$_GET['q'].'%\'', 'ParentOrganization.name ilike \''.$_GET['q'].'\'')
+                    'OR' => array(
+                        'ParentOrganization.name ilike \''.$_GET['q'].'\'',
+                        'ParentOrganization.acronym ilike \''.$_GET['q'].'\'',
+                        'Organization.name ilike \'%'.$_GET['q'].'%\'',
+                        'Organization.acronym ilike \''.$_GET['q'].'%\'',
+                    )
                 );
         }
 

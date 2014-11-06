@@ -36,7 +36,7 @@ class RolesController extends AppController {
 		if (!$this->Role->exists($id)) {
 			throw new NotFoundException(__('Invalid role'));
 		}
-		$options = array('conditions' => array('Role.' . $this->Role->primaryKey => $id));
+		$options = array('recursive'=>0, 'conditions' => array('Role.' . $this->Role->primaryKey => $id));
 		$this->set('role', $this->Role->find('first', $options));
 	}
 

@@ -35,6 +35,7 @@ class TradesController extends AppController {
                     $trade_amount = $this->request->data['Trade']['amount'];
                     $stock_units = $this->request->data['Stock']['units'];
                     $trade_amount_unit = @$this->request->data['Trade']['amount_unit'] ? $this->request->data['Trade']['amount_unit'] : 0;
+                    $this->request->data['Trade']['buyer_id'] = $order['Order']['buyer_id'];
                     if($isBuy){
                         $this->request->data['Trade']['buy_amount'] = ($trade_amount*$stock_units)+$trade_amount_unit;
                         $this->request->data['Trade']['buy_price'] = $this->request->data['Trade']['price'];
@@ -51,42 +52,38 @@ class TradesController extends AppController {
                     }
                     break;
                 case 'create' :
+                    $this->Session->write('Inventory.buyer_id', @$this->request->data['Trade']['buyer_id']);
                     $num_ini = $this->request->data['Stock']['num'];
                     $num = $this->request->data['Stock']['num'];
-                    $num_end = ($num_ini + $this->request->data['Stock']['amount']);
-                    while ($num < $num_end){
+                    $num_end = ($num_ini + ($this->request->data['Stock']['amount']-1));
+                    $tradesToSave = array();
+                    while ($num <= $num_end){
                         $this->request->data['Stock']['num'] = $num;
                         $this->request->data['Stock']['depreciation_date'] = date('Y-m-d');
                         $this->request->data['Stock']['reference_year'] = $order['Order']['reference_year'];
                         $this->request->data['Stock']['last_inventory'] = $order['Order']['reference_year'];
-                        $this->request->data['Stock']['organization_id'] = $order['Order']['buyer_id'];
                         $this->request->data['Stock']['stock_unit_id'] = 34;//FIXME generalizar
                         if($isInventory){
-                            $this->request->data['Stock']['organization_id'] = $order['Trade']['buyer_id'];
+                            $this->request->data['Stock']['organization_id'] = $this->request->data['Trade']['buyer_id'];
                         }
                         if($isBuy){
                             $this->request->data['Trade']['buy_amount'] = 1;
-                            $this->request->data['Trade']['buy_price'] = $this->request->data['Stock']['price'];
+                            $this->request->data['Trade']['buy_price'] = isset($this->request->data['Stock']['price']) ? $this->request->data['Stock']['price'] : 0;
                         } else {
                             $this->request->data['Trade']['sell_amount'] = 1;
-                            $this->request->data['Trade']['sell_price'] = $this->request->data['Stock']['price'];
+                            $this->request->data['Trade']['sell_price'] = isset($this->request->data['Stock']['price']) ? $this->request->data['Stock']['price'] : 0;
                         }
-                        $this->Trade->create();
-                        if ($this->Trade->saveall($this->request->data)) {
-                            $num++;
-                        } else {
-                            break;
-                        }
+                        array_push($tradesToSave, $this->request->data);
+                        $num++;
                     }
-                    if($num == $num_end) {
-                        if($num_ini == ($num_end-1)){
-                            $this->Session->setFlash(__('The trade has been saved.').' '.$num_ini);
-                        }else{
-                            $this->Session->setFlash(__('The trade has been saved.').' '.$num_ini.' - '.$num_end);
+                    if ($this->Trade->saveMany($tradesToSave, array('atomic'=>true, 'deep'=>true))) {
+                        $this->Session->setFlash(__('The trade has been saved.').' '.$num_ini.' - '.$num_end);
+                        if($isInventory){
+                            return $this->redirect($this->Session->read('request_ref'));
                         }
-                        return $this->redirect($this->Session->read('request_ref'));
+                        return $this->redirect(array('controller'=>'orders', 'action' => 'edit', $order_id));
                     } else {
-                        $this->Session->setFlash(__('The trade could not be saved. Please, try again.').' '.$num);
+                        $this->Session->setFlash(__('The trade could not be saved. Please, try again.').' '.$num_ini.' - '.$num_end);
                     }
                     break;
                 case 'num' :
@@ -102,14 +99,13 @@ class TradesController extends AppController {
                     ));
                     foreach($Stocks as $key=>$value){
                         $data = array();
-                        $data['Stock']['organization_id'] = $order['Order']['buyer_id'];
                         if($value['Stock']['stock_situation_id'] != $this->request->data['Trade']['stock_situation_id']){
                             $data['Stock']['id'] = $value['Stock']['id'];
                             $data['Stock']['stock_situation_id'] = $this->request->data['Trade']['stock_situation_id'];
                         }
                         $data['Trade']['order_id'] = $this->request->data['Trade']['order_id'];
                         $data['Trade']['stock_id'] = $value['Stock']['id'];
-                        $data['Trade']['buyer_id'] = $this->request->data['Trade']['buyer_id'];
+                        $data['Trade']['buyer_id'] = $order['Order']['buyer_id'];
                         $data['Trade']['stock_situation_id'] = $this->request->data['Trade']['stock_situation_id'];
                         if($isBuy){
                             $data['Trade']['buy_amount'] = 1;
@@ -127,7 +123,7 @@ class TradesController extends AppController {
                         if($num_ini == $num_end){
                             $this->Session->setFlash(__('The trade has been saved.').' '.$num);
                         }else{
-                            $this->Session->setFlash(__('The trade has been saved.').' '.$num.' - '.$num_end);
+                            $this->Session->setFlash(__('The trade has been saved.').' '.$num_ini.' - '.$num_end);
                         }
                         return $this->redirect(array('controller'=>'orders', 'action' => 'edit', $order_id));
                     } else {
@@ -150,6 +146,7 @@ class TradesController extends AppController {
                     'order'=>array('sort'=>'ASC', 'name'=>'ASC')
                 ));
                 $stockSituations = $this->Trade->StockSituation->find('list');
+                $buyers = $this->Trade->Buyer->getChildOrganization(1, AppController::getScope());
                 break;
             case 'num' :
                 $stockGroups = $this->Trade->Stock->StockGroup->find('list', array(
@@ -158,7 +155,7 @@ class TradesController extends AppController {
                 $stockSituations = $this->Trade->StockSituation->find('list');
                 break;
         }
-		$this->set(compact('stocks', 'stockSituations', 'order', 'stockTypes', 'stockGroups', 'isBuy', 'isInventory'));
+		$this->set(compact('stocks', 'stockSituations', 'order', 'stockTypes', 'stockGroups', 'isBuy', 'isInventory', 'buyers'));
 	}
 
 	public function edit($id = null) {
@@ -267,6 +264,7 @@ class TradesController extends AppController {
             throw new NotFoundException(__('Invalid stock'));
         }
         if ($this->request->is(array('post', 'put'))) {
+            $this->Session->write('Inventory.buyer_id', $this->request->data['Trade']['buyer_id']);
             if ($this->Trade->save($this->request->data)) {
                 $this->Session->setFlash(__('The trade has been saved.'));
                 return $this->redirect($this->Session->read('request_ref'));

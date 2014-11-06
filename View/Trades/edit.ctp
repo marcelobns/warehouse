@@ -34,15 +34,14 @@
                         <dd><?php echo h($order['Stock']['description']); ?>&nbsp;</dd>
                     <dt><?php echo __('Price'); ?></dt>
                         <dd><?php echo h(number_format($order['Stock']['price'], 2, ',', '.')); ?>&nbsp;</dd>
-<!--                    <dt>--><?php //echo __('Situation'); ?><!--</dt>-->
-<!--                        <dd>--><?php //echo h($order['StockSituation']['name']); ?><!--&nbsp;</dd>-->
                 </dl>
+
                 <?php
                 if($isBuy) {
-                    echo $this->Form->input('Trade.buy_price', array('type'=>'text', 'class'=>'money', 'required'=>'required'));
+                    echo $this->Form->input('Trade.buy_price', array('type'=>'number', 'step'=>0.01, 'required'=>'required'));
                     echo $this->Form->input('Trade.stock_situation_id', array('hidden'=>true, 'label'=>false));
                 } else {
-                    echo $this->Form->input('Trade.sell_price', array('type'=>'text', 'class'=>'money', 'required'=>'required'));
+                    echo $this->Form->input('Trade.sell_price', array('type'=>'number', 'step'=>0.01, 'required'=>'required'));
                     echo $this->Form->input('Trade.stock_situation_id', array('class'=>'select2', 'empty'=>__('Select an Item...'), 'required'=>'required'));
                 }
                 break;
@@ -78,7 +77,7 @@
                 if(obj.Stock !== undefined){
                     obj = JSON.parse(r);
                     $('[for=TradeAmount]').text(obj.StockUnit.name+'s/'+obj.Stock.units);
-                    $('#TradePrice').val((obj.Stock.price/obj.Stock.units).toFixed(2));
+                    $('#TradePrice').val(obj.Stock.price);
                     $('#StockUnits').val(obj.Stock.units);
                     StockUnitsEnable();
                     calcTotal();

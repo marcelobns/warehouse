@@ -29,6 +29,8 @@
  * ...and connect the rest of 'Pages' controller's URLs.
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
+//TODO Rotas de login e logout
+//    Router::connect('/login', array('controller' => 'users', 'action' => 'sign_in'));
 /**
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.

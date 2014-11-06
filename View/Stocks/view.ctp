@@ -3,7 +3,7 @@
 	<dl style="font-size: 1.1em">
 		<dt><?php echo __('Stock Type'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($stock['StockType']['name'], array('controller' => 'stock_types', 'action' => 'view', $stock['StockType']['id'])); ?>
+            <?php echo h($stock['StockType']['name']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Description'); ?></dt>
@@ -13,7 +13,7 @@
 		</dd>
 		<dt><?php echo __('Stock Unit'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($stock['StockUnit']['name'], array('controller' => 'stock_units', 'action' => 'view', $stock['StockUnit']['id'])); ?>
+			<?php echo h($stock['StockUnit']['name']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Units'); ?></dt>
@@ -32,13 +32,15 @@
 			&nbsp;
 		</dd>
 	</dl>
-    <?php echo $this->Html->link('<i class="fa fa-arrow-left"></i> '.__('Back'), array('action'=>'index'), array('class'=>'btn btn-default', 'escape'=>false)); ?>
+    <?php echo $this->Html->link('<i class="fa fa-arrow-left"></i> '.__('Back'), array('action'=>'index'), array('class'=>'btn btn-default no-print', 'escape'=>false)); ?>
 </div>
 <div class="actions">
     <?=$this->element('actions.stocks');?>
 </div>
 <div class="related">
-	<h3><?php echo __('Related Trades'); ?></h3>
+    <?php echo $this->Form->create('Stock'); ?>
+        <?php echo $this->Form->input('data_inicio', array('type'=>'text', 'class'=>'date', 'style'=>'width:18%;'));?>
+    <?php echo $this->Form->end(); ?>
 	<?php if (!empty($stock['Trade'])): ?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
@@ -49,29 +51,19 @@
 		<th><?php echo __('Buy Amount'); ?></th>
 		<th><?php echo __('Sell Amount'); ?></th>
 		<th><?php echo __('Price'); ?></th>
-		<th><?php echo __('Stock Situation Id'); ?></th>
-		<th><?php echo __('Done'); ?></th>
+		<th class="no-print"><?php echo __('User'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($stock['Trade'] as $trade): ?>
-		<tr>
+		<tr style="font-size: .9em; white-space: nowrap;">
             <td><?php echo $trade['Order']['date_time']; ?></td>
-            <td><?php echo $trade['OrderType']['name']; ?></td>
+            <td style="font-size: .8em"><?php echo $trade['OrderType']['name']; ?></td>
 			<td><?php echo ( isset($trade['Order']['num']) ?  $trade['Order']['num'].'/' : $trade['Order']['num']).$trade['Order']['reference_year']; ?></td>
-            <td><?php echo $trade['Buyer']['name']; ?></td>
+            <td style="font-size: .8em"><?php echo $trade['Buyer']['name']; ?></td>
 			<td><?php echo $trade['Trade']['buy_amount']; ?></td>
 			<td><?php echo $trade['Trade']['sell_amount']; ?></td>
 			<td><?php echo number_format($trade['Trade']['buy_price']+$trade['Trade']['sell_price'], 2, ',', '.'); ?></td>
-			<td><?php echo $trade['StockSituation']['name']; ?></td>
-			<td>
-                <?php
-                    if($trade['Trade']['canceled']){
-                        echo '<i class="fa fa-ban fa-lg" style="color:darkred;"></i>';
-                    } else {
-                        echo $trade['Trade']['done'] ? '<i class="fa fa-check fa-lg" style="color: darkgreen;"></i>' : '';
-                    }
-                ?>&nbsp;
-			</td>
+            <td class="no-print"><?php echo $trade['User']['username']; ?></td>
 			<td class="actions">
                 <?php if($trade['OrderType']['sort'] <= 3 ) {
                     echo $this->Html->link(__('View'), array('controller' => 'orders', 'action' => 'view', $trade['Trade']['order_id']));

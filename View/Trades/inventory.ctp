@@ -41,7 +41,7 @@
         echo $this->Form->input('Trade.id');
         echo $this->Form->input('Trade.stock_id', array('type'=>'text', 'value'=>@$stock_id, 'label'=>false, 'hidden'));
         echo $this->Form->input('Trade.order_id', array('type'=>'text', 'value'=>@$order_id, 'label'=>false, 'hidden'));
-        echo $this->Form->input('Trade.buyer_id', array('class'=>'select2', 'empty'=>__('Select an Item...'), 'required'=>'required'));
+        echo $this->Form->input('Trade.buyer_id', array('class'=>'select2', 'empty'=>__('Select an Item...'), 'required'=>'required', 'value'=>@$this->Session->read('Inventory.buyer_id')));
         echo $this->Form->input('Trade.stock_situation_id', array('class'=>'select2', 'empty'=>__('Select an Item...'), 'required'=>'required'));
         ?>
     </fieldset>

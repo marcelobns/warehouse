@@ -6,7 +6,7 @@
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th><?php echo $this->Paginator->sort('inventory'); ?></th>
 			<th><?php echo $this->Paginator->sort('sort'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
+			<th class="action-add"><?php echo $this->Html->link(__('New Stock Group'), array('action' => 'add')); ?></th>
 	</tr>
 	<?php foreach ($stockGroups as $stockGroup): ?>
 	<tr>

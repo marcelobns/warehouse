@@ -5,6 +5,7 @@
 	<?php
 		echo $this->Form->input('name');
 		echo $this->Form->input('inventory');
+		echo $this->Form->input('acronym');
 		echo $this->Form->input('sort');
 	?>
 	</fieldset>

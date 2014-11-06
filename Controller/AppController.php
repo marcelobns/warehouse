@@ -10,7 +10,7 @@ class AppController extends Controller {
         ),
         'Session',
         'JasperHttpSocket.JasperHttpSocket',
-        'DebugKit.Toolbar'
+//        'DebugKit.Toolbar'
     );
 
     public function beforeFilter() {

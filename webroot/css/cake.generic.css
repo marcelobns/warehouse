@@ -59,6 +59,7 @@ p {
 #header{
     background: #404040;
     min-height: 50px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.75);
 }
 #header h1 {
 	line-height:40px;
@@ -103,17 +104,18 @@ div.view {
 	border-left:1px solid #666;
 	padding:10px 2%;
 }
+div.actions {
+	float:left;
+	width:16%;
+	/*padding:10px 1.5%;*/
+}
 div.index.large{
     width: 100%;
     float: none;
     padding: 0px;
     border: none;
 }
-div.actions {
-	float:left;
-	width:16%;
-	/*padding:10px 1.5%;*/
-}
+
 div.actions h3 {
 	padding-top:0;
 	color:#bbb;
@@ -272,7 +274,7 @@ fieldset {
 }
 legend {
 	color: #e32!important;
-	font-size: 1.9em!important;
+	font-size: 2em!important;
     font-family: 'Gill Sans','lucida grande', helvetica, arial, sans-serif;
 }
 legend i {

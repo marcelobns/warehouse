@@ -16,13 +16,13 @@ class UsersController extends AppController {
             'User.enabled'
         );
         if(@$_GET['q']){
-            $_GET['q'] = is_numeric($_GET['q']) ? $_GET['q'] : '%'.$_GET['q'].'%';
+            $q = is_numeric($_GET['q']) ? $_GET['q'] : '%'.$_GET['q'].'%';
             $conditions = array(
                 AppController::getScope().' = ANY(Organization.parent_array)',
                 'OR'=>array(
-                    'User.id::text ilike \''.$_GET['q'].'\'',
-                    'User.name::text ilike \''.$_GET['q'].'\'',
-                    'User.username::text ilike \''.$_GET['q'].'\'',
+                    'User.id::text ilike \''.$q.'\'',
+                    'User.name::text ilike \''.$q.'\'',
+                    'User.username::text ilike \''.$q.'\'',
                 )
             );
         }

@@ -1,9 +1,13 @@
 <div class="orders index large">
-	<legend>
-        <?php echo __('Orders'); ?>
-        <?php echo $this->Html->link(' <i class="fa fa-refresh refresh"></i>', array('action' => 'index'), array('escape'=>false)); ?>
-        <?php echo $this->Html->link(' <i style="color: #d3d3d3" class="fa fa-print"></i>', array('action' => 'index'), array('escape'=>false)); ?>
-        <div class="pull-right"><?=$this->element('form.search', array('model'=>'Order'));?></div>
+    <legend class="row">
+        <span class="col-lg-8">
+            <?php echo __('Orders'); ?>
+            <span class="no-print">
+                <?php echo $this->Html->link(' <i class="fa fa-refresh refresh"></i>', array('action' => 'index'), array('escape'=>false)); ?>
+                <?php echo $this->Html->link(' <i style="color: #d3d3d3" class="fa fa-print"></i>', array('action' => 'index'), array('escape'=>false)); ?>
+            </span>
+        </span>
+        <?=$this->element('form.search', array('model'=>'Order'));?>
     </legend>
 	<table cellpadding="0" cellspacing="0" class="table-hover">
         <thead>
@@ -29,8 +33,8 @@
                         'options' => @$buyers
                     )); ?>
                 </th>
-                <th><?php echo $this->Paginator->sort('done'); ?></th>
-                <th class="action-add">
+                <th class="no-print"><?php echo $this->Paginator->sort('done'); ?></th>
+                <th class="action-add no-print">
                     <?php echo $this->Html->link('<i class="fa fa-plus-square-o"></i> '.__('New Order'),
                         array('action' => 'add_type'),
                         array('data-toggle'=>'modal', 'data-target'=>'#modal', 'escape'=>false)); ?>
@@ -46,7 +50,7 @@
             <td style="text-align:center;"><?php echo h(($order['Order']['num'] ? $order['Order']['num'].'/' : '').$order['Order']['reference_year']); ?>&nbsp;</td>
             <td><?php echo h($order['Seller']['name']); ?></td>
             <td><?php echo h($order['Buyer']['name']); ?></td>
-            <td>
+            <td class="no-print">
                 <?php
                     if($order['Order']['canceled']){
                         echo '<i class="fa fa-ban fa-lg" style="color:darkred;"></i>';
@@ -56,6 +60,9 @@
                 ?>&nbsp;
             </td>
             <td class="actions" style="font-size: 1.25em;">
+                <?php echo $this->Html->link('<i class="fa fa-print fa-lg"></i>',
+                    array('action' => 'print_order', $order['Order']['id']),
+                    array('title'=>'Imprimir', 'escape'=>false, 'target'=>'_blank')); ?>
                 <?php echo $this->Html->link('<i class="fa fa-file-text-o fa-lg"></i>',
                     array('action' => 'view', $order['Order']['id']),
                     array('title'=>__('View'), 'escape'=>false)); ?>
@@ -63,7 +70,7 @@
                     array('action' => 'add_type', $order['Order']['id']),
                     array('title'=>__('Reuse'), 'data-toggle'=>'modal', 'data-target'=>'#modal', 'escape'=>false)); ?>
                 <?php
-                    if($order['Order']['id'] >= $lasts[5]['Order']['id'] && !$order['Order']['canceled'])
+                    if($order['Order']['id'] >= $lasts[19]['Order']['id'] && !$order['Order']['canceled'])
                         echo $this->Html->link('<i class="fa fa-pencil fa-lg"></i>',
                         array('action' => 'edit', $order['Order']['id']),
                         array('title'=>__('Edit'), 'escape'=>false));

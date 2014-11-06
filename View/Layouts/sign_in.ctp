@@ -12,8 +12,9 @@ $cakeDescription = __d('cake_dev', 'Sign in');
     <?php
     echo $this->Html->meta('icon');
     echo $this->Html->css('cake.generic');
-    echo $this->Html->css('bootstrap');
+    echo $this->Html->css('bootstrap.min');
     echo $this->Html->css('font-awesome');
+    echo $this->Html->css('forms');
     echo $this->Html->css('custom');
 
     echo $this->fetch('meta');

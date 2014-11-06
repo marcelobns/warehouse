@@ -12,7 +12,7 @@
 	?>
 	</fieldset>
     <?php echo $this->Form->button(__('Submit'), array('class'=>'btn btn-success')); ?>
-    <?php echo $this->Html->link(__('Cancel'), array('action'=>'index'), array('class'=>'btn btn-default')); ?>
+    <?php echo $this->Html->link(__('Cancel'), array('type'=>'reset', 'action'=>'index'), array('class'=>'btn btn-default')); ?>
     <?php echo $this->Form->end(); ?>
 </div>
 <div class="actions">

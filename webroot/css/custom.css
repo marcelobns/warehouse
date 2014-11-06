@@ -1,3 +1,17 @@
 .nav > li > a:hover, .nav > li > a:focus {
     color: #00202d!important;
 }
+
+@media print {
+    #header, #footer,
+    .actions, .action-add,
+    .cake-sql-log, .paging, .no-print{
+        display:none!important;
+    }
+    body{
+        font-size: 0.6em!important;
+    }
+    div.index, div.form, div.view{
+        width: 100%;
+    }
+}

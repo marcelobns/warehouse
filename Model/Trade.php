@@ -11,11 +11,6 @@ class Trade extends AppModel {
             ),
 			'numeric' => array(
 				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
 		'stock_id' => array(
@@ -113,4 +108,22 @@ class Trade extends AppModel {
             'order' => ''
         ),
 	);
+
+    public $hasMany = array(
+        'Log' => array(
+            'className' => 'Log',
+            'foreignKey' => 'oid',
+            'dependent' => false,
+            'conditions' => array(
+                'Log.alias = \'Trade\''
+            ),
+            'fields' => '',
+            'order' => array('Log.date_time'=>'DESC'),
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        )
+    );
 }

@@ -5,6 +5,7 @@ class OrdersController extends AppController {
 	public $components = array('Paginator');
 
     public function index($module_id = null) {
+        $joins = array();
         $conditions = array(
             'OrderType.module_id'=>AppController::getModule(),
             'OrderType.role_sort >= '.AppController::getRoleSort(),
@@ -15,24 +16,7 @@ class OrdersController extends AppController {
             )
         );
         if(@$_GET['q']){
-            $conditions = array(
-                'OrderType.module_id'=>AppController::getModule(),
-                AppController::getScope().' = ANY(Buyer.parent_array)',
-                'OrderType.role_sort >= '.AppController::getRoleSort(),
-                'OrderType.inventory = false',
-                'OR'=>array(
-                    'Order.num::text||\'/\'||Order.reference_year::text ilike \''.$_GET['q'].'%\'',
-                    'OrderDetail.value ilike \'%'.$_GET['q'].'%\'',
-                    'Seller.name ilike \''.$_GET['q'].'%\'',
-                ),
-            );
-        }
-        $this->Order->unBindModel(array(
-            'belongsTo'=>array('Broker', 'PaymentType'),
-        ));
-        $this->paginate = array(
-            'recursive'=>0,
-            'joins'=>array(
+            $joins = array(
                 array(
                     'table' => 'order_details',
                     'alias' => 'OrderDetail',
@@ -41,7 +25,24 @@ class OrdersController extends AppController {
                         'OrderDetail.order_id = Order.id',
                     )
                 ),
-            ),
+            );
+            $conditions = array(
+                'OrderType.module_id'=>AppController::getModule(),
+                AppController::getScope().' = ANY(Buyer.parent_array)',
+                'OrderType.role_sort >= '.AppController::getRoleSort(),
+                'OrderType.inventory = false',
+                'OR'=>array(
+                    'Order.num::text||\'/\'||Order.reference_year::text ilike \''.$_GET['q'].'%\'',
+                    'OrderDetail.value ilike \''.$_GET['q'].'%\'',
+                    'Seller.name ilike \''.$_GET['q'].'%\'',
+                ),
+            );
+        }
+        $this->Order->unBindModel(array(
+            'belongsTo'=>array('Broker', 'PaymentType'),
+        ));
+        $this->paginate = array(
+            'joins'=> $joins,
             'conditions'=>$conditions,
             'group'=>array('Order.id','OrderType.id', 'Seller.id', 'Buyer.id'),
             'order' => array(
@@ -56,7 +57,6 @@ class OrdersController extends AppController {
 
     public function filters(){
         $orderTypes = $this->Order->OrderType->find('list', array('conditions'=>array('OrderType.module_id'=>AppController::getModule())));
-        $buyers = $this->Order->Buyer->getChildOrganization(1, AppController::getScope());
         $this->set(compact('orderTypes', 'buyers'));
     }
 
@@ -66,15 +66,12 @@ class OrdersController extends AppController {
 		}
         $this->Order->unBindModel(array(
             'belongsTo' => array('Broker', 'PaymentType'),
-            'hasMany' => array('Trade', 'OrderDetail')
         ));
         $order = $this->Order->find('first', array(
             'conditions' => array('Order.' . $this->Order->primaryKey => $id)
         ));
-        $this->Order->OrderDetail->unBindModel(array(
-            'belongsTo' => array('Order', 'OrderType'),
-        ));
         $order['OrderDetail'] = $this->Order->OrderDetail->find('all', array(
+            'recursive'=>-1,
             'fields'=>array(
                 'OrderDetailV.id',
                 'OrderDetailV.value',
@@ -103,7 +100,7 @@ class OrdersController extends AppController {
             'recursive'=>0,
             'fields'=> array('Trade.*', 'Stock.*', 'StockSituation.*', 'StockGroup.name', 'StockGroup.sort', 'StockType.name'),
             'conditions'=>array('Trade.order_id'=>$id),
-            'order'=>array('StockGroup.sort'=>'ASC', 'Stock.num'=>'ASC')
+            'order'=>array('StockGroup.sort'=>'ASC', 'Stock.num'=>'ASC', 'Stock.description'=>'ASC')
         ));
 		$this->set('order', $order);
         $this->set('lasts', $this->lasts());
@@ -121,6 +118,7 @@ class OrdersController extends AppController {
                 'OrderType.module_id'=>AppController::getModule(),
                 'OrderType.organization_scope_id' => array(0, AppController::getScope()),
                 'OrderType.role_sort >= '.AppController::getRoleSort(),
+                'OrderType.inventory'=>false
             ),
             'order'=>array('OrderType.sort'=>'ASC', 'OrderType.name'=>'ASC'),
         ));
@@ -134,7 +132,7 @@ class OrdersController extends AppController {
     }
 
 	public function add($order_type_id = null) {
-		if ($this->request->is('post')) {
+		if($this->request->is('post')) {
             $this->Order->create();
             $current = $this->Order->find('all', array(
                 'fields'=>array('MAX(num) as current'),
@@ -145,6 +143,7 @@ class OrdersController extends AppController {
                 )
             ));
             $next = $current[0][0]['current'] == null ? 1 : $current[0][0]['current'] + 1;
+            $this->request->data['Order']['reference_year'] = date('Y');
             $this->request->data['Order']['num'] = $next;
 
 			if ($this->Order->saveall($this->request->data)) {
@@ -159,11 +158,8 @@ class OrdersController extends AppController {
             'conditions'=>array('OrderType.id' => $order_type_id)
         ));
         $sellers = $this->Order->Seller->getChildOrganization($order_type['OrderType']['seller_type_id'], AppController::getScope());
-        if($order_type['OrderType']['seller_type_id'] == $order_type['OrderType']['buyer_type_id']){
-            $buyers = $sellers;
-        } else {
-            $buyers = $this->Order->Buyer->getChildOrganization($order_type['OrderType']['buyer_type_id'], AppController::getScope());
-        }
+        $buyers = $this->Order->Buyer->getChildOrganization($order_type['OrderType']['buyer_type_id'], 2);
+
         $seller_id = null;
         if($order_type['OrderType']['seller_type_id'] == AppController::getOrganizationType()){
             $seller_id = AppController::getOrganizationId();
@@ -192,17 +188,12 @@ class OrdersController extends AppController {
 				$this->Session->setFlash(__('The order could not be saved. Please, try again.'));
 			}
 		} else {
-            $this->Order->unBindModel(array(
-                'belongsTo' => array('Broker', 'PaymentType', 'Seller', 'Buyer'),
-                'hasMany' => array('Trade', 'OrderDetail')
-            ));
 			$this->request->data = $this->Order->find('first', array(
+                'recursive'=>-1,
                 'conditions' => array('Order.' . $this->Order->primaryKey => $id)
             ));
-            $this->Order->OrderDetail->unBindModel(array(
-                'belongsTo' => array('Order', 'OrderType'),
-            ));
             $this->request->data['OrderDetail'] = $this->Order->OrderDetail->find('all', array(
+                'recursive'=>-1,
                 'fields'=>array(
                     'OrderDetailV.id',
                     'OrderDetailV.value',
@@ -238,12 +229,11 @@ class OrdersController extends AppController {
             'recursive'=>-1,
             'conditions'=>array('OrderType.id' => $this->request->data['Order']['order_type_id'])
         ));
-        $sellers = $this->Order->Seller->getChildOrganization($order_type['OrderType']['seller_type_id'], AppController::getScope());
-        if($order_type['OrderType']['seller_type_id'] == $order_type['OrderType']['buyer_type_id']){
-            $buyers = $sellers;
-        } else {
-            $buyers = $this->Order->Buyer->getChildOrganization($order_type['OrderType']['buyer_type_id'], AppController::getScope());
-        }
+        $sellers = $this->Order->Seller->find('list', array(
+            'recursive'=>-1,
+            'conditions'=>array('id'=>$this->request->data['Order']['seller_id'])
+        ));
+        $buyers = $this->Order->Buyer->getChildOrganization($order_type['OrderType']['buyer_type_id'], 2);
         $this->set(compact('orderTypes', 'sellers', 'buyers', 'order_type'));
         $this->set('order', $this->request->data);
         $this->set('lasts', $this->lasts());
@@ -371,7 +361,7 @@ class OrdersController extends AppController {
                 'OrderType.module_id'=>AppController::getModule(),
             ),
             'order'=>array('Order.id'=>'DESC'),
-            'limit'=>6
+            'limit'=>20
         ));
         return $lasts;
     }

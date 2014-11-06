@@ -3,5 +3,12 @@
     <h3 class="text-center"><?=$modal_title;?></h3>
 </div>
 <div class="modal-body">
-    <?php echo $this->fetch('content');?>
+    <?=$this->fetch('content');?>
 </div>
+
+<?=$this->Html->script('modules/jquery-1.11.0.min');?>
+<?=$this->Html->script('app');?>
+
+<script type="text/javascript">
+    <?=$this->fetch('script');?>
+</script>

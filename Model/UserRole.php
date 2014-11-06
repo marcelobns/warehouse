@@ -55,4 +55,22 @@ class UserRole extends AppModel {
 			'order' => ''
 		)
 	);
+
+//    public $hasMany = array(
+//        'Log' => array(
+//            'className' => 'Log',
+//            'foreignKey' => 'oid',
+//            'dependent' => false,
+//            'conditions' => array(
+//                'Log.alias = \'UserRole\''
+//            ),
+//            'fields' => '',
+//            'order' => array('Log.date_time'=>'DESC'),
+//            'limit' => '',
+//            'offset' => '',
+//            'exclusive' => '',
+//            'finderQuery' => '',
+//            'counterQuery' => ''
+//        )
+//    );
 }

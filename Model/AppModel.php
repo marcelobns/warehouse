@@ -69,7 +69,7 @@ class AppModel extends Model {
         if($this->alias != 'Log'){
             foreach($this->hasMany as $v){
                 if($v['className'] == 'Log'){
-                    $data = $this->find('first', array('conditions'=>array('id'=>$this->id)));
+                    $data = $this->find('first', array('recursive'=>-1,'conditions'=>array($this->alias.'.id'=>$this->id)));
                     $this->Log->save(array(
                         'date_time'=>date('Y-m-d H:i:s'),
                         'schema'=>'public',
@@ -85,14 +85,6 @@ class AppModel extends Model {
             }
         }
         return true;
-    }
-
-    public function beforeFind($query){
-        return true;
-    }
-
-    public function afterFind($results, $primary = false){
-        return $results;
     }
 
     function checkUnique($data, $fields){

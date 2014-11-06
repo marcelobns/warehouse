@@ -23,15 +23,16 @@
                 echo $this->Form->input('Stock.num', array('min'=>1, 'required'=>'required'));
                 echo $this->Form->input('Stock.stock_situation_id', array('hidden'=>true, 'label'=>false));
                 echo $this->Form->input('Stock.amount', array('type'=>'number', 'min'=>1, 'required'=>'required'));
-                echo $this->Form->input('Stock.price', array('type'=>'number', 'step'=>0.01, 'required'=>'required'));
+                echo $this->Form->hidden('Stock.price', array('value'=>0.00));
+                if(@$isInventory) {
+                    echo $this->Form->input('Trade.buyer_id', array('class'=>'select2', 'empty'=>__('Select an Item...'), 'required'=>'required','value'=>@$this->Session->read('Inventory.buyer_id')));
+                }
                 if($isBuy) {
+                    echo $this->Form->input('Stock.price', array('value'=>0.00, 'step'=>0.01));
                     echo $this->Form->input('Stock.buy_order_id', array('type'=>'text', 'value'=>$order['Order']['id'], 'hidden'=>true, 'label'=>false));
                     echo $this->Form->input('Trade.stock_situation_id', array('hidden'=>true, 'label'=>false));
                 } else {
                     echo $this->Form->input('Trade.stock_situation_id', array('class'=>'select2', 'empty'=>__('Select an Item...'), 'required'=>'required'));
-                }
-                if(@$isInventory) {
-                    echo $this->Form->input('Trade.buyer_id', array('class'=>'select2', 'empty'=>__('Select an Item...'), 'required'=>'required'));
                 }
                 break;
             case 'num' :
@@ -46,11 +47,10 @@
                 }
                 break;
         }
-		echo $this->Form->input('Trade.buyer_id', array('type'=>'text', 'value'=>$order['Order']['buyer_id'], 'hidden'=>true, 'label'=>false));
 	?>
-	</fieldset>
     <?php echo $this->Form->button(__('Submit'), array('class'=>'btn btn-success')); ?>
     <?php echo $this->Html->link(__('Cancel'), $this->request->referer(), array('class'=>'btn btn-default')); ?>
+	</fieldset>
     <?php echo $this->Form->end(); ?>
 </div>
 <div class="actions">
@@ -78,7 +78,7 @@
                 if(obj.Stock !== undefined){
                     obj = JSON.parse(r);
                     $('[for=TradeAmount]').text(obj.StockUnit.name+'s/'+obj.Stock.units);
-                    $('#TradePrice').val((obj.Stock.price/obj.Stock.units).toFixed(2));
+                    $('#TradePrice').val(obj.Stock.price);
                     $('#StockUnits').val(obj.Stock.units);
                     StockUnitsEnable();
                     calcTotal();
@@ -137,5 +137,8 @@
             $('#TradeAmountUnit').attr('max', 1);
         }
     }
+    $('#TradeNum').blur(function(){
+        $('#TradeNumEnd').val($('#TradeNum').val());
+    });
 </script>
 <?php $this->end(); ?>

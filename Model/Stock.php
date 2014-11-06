@@ -6,7 +6,7 @@ class Stock extends AppModel {
         'num' => array(
             'unique' => array(
                 'rule' => array('checkUnique', array('stock_group_id', 'num')),
-                'message' => '',
+                'message' => 'Numeração não pode ser salva (Violação de Unicidade)',
             )
         ),
         'stock_type_id' => array(
@@ -65,9 +65,9 @@ class Stock extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'BuyOrder' => array(
-			'className' => 'Order',
-			'foreignKey' => 'buy_order_id',
+		'Organization' => array(
+			'className' => 'Organization',
+			'foreignKey' => 'organization_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

@@ -5,15 +5,17 @@ class StocksController extends AppController {
 	public $components = array('Paginator');
 
 	public function index(){
+        $this->set_filters();
         $conditions = array(
+            '(StockGroup.is_enable OR StockGroup.id is null)',
             'StockType.module_id'=>AppController::getModule(),
             'Stock.updated > \''.date('Y-m-d', strtotime('- 6 months')).'\'',
-            AppController::getScope(). ' = any(Organization.parent_array)'
-
+            AppController::getScope(). ' = any(OrganizationCriteria.parent_array)'
         );
         if(@$_GET['q']){
             $q = is_numeric($_GET['q']) ? $_GET['q'] : '%'.$_GET['q'].'%';
             $conditions = array(
+                '(StockGroup.is_enable OR StockGroup.id is null)',
                 'StockType.module_id'=>AppController::getModule(),
                 'OR'=>array(
                     'Stock.num::text ilike \''.$q.'\'',
@@ -30,7 +32,7 @@ class StocksController extends AppController {
             'fields'=>array(
                 'Stock.id', 'Stock.num', 'Stock.description', 'Stock.units', 'Stock.price', 'Stock.stock_group_id',
                 'MAX("Order"."reference_year") as "Stock__last_inventory"',
-                '(array_agg("Organization"."name" ORDER BY "Trade"."id" DESC))[1] as "Organization__name"',
+                'Organization.name',
                 'StockType.name',
                 'StockType.gen_code',
                 'StockGroup.name',
@@ -49,10 +51,10 @@ class StocksController extends AppController {
                 ),
                 array(
                     'table' => 'organizations',
-                    'alias' => 'Organization',
+                    'alias' => 'OrganizationCriteria',
                     'type' => 'LEFT',
                     'conditions' => array(
-                        'Organization.id = Trade.buyer_id',
+                        'OrganizationCriteria.id = Trade.buyer_id',
                     )
                 ),
                 array(
@@ -66,7 +68,7 @@ class StocksController extends AppController {
                 ),
             ),
             'conditions'=>$conditions,
-            'group'=>array('Stock.id', 'StockType.name', 'StockType.gen_code', 'StockGroup.name', 'StockUnit.acronym', 'StockGroup.sort', 'Stock.num', 'Stock.description'),
+            'group'=>array('Stock.id', 'StockType.name', 'StockType.gen_code', 'StockGroup.name', 'StockUnit.acronym', 'StockGroup.sort', 'Stock.num', 'Stock.description', 'Organization.name'),
             'order'=>array('Stock.updated'=>'DESC', 'Stock.num'=>'DESC', 'Stock.description'=>'ASC')
         );
         $stocks = $this->Paginator->paginate();
@@ -79,12 +81,83 @@ class StocksController extends AppController {
             'conditions'=>array('order_type_id'=>9)
         ));
 		$this->set(compact('stocks', 'stock_add', 'last_inventory'));
-        $this->filters();
 	}
 
-    public function filters(){
-        $stockGroups = $this->Stock->StockGroup->find('list', array());
-        $this->set(compact('stockGroups'));
+    public function filter(){
+        $this->set_filters();
+        $conditions = array(
+            'StockType.module_id'=>AppController::getModule(),
+            'Stock.updated > \''.date('Y-m-d', strtotime('- 6 months')).'\'',
+            AppController::getScope(). ' = any(OrganizationCriteria.parent_array)'
+        );
+        if(isset($_GET['product']) && $_GET['product'] != ''){
+            array_push($conditions, array('Product.id'=>$_GET['product']));
+            $this->request->data['Bug']['product'] = $_GET['product'];
+        }
+        $this->Stock->unBindModel(array(
+            'belongsTo'=>array('BuyOrder')
+        ));
+        $this->paginate = array(
+            'recursive'=>0,
+            'fields'=>array(
+                'Stock.id', 'Stock.num', 'Stock.description', 'Stock.units', 'Stock.price', 'Stock.stock_group_id',
+                'MAX("Order"."reference_year") as "Stock__last_inventory"',
+                'Organization.name',
+                'StockType.name',
+                'StockType.gen_code',
+                'StockGroup.name',
+                'StockUnit.acronym',
+                'CASE WHEN sum(Trade.buy_amount) is null THEN 0 ELSE (sum(Trade.buy_amount) - sum(Trade.sell_amount)) END as "Stock__balance"'
+            ),
+            'joins'=>array(
+                array(
+                    'table' => 'trades',
+                    'alias' => 'Trade',
+                    'type' => 'LEFT',
+                    'conditions' => array(
+                        'Stock.id = Trade.stock_id',
+                        'Trade.canceled = false'
+                    )
+                ),
+                array(
+                    'table' => 'organizations',
+                    'alias' => 'OrganizationCriteria',
+                    'type' => 'LEFT',
+                    'conditions' => array(
+                        'OrganizationCriteria.id = Trade.buyer_id',
+                    )
+                ),
+                array(
+                    'table' => 'orders',
+                    'alias' => 'Order',
+                    'type' => 'LEFT',
+                    'conditions' => array(
+                        'Order.id = Trade.order_id',
+                        'Order.order_type_id = 9'
+                    )
+                ),
+            ),
+            'conditions'=>$conditions,
+            'group'=>array('Stock.id', 'StockType.name', 'StockType.gen_code', 'StockGroup.name', 'StockUnit.acronym', 'StockGroup.sort', 'Stock.num', 'Stock.description', 'Organization.name'),
+            'order'=>array('Stock.updated'=>'DESC', 'Stock.num'=>'DESC', 'Stock.description'=>'ASC')
+        );
+        $stocks = $this->Paginator->paginate();
+        $last_inventory = $this->Stock->Trade->Order->find('all', array(
+            'recursive'=>-1,
+            'fields'=>array(
+                'MAX(Order.id) as "Order__id"',
+                'MAX(reference_year) as "Order__year"'
+            ),
+            'conditions'=>array('order_type_id'=>9)
+        ));
+        $this->set(compact('stocks', 'stock_add', 'last_inventory'));
+        $this->render('index');
+    }
+
+    public function set_filters(){
+//        $organizations = $this->Stock->Organization->getChildOrganization(1, AppController::getScope());
+//        $stockGroups = $this->Stock->StockGroup->find('list', array());
+        $this->set(compact('stockGroups', 'organizations'));
     }
 
 	public function view($id = null) {
@@ -97,7 +170,17 @@ class StocksController extends AppController {
         ));
         $stock = $this->Stock->find('first', array('conditions' => array('Stock.' . $this->Stock->primaryKey => $id)));
         $stock['Trade'] = $this->Stock->Trade->find('all', array(
-            'fields'=>array('Trade.*', 'OrderType.name', 'OrderType.sort', 'Order.date_time', 'Order.num', 'Order.reference_year', 'Buyer.name', 'StockSituation.name'),
+            'fields'=>array('Trade.*', 'OrderType.name', 'OrderType.sort', 'Order.date_time', 'Order.num', 'Order.reference_year', 'Buyer.name', 'StockSituation.name', 'User.username'),
+            'joins'=>array(
+                array(
+                    'table' => 'users',
+                    'alias' => 'User',
+                    'type' => 'LEFT',
+                    'conditions' => array(
+                        'User.id = Trade.updater_id'
+                    )
+                ),
+            ),
             'conditions' => array('Trade.stock_id'=>$id),
             'order'=>array('Order.date_time'=>'DESC', 'Trade.id'=>'DESC')
         ));

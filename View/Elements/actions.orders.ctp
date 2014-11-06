@@ -9,21 +9,21 @@
             array('action' => 'add_type', $order['Order']['id']),
             array('title'=>__('Reuse'), 'data-toggle'=>'modal', 'data-target'=>'#modal', 'escape'=>false)); ?></li>
     <?php
-        if($order['Order']['id'] >= $lasts[1]['Order']['id'] && !$order['Order']['canceled']){
+        if($order['Order']['id'] >= $lasts[2]['Order']['id'] && !$order['Order']['canceled']){
             echo '<li>'.$this->Html->link('<i class="fa fa-pencil fa-lg pull-right"></i>'.__('Edit Order'),
                 array('action' => 'edit', $order['Order']['id']),
                 array('title'=>__('Edit'), 'escape'=>false)).'</li>';
-        }
-        if($order['Order']['id'] == $lasts[0]['Order']['id']){
-            echo '<li>'.$this->Form->postLink('<i class="fa fa-trash-o fa-lg pull-right"></i>'.__('Delete Order'),
-                array('action' => 'delete', $order['Order']['id']),
-                array('title'=>__('Delete'), 'escape'=>false),
-                __('Are you sure you want to delete # %s?', $order['Order']['id'])).'</li>';
         }
         if ($order['Order']['id'] != $lasts[0]['Order']['id'] && !$order['Order']['canceled']){
             echo '<li>'.$this->Html->link('<i class="fa fa-ban fa-lg pull-right"></i>'.__('Cancel Order'),
                 array('action' => 'cancel', $order['Order']['id']),
                 array('title'=>__('Cancel'), 'data-toggle'=>'modal', 'data-target'=>'#modal', 'escape'=>false)).'</li>';
+        }
+        if($order['Order']['id'] >= $lasts[1]['Order']['id'] || $role_sort <= 2){
+            echo '<li>'.$this->Form->postLink('<i class="fa fa-trash-o fa-lg pull-right"></i>'.__('Delete Order'),
+                    array('action' => 'delete', $order['Order']['id']),
+                    array('title'=>__('Delete'), 'escape'=>false),
+                    __('Are you sure you want to delete # %s?', $order['Order']['id'])).'</li>';
         }
     ?>
     <?php endif; ?>

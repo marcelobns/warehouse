@@ -21,14 +21,12 @@
 			<?php echo $order['Buyer']['name']; ?>
 			&nbsp;
 		</dd>
-        <?php foreach ($order['OrderDetail'] as $key=>$value):
+        <?php foreach ($order['OrderDetail'] as $value):
                 $value['OrderDetail']['value'] = $value['OrderDetailV']['value'];
                 $value = $value['OrderDetail'];?>
                 <dt><?=$value['name'] ?></dt>
                 <dd>
-                    <?php if(isset($value['value'])) : ?>
-                    <?php echo ($value['input_type'] == 'date' || $value['css_class'] == 'date') ? date('d/m/Y', strtotime($value['value'])) : $value['value']; ?>
-                    <?php endif; ?>
+                    <?php echo @$value['value']; ?>
                     &nbsp;
                 </dd>
         <?php endforeach; ?>

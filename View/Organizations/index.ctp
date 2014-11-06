@@ -1,8 +1,11 @@
 <div class="organizations index">
-    <legend><?=$organizationType['OrganizationType']['name'];?>  <?php echo $this->Html->link(' <i class="fa fa-refresh refresh"></i>', array('action' => 'index', $organizationType['OrganizationType']['id']), array('escape'=>false)); ?>
-        <div class="pull-right">
-            <?=$this->element('form.search', array('model'=>'Organization', 'url_params'=>$organizationType['OrganizationType']['id']));?>
-        </div>
+    <legend class="row">
+        <span class="col-lg-8">
+            <?=$organizationType['OrganizationType']['name'];?>
+            <?php echo $this->Html->link(' <i class="fa fa-refresh refresh"></i>', array('action' => 'index', $organizationType['OrganizationType']['id']), array('escape'=>false)); ?>
+            <?php echo $this->Html->link(' <i style="color: #d3d3d3" class="fa fa-print"></i>', array('action' => 'index'), array('escape'=>false)); ?>
+        </span>
+        <?=$this->element('form.search', array('model'=>'Organization', 'url_params'=>$organizationType['OrganizationType']['id']));?>
     </legend>
 	<table cellpadding="0" cellspacing="0" class="table-hover">
     <thead>
