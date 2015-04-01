@@ -6,6 +6,11 @@ App::uses('AppModel', 'Model');
  */
 class Role extends AppModel {
 
+	public $actsAs = array(
+		'SearchKit.Searchable',
+		'AccessKit.Requester'
+		);
+
 	public $validate = array(
 		'name' => array(
 			'notEmpty' => array(

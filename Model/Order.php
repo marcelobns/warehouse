@@ -1,21 +1,15 @@
 <?php
 App::uses('AppModel', 'Model');
 class Order extends AppModel {
+	public $actsAs = array(
+		'SearchKit.Searchable',
+		'AccessKit.Log'
+		);
 
-/**
- * Validation rules
- *
- * @var array
- */
 	public $validate = array(
 		'order_type_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
         'seller_id' => array(
@@ -57,20 +51,6 @@ class Order extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'PaymentType' => array(
-			'className' => 'PaymentType',
-			'foreignKey' => 'payment_type_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'Broker' => array(
-			'className' => 'User',
-			'foreignKey' => 'broker_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
 	);
 
 	public $hasMany = array(
@@ -85,7 +65,15 @@ class Order extends AppModel {
 			'offset' => '',
 			'exclusive' => '',
 			'finderQuery' => '',
-			'counterQuery' => ''
+			'counterQuery' => '',
+			'searchable'=> array(
+					'table' => 'order_details',
+					'alias' => 'OrderDetail',
+					'type' => 'LEFT',
+					'conditions' => array(
+						'OrderDetail.order_id = Order.id',
+					)
+				)
 		),
 		'Trade' => array(
 			'className' => 'Trade',
@@ -98,7 +86,7 @@ class Order extends AppModel {
 			'offset' => '',
 			'exclusive' => '',
 			'finderQuery' => '',
-			'counterQuery' => ''
+			'counterQuery' => '',
 		),
         'Log' => array(
             'className' => 'Log',

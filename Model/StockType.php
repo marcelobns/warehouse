@@ -6,12 +6,11 @@ App::uses('AppModel', 'Model');
  * @property Stock $Stock
  */
 class StockType extends AppModel {
-
-/**
- * Validation rules
- *
- * @var array
- */
+	public $actsAs = array(
+		'SearchKit.Searchable',
+		'AccessKit.Log'
+		);
+		
 	public $validate = array(
 		'name' => array(
 			'notEmpty' => array(

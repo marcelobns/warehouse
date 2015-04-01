@@ -12,20 +12,15 @@ App::uses('AppModel', 'Model');
  */
 class Organization extends AppModel {
 
-/**
- * Validation rules
- *
- * @var array
- */
+	public $actsAs = array(
+		'SearchKit.Searchable',
+		'AccessKit.Log'
+		);
+
 	public $validate = array(
 		'organization_type_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
 		'name' => array(
@@ -104,22 +99,7 @@ class Organization extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		),
-        'Log' => array(
-            'className' => 'Log',
-            'foreignKey' => 'oid',
-            'dependent' => false,
-            'conditions' => array(
-                'Log.alias = \'Organization\''
-            ),
-            'fields' => '',
-            'order' => array('Log.date_time'=>'DESC'),
-            'limit' => '',
-            'offset' => '',
-            'exclusive' => '',
-            'finderQuery' => '',
-            'counterQuery' => ''
-        )
+		),        
 	);
     function getChildOrganization($organization_type_id = null, $parent_id = 1) {
         $alias = $this->tableToModel['organizations'];

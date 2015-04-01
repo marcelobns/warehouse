@@ -1,6 +1,10 @@
 <?php
 App::uses('AppModel', 'Model');
 class Stock extends AppModel {
+	public $actsAs = array(
+		'SearchKit.Searchable',
+		'AccessKit.Log'
+		);
 
 	public $validate = array(
         'num' => array(
@@ -12,11 +16,6 @@ class Stock extends AppModel {
         'stock_type_id' => array(
             'notEmpty' => array(
                 'rule' => array('notEmpty'),
-                //'message' => 'Your custom message here',
-                //'allowEmpty' => false,
-                //'required' => false,
-                //'last' => false, // Stop validation after this rule
-                //'on' => 'create', // Limit validation to 'create' or 'update' operations
             ),
         ),
 		'description' => array(
@@ -101,21 +100,6 @@ class Stock extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-        'Log' => array(
-            'className' => 'Log',
-            'foreignKey' => 'oid',
-            'dependent' => false,
-            'conditions' => array(
-                'Log.alias = \'Stock\''
-            ),
-            'fields' => '',
-            'order' => array('Log.date_time'=>'DESC'),
-            'limit' => '',
-            'offset' => '',
-            'exclusive' => '',
-            'finderQuery' => '',
-            'counterQuery' => ''
-        )
 	);
 
     function getStockList($module_id = null) {
@@ -139,7 +123,7 @@ class Stock extends AppModel {
             ),
             'conditions'=>array(
                 'StockType.module_id'=>$module_id,
-                'Stock.updated > \''.date('Y-m-d', strtotime('- 6 months')).'\'',
+                // 'Stock.updated > \''.date('Y-m-d', strtotime('- 6 months')).'\'',
                 'Stock.enabled'
             ),
             'group'=>array('Stock.id', 'Stock.description'),

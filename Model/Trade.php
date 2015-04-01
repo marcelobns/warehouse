@@ -2,6 +2,9 @@
 App::uses('AppModel', 'Model');
 
 class Trade extends AppModel {
+	public $actsAs = array(
+		'AccessKit.Log'
+		);
 
 	public $validate = array(
 		'order_id' => array(
@@ -110,20 +113,20 @@ class Trade extends AppModel {
 	);
 
     public $hasMany = array(
-        'Log' => array(
-            'className' => 'Log',
-            'foreignKey' => 'oid',
-            'dependent' => false,
-            'conditions' => array(
-                'Log.alias = \'Trade\''
-            ),
-            'fields' => '',
-            'order' => array('Log.date_time'=>'DESC'),
-            'limit' => '',
-            'offset' => '',
-            'exclusive' => '',
-            'finderQuery' => '',
-            'counterQuery' => ''
-        )
+        // 'Log' => array(
+        //     'className' => 'Log',
+        //     'foreignKey' => 'oid',
+        //     'dependent' => false,
+        //     'conditions' => array(
+        //         'Log.alias = \'Trade\''
+        //     ),
+        //     'fields' => '',
+        //     'order' => array('Log.date_time'=>'DESC'),
+        //     'limit' => '',
+        //     'offset' => '',
+        //     'exclusive' => '',
+        //     'finderQuery' => '',
+        //     'counterQuery' => ''
+        // )
     );
 }

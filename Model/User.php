@@ -1,16 +1,19 @@
 <?php
 App::uses('AppModel', 'Model');
 class User extends AppModel {
+	public $actsAs = array(
+		'SearchKit.Searchable',
+		'AccessKit.Requester'=>array(
+            'Group'=>'Role',
+            'GroupKey'=>'role_id'
+			),
+		'AccessKit.Log'
+		);
 
 	public $validate = array(
 		'name' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
         'username' => array(
@@ -32,16 +35,6 @@ class User extends AppModel {
 				'rule' => array('numeric'),
 			),
 		),
-		'broker' => array(
-			'boolean' => array(
-				'rule' => array('boolean'),
-			),
-		),
-		'percent' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-			),
-		),
 	);
 
 	public $belongsTo = array(
@@ -52,12 +45,19 @@ class User extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
+		'Role' => array(
+			'className' => 'Role',
+			'foreignKey' => 'role_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
 	);
 
 	public $hasMany = array(
-		'UserRole' => array(
-			'className' => 'UserRole',
-			'foreignKey' => 'user_id',
+		'Module' => array(
+			'className' => 'Module',
+			'foreignKey' => false,
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
@@ -68,21 +68,6 @@ class User extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-        'Log' => array(
-            'className' => 'Log',
-            'foreignKey' => 'oid',
-            'dependent' => false,
-            'conditions' => array(
-                'Log.alias = \'User\''
-            ),
-            'fields' => '',
-            'order' => array('Log.date_time'=>'DESC'),
-            'limit' => '',
-            'offset' => '',
-            'exclusive' => '',
-            'finderQuery' => '',
-            'counterQuery' => ''
-        )
 	);
 
 }

@@ -8,11 +8,10 @@ App::uses('AppModel', 'Model');
  */
 class OrderDetail extends AppModel {
 
-/**
- * Validation rules
- *
- * @var array
- */
+	public $actsAs = array(		
+		'AccessKit.Log'
+		);
+
 	public $validate = array(
 		'name' => array(
 			'notEmpty' => array(

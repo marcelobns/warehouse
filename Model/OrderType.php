@@ -1,7 +1,9 @@
 <?php
 App::uses('AppModel', 'Model');
 class OrderType extends AppModel {
-
+	public $actsAs = array(		
+		'AccessKit.Log'
+		);
 	public $validate = array(
 		'name' => array(
 			'notEmpty' => array(
