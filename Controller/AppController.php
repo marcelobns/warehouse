@@ -4,30 +4,49 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
     public $components = array(
         'Auth' => array(
-            'loginAction' => array('controller' => 'users', 'action' => 'sign_in'),
+            'loginAction' => array('controller' => 'users', 'action' => 'login'),
             'loginRedirect' => array('controller' => 'orders', 'action' => 'index'),
             'logoutRedirect' => array('controller' => 'orders', 'action' => 'index'),
+            'authorize' => array('Controller'),
         ),
         'Session',
         'JasperHttpSocket.JasperHttpSocket',
-//        'DebugKit.Toolbar'
+        'AccessKit.Control'
     );
 
+    public $helpers = array(
+      'AccessKit.AuthView'
+    );
+
+    public function httpHistory($record = false){
+        $_SERVER['REQUEST_SCHEME'] = @$_SERVER['REQUEST_SCHEME'] ? $_SERVER['REQUEST_SCHEME'] : 'http';
+        $request_uri = "{$_SERVER['REQUEST_SCHEME']}://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+        if($record){
+            if(!isset($_SESSION['HTTP_HISTORY']))
+                $_SESSION['HTTP_HISTORY'] = array();
+
+            if($_SERVER['REQUEST_METHOD'] == 'GET' && @$_SESSION['HTTP_HISTORY'][0] != $request_uri){
+                array_unshift($_SESSION['HTTP_HISTORY'], $request_uri);
+                $_SESSION['HTTP_REFERER'] = $_SESSION['HTTP_HISTORY'][1];
+            }
+
+            if(sizeof($_SESSION['HTTP_HISTORY']) == 11)
+                unset($_SESSION['HTTP_HISTORY'][10]);
+        }
+        return $_SESSION['HTTP_HISTORY'];
+    }
+
     public function beforeFilter() {
+        $this->httpHistory(true);
         $this->Session->write('ClientIp', $this->request->clientIp());
 
         if ($this->Session->check('Config.language')) {
             Configure::write('Config.language', $this->Session->read('Config.language'));
         }
-        if(isset($this->request->query['@'])){
-            foreach($this->Session->read('Auth.User.Roles') as $i=>$value){
-                if($this->request->query['@'] == $value['module_id'])
-                    $this->setModule($this->request->query['@']);
-            }
+        if(isset($this->request->query['@']) && in_array($this->request->query['@'], $this->Session->read('Auth.User.modules_array'))){
+            $this->setModule(@$this->request->query['@']);
             $this->redirect('../'.$this->request->url);
         }
-        $role_sort = AppController::getRoleSort();
-        $this->set(compact('role_sort'));
     }
 
     public function beforeRender(){
@@ -49,20 +68,15 @@ class AppController extends Controller {
     }
 
     public function getModule(){
-        if(!$this->Session->check('Config.module') && sizeof($this->Session->Read('Config.Modules')) > 0){
-            $roles = array_values($this->Session->read('Auth.User.Roles'));
-            $this->setModule($roles[0]['module_id']);
-            return $roles[0]['module_id'];
-        }
         return $this->Session->read('Config.module') == null ? 1 : $this->Session->read('Config.module');
     }
 
     public function getScope(){
-        return $this->Session->read('Auth.User.Roles.'.$this->getModule().'.organization_scope_id');
+        return $this->Session->read('Auth.User.organization_scope_id');
     }
 
     public function getRoleSort(){
-        return $this->Session->read('Auth.User.Roles.'.$this->getModule().'.role_sort');
+        return $this->Session->read('Auth.User.Role.sort');
     }
 
     public function getOrganizationType(){
@@ -82,5 +96,12 @@ class AppController extends Controller {
         }
         $this->redirect('http://'.$_SERVER['HTTP_HOST'].':8080/jasperserver/rest_v2/reports/'.$folder.'/'.$report);
         return true;
+    }
+
+    public function isAuthorized($user) {
+        return $this->Control->authorize(
+          $user['Rule'],
+          $this->name,
+          $this->action);
     }
 }

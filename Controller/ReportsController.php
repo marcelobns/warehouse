@@ -3,7 +3,7 @@ App::uses('AppController', 'Controller');
 
 class ReportsController  extends AppController {
 
-    public $uses = array('StockType');
+    public $uses = array('StockType', 'Organization');
 
 	public function consumo($report = null) {
         switch($report){
@@ -26,14 +26,21 @@ class ReportsController  extends AppController {
     public function permanente($report = null) {
         switch($report){
             case 'relacao_materiais':
-                $stockTypes = array('%'=>'<[TODOS]>');
-                array_push($stockTypes, $this->StockType->find('list', array(
+                $organizations = array('%'=>'<[TODOS]>');
+                array_push($organizations, $this->Organization->find('list', array(
                         'recursive'=>-1,
-                        'conditions'=>array('gen_code'=>false),
+                        'conditions'=>array('organization_type_id'=>1),
                         'order'=>array('name'=>'ASC')
                     ))
                 );
-                $this->set(compact('stockTypes'));
+                $stockTypes = array('%'=>'<[TODOS]>');
+                array_push($stockTypes, $this->StockType->find('list', array(
+                        'recursive'=>-1,
+                        'conditions'=>array('gen_code'=>true),
+                        'order'=>array('name'=>'ASC')
+                    ))
+                );
+                $this->set(compact('stockTypes', 'organizations'));
                 break;
         }
         $this->layout = 'modal';

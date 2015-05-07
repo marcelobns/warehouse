@@ -1,17 +1,18 @@
-.nav > li > a:hover, .nav > li > a:focus {
-    color: #00202d!important;
+#loading-indicator{
+    background-color: black;
+    opacity: 0.25;
+    overflow-y: auto;
+    z-index: 99999999;
+    text-align: center;
+    padding-top: 20%;
+    color: #ffffff;
 }
-
-@media print {
-    #header, #footer,
-    .actions, .action-add,
-    .cake-sql-log, .paging, .no-print{
-        display:none!important;
-    }
-    body{
-        font-size: 0.6em!important;
-    }
-    div.index, div.form, div.view{
-        width: 100%;
-    }
+th .filter > .btn{
+    margin: 0px;
+    padding: 0px;
+}
+footer{
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
 }

@@ -20,7 +20,11 @@ module.exports = function(grunt) {
             // uglify: {
             //     files: 'webroot/js/src/*.js',
             //     tasks: 'uglify'
-            // }
+            // },
+            livereload:{
+                files: ['**/*.ctp','**/*.css'],
+                options: { livereload: true }
+            }
         }
     });
     grunt.loadNpmTasks('grunt-contrib-watch');

@@ -1,9 +1,8 @@
-<div class="orders view">
+<div class="container">
+<div class="orders view col-md-9">
+<fieldset>
     <legend>
-        <?php echo $order['OrderType']['name']; ?>
-        <span class="pull-right">
-                <?php echo (isset($order['Order']['num']) ? $order['Order']['num'].'/' : '').$order['Order']['reference_year'];?>
-            </span>
+        <?php echo $order['OrderType']['name']; ?> <?php echo (isset($order['Order']['num']) ? $order['Order']['num'].'/' : '').$order['Order']['reference_year'];?>
     </legend>
 	<dl>
 		<dt><?php echo __('Datetime'); ?></dt>
@@ -41,13 +40,15 @@
             &nbsp;
         </dd>
 	</dl>
+    </fieldset>
 </div>
-<div class="actions">
+<div class="actions col-md-3">
     <?=$this->element('actions.orders');?>
 </div>
-<div class="related">
+<div class="related col-md-12">
 	<?php if (!empty($order['Trade'])): ?>
-	<table cellpadding = "0" cellspacing = "0">
+	<table class="table table-condensed table-hover">
+    <thead>
 	<tr>
         <th><?php echo __('StockGroup'); ?></th>
         <th><?php echo __('Num'); ?></th>
@@ -56,19 +57,25 @@
         <th><?php echo __('Price'); ?></th>
         <th></th>
 	</tr>
+    </thead>
+    <tbody>
     <?php $total = 0;?>
     <?php foreach ($order['Trade'] as $trade): ?>
         <?php $total += ($trade['Trade']['buy_amount']+$trade['Trade']['sell_amount'])/$trade['Stock']['units'] * ($trade['Trade']['buy_price']+$trade['Trade']['sell_price'])?>
         <tr>
-            <td style="width: 10%"><?php echo isset($trade['StockGroup']['name']) ? $trade['StockGroup']['name'] : $trade['StockType']['name']; ?></td>
+            <td style="width: 15%"><?php echo isset($trade['StockGroup']['name']) ? $trade['StockGroup']['name'] : $trade['StockType']['name']; ?></td>
             <td><?php echo isset($trade['Stock']['num']) ? $trade['Stock']['num'] : $trade['Stock']['id']; ?></td>
-            <td style="width: 50%"><?php echo $trade['Stock']['description']; ?></td>
+            <td style="width: 45%"><?php echo $trade['Stock']['description']; ?></td>
             <td><?php echo ($trade['Trade']['buy_amount']+$trade['Trade']['sell_amount']); ?></td>
-            <td><?php echo number_format(($trade['Trade']['buy_price']+$trade['Trade']['sell_price']), 2, ',', '.'); ?></td>
-            <td><?php echo isset($trade['StockSituation']['name']) ? $trade['StockSituation']['name'] : number_format(($trade['Trade']['buy_amount']+$trade['Trade']['sell_amount'])/$trade['Stock']['units'] * ($trade['Trade']['buy_price']+$trade['Trade']['sell_price']), 2, ',', '.'); ?></td>
+            <td><?php echo number_format(($trade['Trade']['buy_price']+$trade['Trade']['sell_price']), 3, ',', '.'); ?></td>
+            <td><?php echo isset($trade['StockSituation']['name']) ? $trade['StockSituation']['name'] : number_format(($trade['Trade']['buy_amount']+$trade['Trade']['sell_amount'])/$trade['Stock']['units'] * ($trade['Trade']['buy_price']+$trade['Trade']['sell_price']), 3, ',', '.'); ?></td>
         </tr>
     <?php endforeach; ?>
-        <h2 class="pull-right" style="margin-top: -40px; margin-right: 60px; margin-bottom: 1em;">Total <b><?=number_format($total, 2, ',', ' ');?></b></h2>
+     <h2 class="pull-right">
+        Total <strong><?=number_format($total, 3, ',', ' ');?></strong>
+    </h2>
+    </tbody>
 	</table>
 <?php endif; ?>
+</div>
 </div>

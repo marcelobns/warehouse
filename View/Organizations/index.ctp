@@ -1,23 +1,20 @@
-<div class="organizations index">
-    <legend class="row">
-        <span class="col-lg-8">
-            <?=$organizationType['OrganizationType']['name'];?>
-            <?php echo $this->Html->link(' <i class="fa fa-refresh refresh"></i>', array('action' => 'index', $organizationType['OrganizationType']['id']), array('escape'=>false)); ?>
-            <?php echo $this->Html->link(' <i style="color: #d3d3d3" class="fa fa-print"></i>', array('action' => 'index'), array('escape'=>false)); ?>
-        </span>
-        <?=$this->element('form.search', array('model'=>'Organization', 'url_params'=>$organizationType['OrganizationType']['id']));?>
-    </legend>
-	<table cellpadding="0" cellspacing="0" class="table-hover">
+<div class="organizations index col-md-12">
+    <?=$this->element('legend.index', array('legend'=>$organizationType['OrganizationType']['name'], 'url_params'=>@$url_params));?>
+	<table class="table table-condensed table-hover">
     <thead>
         <tr>
-            <th><?php echo $this->Paginator->sort('name'); ?></th>
-            <th><?php echo $this->Paginator->sort('parent_id'); ?></th>
-            <th class="action-add"><?php echo $this->Html->link('<i class="fa fa-plus"></i> '.__('New'), array('action' => 'add', $organizationType['OrganizationType']['id']), array('escape'=>false)); ?></th>
+            <th>#</th>
+            <th>Name</th>
+            <th>Parente</th>
+            <th class="actions">
+                <?php echo $this->Html->link(__('New').' '.$organizationType['OrganizationType']['name'] , array('action' => 'add', $organizationType['OrganizationType']['id']), array('escape'=>false)); ?>
+            </th>
         </tr>
     </thead>
     <tbody>
     <?php foreach ($organizations as $organization): ?>
         <tr>
+            <td class="text-muted"><?php echo h($organization['Organization']['id']); ?></td>
             <td><?php echo h($organization['Organization']['name']); ?></td>
             <td><?php echo h($organization['ParentOrganization']['name']); ?></td>
             <td class="actions">
@@ -42,6 +39,10 @@
 	?>
 	</div>
 </div>
-<div class="actions">
-    <?=$this->element('actions.organizations');?>
-</div>
+<?php $this->start('script'); ?>
+<script type="text/javascript">
+    $(function(){
+        View.index();
+    });
+</script>
+<?php $this->end(); ?>

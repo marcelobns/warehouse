@@ -22,7 +22,7 @@ class StockTypesController extends AppController {
  */
 	public function index() {
 		$this->StockType->recursive = 0;
-		$this->set('stockTypes', $this->Paginator->paginate());
+		$this->set('stockTypes', $this->Paginator->paginate(array('module_id'=>AppController::getModule())));
 	}
 
 /**
@@ -48,6 +48,7 @@ class StockTypesController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->StockType->create();
+			$this->request->data['StockType']['module_id'] = AppController::getModule();
 			if ($this->StockType->save($this->request->data)) {
 				$this->Session->setFlash(__('The stock type has been saved.'));
 				return $this->redirect(array('action' => 'index'));

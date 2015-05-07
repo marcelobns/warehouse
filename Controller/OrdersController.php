@@ -4,7 +4,23 @@ class OrdersController extends AppController {
 
 	public $components = array('Paginator');
 
+	public function beforeFilter() {
+	    parent::beforeFilter();
+		$this->set('filters', array(
+			'Order.num||\'/\'||Order.reference_year'=>'Número',
+			'OrderDetail.value'=>'Processo',
+			'Seller.name'=>'Fornecedor'
+		));
+	}
+
     public function index($module_id = null) {
+		$fields = array(
+			'Order.date_time','Order.num', 'Order.reference_year',
+			'Order.canceled','Order.done',
+			'OrderType.name',
+			'Seller.name',
+			'Buyer.name',
+			);
         $joins = array();
         $conditions = array(
             'OrderType.module_id'=>AppController::getModule(),
@@ -15,33 +31,8 @@ class OrdersController extends AppController {
                 AppController::getScope().' = ANY(Buyer.parent_array)',
             )
         );
-        if(@$_GET['q']){
-            $joins = array(
-                array(
-                    'table' => 'order_details',
-                    'alias' => 'OrderDetail',
-                    'type' => 'LEFT',
-                    'conditions' => array(
-                        'OrderDetail.order_id = Order.id',
-                    )
-                ),
-            );
-            $conditions = array(
-                'OrderType.module_id'=>AppController::getModule(),
-                AppController::getScope().' = ANY(Buyer.parent_array)',
-                'OrderType.role_sort >= '.AppController::getRoleSort(),
-                'OrderType.inventory = false',
-                'OR'=>array(
-                    'Order.num::text||\'/\'||Order.reference_year::text ilike \''.$_GET['q'].'%\'',
-                    'OrderDetail.value ilike \''.$_GET['q'].'%\'',
-                    'Seller.name ilike \''.$_GET['q'].'%\'',
-                ),
-            );
-        }
-        $this->Order->unBindModel(array(
-            'belongsTo'=>array('Broker', 'PaymentType'),
-        ));
         $this->paginate = array(
+			'fields'=>$fields,
             'joins'=> $joins,
             'conditions'=>$conditions,
             'group'=>array('Order.id','OrderType.id', 'Seller.id', 'Buyer.id'),
@@ -52,13 +43,7 @@ class OrdersController extends AppController {
         );
 		$this->set('orders', $this->Paginator->paginate());
         $this->set('lasts', $this->lasts());
-        $this->filters();
 	}
-
-    public function filters(){
-        $orderTypes = $this->Order->OrderType->find('list', array('conditions'=>array('OrderType.module_id'=>AppController::getModule())));
-        $this->set(compact('orderTypes', 'buyers'));
-    }
 
 	public function view($id = null) {
 		if (!$this->Order->exists($id)) {
@@ -68,6 +53,11 @@ class OrdersController extends AppController {
             'belongsTo' => array('Broker', 'PaymentType'),
         ));
         $order = $this->Order->find('first', array(
+			'fields'=>array(
+				'Order.id', 'Order.date_time', 'Order.order_type_id', 'Order.reference_year', 'Order.note', 'Order.canceled_note', 'Order.canceled',
+				'Seller.name', 'Buyer.name',
+				'OrderType.name','OrderType.id'
+				),
             'conditions' => array('Order.' . $this->Order->primaryKey => $id)
         ));
         $order['OrderDetail'] = $this->Order->OrderDetail->find('all', array(
@@ -98,7 +88,11 @@ class OrdersController extends AppController {
         ));
         $order['Trade'] = $this->Order->Trade->find('all', array(
             'recursive'=>0,
-            'fields'=> array('Trade.*', 'Stock.*', 'StockSituation.*', 'StockGroup.name', 'StockGroup.sort', 'StockType.name'),
+            'fields'=> array(
+				'Trade.id','Trade.buy_amount','Trade.sell_amount','Trade.buy_price', 'Trade.sell_price',
+				'Stock.id','Stock.num','Stock.name','Stock.units','Stock.description',
+				'StockSituation.id','StockSituation.name',
+				'StockGroup.name', 'StockGroup.sort', 'StockType.name'),
             'conditions'=>array('Trade.order_id'=>$id),
             'order'=>array('StockGroup.sort'=>'ASC', 'Stock.num'=>'ASC', 'Stock.description'=>'ASC')
         ));
@@ -311,7 +305,7 @@ class OrdersController extends AppController {
             foreach($order['Trade'] as $i=>$value){
                 array_push($stocks, $value['stock_id']);
             }
-            $this->Order->Trade->Stock->deleteall(array('Stock.id'=>$stocks), false);
+            $this->Order->Trade->Stock->deleteAll(array('Stock.id'=>$stocks), false);
         }
         $this->Order->Trade->deleteall(array('Trade.order_id'=>$id), false);
         $this->Order->OrderDetail->deleteall(array('OrderDetail.order_id'=>$id), false);
@@ -355,6 +349,7 @@ class OrdersController extends AppController {
     public function lasts(){
         $this->Order->unBindModel(array('belongsTo'=>array('Broker', 'PaymentType', 'Seller', 'Buyer')));
         $lasts = $this->Order->find('all', array(
+			'unsearch'=>true,
             'recursive'=>0,
             'fields'=>array('Order.id'),
             'conditions'=>array(

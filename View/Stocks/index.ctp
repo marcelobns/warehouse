@@ -1,76 +1,47 @@
-<div class="stocks index large">
-    <legend class="row">
-        <span class="col-lg-8">
-            <?php echo __('Stocks'); ?>
-            <?php echo $this->Html->link(' <i class="fa fa-refresh refresh"></i>', array('action' => 'index'), array('escape'=>false)); ?>
-            <?php echo $this->Html->link(' <i class="fa fa-print"></i>', array('action' => 'index'), array('escape'=>false)); ?>
-        </span>
-        <?=$this->element('form.search', array('model'=>'Stock'));?>
-    </legend>
-	<table cellpadding="0" cellspacing="0" class="table-hover">
+<div class="stocks index col-md-12">
+    <?=$this->element('legend.index', array('legend'=>__('Stocks')));?>
+	<table>
         <thead>
-        <?php echo $this->Form->create('Stock', array('action'=>'filter', 'type'=>'GET', 'class'=>'formFilter')); ?>
         <tr>
-            <th><?php echo $this->element('filter.select', array(
-                    'label' => __('Stock Group'),
-                    'field' => 'stock_group',
-                    'options' => @$stockGroups
-                )); ?>
-            </th>
-            <th><?php echo $this->element('filter.interval', array(
-                    'id' => 'num',
-                    'label' => __('Num'),
-                    'fields' => array('num_begin', 'num_end'),
-                )); ?>
-            </th>
-            <th><?php echo $this->Paginator->sort('description'); ?></th>
+            <th>Grupo/Tipo</th>
+            <th>Número</th>
+            <th>Descrição</th>
             <?php if($this->Session->read('Config.module') == 2) : ?>
-            <th><?php echo $this->Paginator->sort('Unit'); ?></th>
+            <th>Unidade</th>
             <?php endif; ?>
-            <th><?php echo $this->Paginator->sort('price'); ?></th>
+            <th>Valor</th>
             <?php if($this->Session->read('Config.module') == 2) : ?>
-            <th><?php echo $this->element('filter.interval', array(
-                    'id' => 'balance',
-                    'label' => __('Balance'),
-                    'fields' => array('balance_begin', 'balance_end'),
-                )); ?>
-            </th>
+            <th>Estoque</th>
             <?php endif; ?>
             <?php if($this->Session->read('Config.module') == 1) : ?>
-            <th><?php echo $this->element('filter.select', array(
-                    'label' => __('Local'),
-                    'field' => 'organization_id',
-                    'options' => @$organizations
-                )); ?>
-            </th>
+            <th>Local</th>
             <?php endif; ?>
-            <th class="action-add col-lg-2 no-print">
+            <th class="actions no-print">
                 <?php
                     if($this->Session->read('Config.module') == 1) {
-                        echo $this->Html->link('<i class="fa fa-plus-square-o fa-lg"></i> '.__('New Stock'), array('controller'=>'trades', 'action' => 'add', $last_inventory[0]['Order']['id']), array('escape'=>false));
+                        echo $this->Html->link(__('New Stock'), array('controller'=>'trades', 'action' => 'add', $last_inventory[0]['Order']['id']), array('escape'=>false));
                     } else {
-                        echo $this->Html->link('<i class="fa fa-plus-square-o fa-lg"></i> '.__('New Stock'), array('action' => 'add'), array('escape'=>false));
+                        echo $this->Html->link(__('New Stock'), array('action' => 'add'), array('escape'=>false));
                     }
                 ?>
             </th>
         </tr>
-        <?php echo $this->Form->end(); ?>
         </thead>
         <tbody>
         <?php foreach ($stocks as $stock): ?>
-        <tr style="font-size: 0.9em;">
-            <td><?php echo h(isset($stock['Stock']['stock_group_id']) ? $stock['StockGroup']['name'] : $stock['StockType']['name']); ?>&nbsp;</td>
-            <td><?php echo h(isset($stock['Stock']['stock_group_id']) ? $stock['Stock']['num'] : $stock['Stock']['id']); ?>&nbsp;</td>
-            <td><?php echo h($stock['Stock']['description']); ?>&nbsp;</td>
+        <tr>
+            <td><?php echo h(isset($stock['Stock']['stock_group_id']) ? $stock['StockGroup']['name'] : $stock['StockType']['name']); ?></td>
+            <td><strong><?php echo h(isset($stock['Stock']['stock_group_id']) ? $stock['Stock']['num'] : $stock['Stock']['id']); ?></strong></td>
+            <td><?php echo h($stock['Stock']['description']); ?></td>
             <?php if($this->Session->read('Config.module') == 2) : ?>
-            <td><?php echo h(isset($stock['StockUnit']['acronym']) ? $stock['StockUnit']['acronym'].'/'.$stock['Stock']['units'] : $stock['Stock']['units']); ?>&nbsp;</td>
+            <td><?php echo h(isset($stock['StockUnit']['acronym']) ? $stock['StockUnit']['acronym'].'/'.$stock['Stock']['units'] : $stock['Stock']['units']); ?></td>
             <?php endif; ?>
-            <td style="font-size: 1.1em; color: #003441;"><?php echo h(number_format($stock['Stock']['price'], 2, ',', '.')); ?>&nbsp;</td>
+            <td><?php echo h(number_format($stock['Stock']['price'], 2, ',', '.')); ?></td>
             <?php if($this->Session->read('Config.module') == 2) : ?>
-            <td style="font-size: 1.25em; color: #003441; text-align: center;"><?php echo h($stock['Stock']['balance']); ?>&nbsp;</td>
+            <td style="font-size: 1.25em; text-align: center;"><strong><?php echo h($stock['Stock']['balance']); ?></strong></td>
             <?php endif; ?>
             <?php if($this->Session->read('Config.module') == 1) : ?>
-            <td><?php echo h($stock['Organization']['name']); ?>&nbsp;</td>
+            <td><strong><?php echo h($stock['Organization']['name']); ?></strong></td>
             <?php endif; ?>
             <td class="actions" style="font-size: 1.3em;">
                 <?php
@@ -83,7 +54,7 @@
                    }
                 ?>
                 <?php echo $this->Html->link('<i class="fa fa-list fa-lg"></i>', array('action' => 'view', $stock['Stock']['id']), array('escape'=>false, 'title'=>__('View'))); ?>
-                <?php if($role_sort <= 2) echo $this->Html->link('<i class="fa fa-pencil fa-lg"></i>', array('action' => 'edit', $stock['Stock']['id']), array('escape'=>false, 'title'=>__('Edit'))); ?>
+                <?php if($this->Session->read('Auth.User.Role.sort') <= 2) echo $this->Html->link('<i class="fa fa-pencil fa-lg"></i>', array('action' => 'edit', $stock['Stock']['id']), array('escape'=>false, 'title'=>__('Edit'))); ?>
             </td>
         </tr>
         <?php endforeach; ?>
@@ -92,7 +63,7 @@
 	<p>
 	<?php
 	echo $this->Paginator->counter(array(
-	'format'=>__('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}').' '.__('(6 meses)')
+	'format'=>__('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
 	));
 	?>	</p>
 	<div class="paging">
@@ -103,3 +74,10 @@
 	?>
 	</div>
 </div>
+<?php $this->start('script'); ?>
+<script type="text/javascript">
+    $(function(){
+        View.index();
+    });
+</script>
+<?php $this->end(); ?>

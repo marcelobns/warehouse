@@ -1,11 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
-/**
- * Users Controller
- *
- * @property User $User
- * @property PaginatorComponent $Paginator
- */
+
 class UsersController extends AppController {
 
 	public $components = array('Paginator');
@@ -13,19 +8,7 @@ class UsersController extends AppController {
     public function index() {
         $conditions = array(
             AppController::getScope().' = ANY(Organization.parent_array)',
-            'User.enabled'
         );
-        if(@$_GET['q']){
-            $q = is_numeric($_GET['q']) ? $_GET['q'] : '%'.$_GET['q'].'%';
-            $conditions = array(
-                AppController::getScope().' = ANY(Organization.parent_array)',
-                'OR'=>array(
-                    'User.id::text ilike \''.$q.'\'',
-                    'User.name::text ilike \''.$q.'\'',
-                    'User.username::text ilike \''.$q.'\'',
-                )
-            );
-        }
         $this->paginate = array(
             'recursive'=>0,
             'fields' => array(
@@ -50,9 +33,6 @@ class UsersController extends AppController {
             'hasMany'=>array('UserRole')
         ));
         $user = $this->User->find('first', array('conditions' => array('User.' . $this->User->primaryKey => $id)));
-        $user['UserRole'] = $this->User->UserRole->find('all', array(
-            'conditions' => array('UserRole.user_id' => $id)
-        ));
         $this->set('user', $user);
     }
 
@@ -110,9 +90,6 @@ class UsersController extends AppController {
         } else {
             $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
             $this->request->data = $this->User->find('first', $options);
-            $this->request->data['UserRole'] = $this->User->UserRole->find('all', array(
-                'conditions' => array('UserRole.user_id' => $id)
-            ));
         }
         $organizations = $this->User->Organization->getChildOrganization(1, AppController::getScope());
         $this->set(compact('organizations', 'isUser'));
@@ -132,71 +109,44 @@ class UsersController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 
-    public function sign_in(){
+    public function login(){
         if ($this->request->is('post')) {
-            $this->User->unBindModel(array(
-                'belongsTo' => array('Creator','Updater')
-            ));
             $user = $this->User->find('first', array(
-                    'recursive'=>0,
+                    'recursive'=>1,
                     'conditions'=>array(
                         'User.username' => $this->data['User']['username'],
                         'User.password' => Security::hash($this->data['User']['password'], 'md5', false)
                     )
                 )
             );
-            $this->User->UserRole->unBindModel(array(
-                'belongsTo' => array('User','Module','OrganizationScope')
-            ));
-            $user['UserRole'] = $this->User->UserRole->find('all', array(
-                    'conditions'=>array(
-                        'UserRole.user_id' => $user['User']['id']
-                    )
-                )
-            );
+			// Debugger::dump($user);
+			// exit;
             if($user != false){
                 unset($user['User']['password']);
-                if(sizeof($user['UserRole']) == 0){
-                    $this->Session->destroy();
-                    $this->Session->setFlash(__('Invalid! Role(s) not found'));
-                    $this->redirect($this->Auth->logout());
+
+				$user['User']['modules_array'] = explode(',', str_replace(array('{','}'), '', $user['User']['modules_array']));
+				$user['User']['Module'] = array();
+
+				foreach ($user['Module'] as $key => $value) {
+					$user['User']['Module'][$value['id']] = $value;
+				}
+
+				$user['User']['Organization'] = $user['Organization'];
+				$user['User']['Role'] = $user['Role'];
+
+				$user['User']['OrganizationTypes'] = $this->User->Organization->OrganizationType->find('list', array(
+                    'recursive'=>-1,
+                    'order'=>array('sort'=>'ASC')
+                ));
+                if($this->Auth->login($user['User'])) {
+					AppController::setModule($user['User']['modules_array'][0]);
+                    $this->redirect($this->Auth->redirectUrl());
                 }
-                foreach($user['UserRole'] as $i=>$value){
-                    $role_sort = $user['UserRole'][$i]['Role']['sort'];
-                    $user['UserRole'][$i] = $user['UserRole'][$i]['UserRole'];
-                    $user['UserRole'][$i]['last_signin'] = date('Y-m-d H:i:s');
-                    $user['UserRole'][$i]['role_sort'] = $role_sort;
-                    $roles[$user['UserRole'][$i]['module_id']] = $user['UserRole'][$i];
-                }
-                if($this->User->UserRole->saveAll($user['UserRole'])){
-                    $user['User']['Roles'] = $roles;
-                    $user['User']['Organization'] = $user['Organization'];
-                    $organization_types = $this->User->Organization->OrganizationType->find('list', array(
-                        'recursive'=>-1,
-                        'order'=>array('sort'=>'ASC')
-                    ));
-                    $this->Session->write('Config.OrganizationTypes', $organization_types);
-                    if($this->Auth->login($user['User'])){
-                        $modules = array();
-                        foreach($roles as $i=>$value){
-                            if($i==1){
-                                AppController::setModule($value['module_id']);
-                            }
-                            array_push($modules, $value['module_id']);
-                        }
-                        $modules = $this->User->UserRole->Module->find('all', array(
-                            'conditions'=>array('id'=>$modules),
-                            'order'=>array('Module.sort'=> 'ASC')
-                        ));
-                        $this->Session->write('Config.Modules', $modules);
-                        $this->redirect($this->Auth->redirectUrl());
-                    }
-                }
-            }else{
+            } else {
                 $this->Session->setFlash(__('Invalid! username or password.'));
             }
         }
-        $this->layout = 'sign_in';
+        $this->layout = 'login';
     }
 
     public function logout(){

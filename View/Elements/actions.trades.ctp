@@ -1,5 +1,5 @@
-<h3><?php echo __('Actions'); ?></h3>
-<ul>
+<h4>Relacionado</h4>
+<ul class="nav nav-pills nav-stacked" role="tablist">
 <!--    <li>--><?php //echo $this->Html->link('<i class="fa fa-arrow-left pull-right"></i>'.__('Back'), $this->request->referer(), array('escape'=>false)); ?><!--</li>-->
     <?php if(isset($trade)):?>
     <li><?php echo $this->Form->postLink('<i class="fa fa-trash-o fa-lg pull-right"></i>'.__('Delete'), array('action' => 'delete', $this->Form->value('Trade.id')), array('escape'=>false), __('Are you sure you want to delete # %s?', $trade['Trade']['id'])); ?></li>

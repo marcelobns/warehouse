@@ -16,10 +16,7 @@
         array(),
         array('id'=>'href_print' ,'class'=>'pull-right', 'style'=>'font-size:1.5em', 'escape'=>false, 'target'=>'_blank')); ?>
 </div>
-<?=$this->start('script');?>
-<?php if(false) : ?>
-<script>
-<?php endif; ?>
+<script type="text/javascript">
     $(function(){
         set_href();
     });
@@ -34,5 +31,4 @@
             'fator='+$('#ReportFator').val()
         );
     };
-
-<?php $this->end(); ?>
+</script>

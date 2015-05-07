@@ -1,5 +1,7 @@
-<div class="stocks view">
-<legend><?php echo __('Stock'); ?><span class="pull-right"><?= isset($stock['Stock']['num']) ? $stock['StockGroup']['name'].' - <b>'.$stock['Stock']['num'].'</b>' : '<b>'.$stock['Stock']['id'].'</b>';?></span></legend>
+<div class="container">
+<div class="stocks view col-md-9">
+<fieldset>
+<legend><?= isset($stock['Stock']['num']) ? $stock['StockGroup']['name'].' - <b>'.$stock['Stock']['num'].'</b>' : '<b>'.$stock['Stock']['id'].'</b>';?></legend>
 	<dl style="font-size: 1.1em">
 		<dt><?php echo __('Stock Type'); ?></dt>
 		<dd>
@@ -28,21 +30,19 @@
 		</dd>
 		<dt><?php echo __('Stock Situation'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($stock['StockSituation']['name'], array('controller' => 'stock_situations', 'action' => 'view', $stock['StockSituation']['id'])); ?>
+			<?php echo h($stock['StockSituation']['name']); ?>
 			&nbsp;
 		</dd>
-	</dl>
-    <?php echo $this->Html->link('<i class="fa fa-arrow-left"></i> '.__('Back'), array('action'=>'index'), array('class'=>'btn btn-default no-print', 'escape'=>false)); ?>
+	</dl>    
+    </fieldset>
 </div>
-<div class="actions">
+<div class="actions col-md-3">
     <?=$this->element('actions.stocks');?>
 </div>
-<div class="related">
-    <?php echo $this->Form->create('Stock'); ?>
-        <?php echo $this->Form->input('data_inicio', array('type'=>'text', 'class'=>'date', 'style'=>'width:18%;'));?>
-    <?php echo $this->Form->end(); ?>
+<div class="related col-md-12">    
 	<?php if (!empty($stock['Trade'])): ?>
-	<table cellpadding = "0" cellspacing = "0">
+	<table class="table table-condensed table-hover">
+	<thead>
 	<tr>
 		<th><?php echo __('Date'); ?></th>
         <th><?php echo __('Order Type'); ?></th>
@@ -54,12 +54,21 @@
 		<th class="no-print"><?php echo __('User'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
+	</thead>
+	<tbody>
 	<?php foreach ($stock['Trade'] as $trade): ?>
 		<tr style="font-size: .9em; white-space: nowrap;">
-            <td><?php echo $trade['Order']['date_time']; ?></td>
-            <td style="font-size: .8em"><?php echo $trade['OrderType']['name']; ?></td>
+            <td>
+            	<?php if($trade['OrderType']['sort'] <= 3 ) {
+                    echo $trade['Order']['date_time'];
+                } else {
+                	echo date('Y-m-d', strtotime($trade['Trade']['created']));
+            	}?>
+            	
+        	</td>
+            <td><strong style="font-size: .8em"><?php echo $trade['OrderType']['name']; ?></strong></td>
 			<td><?php echo ( isset($trade['Order']['num']) ?  $trade['Order']['num'].'/' : $trade['Order']['num']).$trade['Order']['reference_year']; ?></td>
-            <td style="font-size: .8em"><?php echo $trade['Buyer']['name']; ?></td>
+            <td><strong style="font-size: .8em"><?php echo $trade['Buyer']['name']; ?></strong></td>
 			<td><?php echo $trade['Trade']['buy_amount']; ?></td>
 			<td><?php echo $trade['Trade']['sell_amount']; ?></td>
 			<td><?php echo number_format($trade['Trade']['buy_price']+$trade['Trade']['sell_price'], 2, ',', '.'); ?></td>
@@ -71,6 +80,8 @@
 			</td>
 		</tr>
 	<?php endforeach; ?>
+	</tbody>
 	</table>
 <?php endif; ?>
+</div>
 </div>

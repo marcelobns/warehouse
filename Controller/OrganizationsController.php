@@ -5,7 +5,16 @@ class OrganizationsController extends AppController {
 
 	public $components = array('Paginator');
 
+	public function beforeFilter() {
+	    parent::beforeFilter();
+		$this->set('filters', array(
+			'Organization.name'=>'Nome',
+			'ParentOrganization.name'=>'Parente'
+		));
+	}
+
 	public function index($organization_type_id = null) {
+		$this->set('url_params', $organization_type_id);
 
         $organizationType = $this->Organization->OrganizationType->find('first', array(
             'conditions'=>array('OrganizationType.id'=>$organization_type_id)
@@ -14,35 +23,13 @@ class OrganizationsController extends AppController {
             'Organization.enabled'=>true,
             'OrganizationType.id'=>$organization_type_id
         );
-        if($organizationType['OrganizationType']['internal'])
-            $conditions = array(
-                AppController::getScope().' = ANY(Organization.parent_array)',
-                'Organization.enabled'=>true,
-                'OrganizationType.id'=>$organization_type_id
-            );
-
-        if(@$_GET['q']){
-            $conditions = array(
-                'Organization.enabled'=>true,
-                'OrganizationType.id'=>$organization_type_id,
-                'OR' => array(
-                    'ParentOrganization.name ilike \''.$_GET['q'].'\'',
-                    'Organization.name ilike \'%'.$_GET['q'].'%\'',
-                )
-            );
-            if($organizationType['OrganizationType']['internal'])
-                $conditions = array(
-                    AppController::getScope().' = ANY(Organization.parent_array)',
-                    'OrganizationType.id'=>$organization_type_id,
-                    'OR' => array(
-                        'ParentOrganization.name ilike \''.$_GET['q'].'\'',
-                        'ParentOrganization.acronym ilike \''.$_GET['q'].'\'',
-                        'Organization.name ilike \'%'.$_GET['q'].'%\'',
-                        'Organization.acronym ilike \''.$_GET['q'].'%\'',
-                    )
-                );
-        }
-
+        if($organizationType['OrganizationType']['internal']){
+			$conditions = array(
+	            AppController::getScope().' = ANY(Organization.parent_array)',
+	            'Organization.enabled'=>true,
+	            'OrganizationType.id'=>$organization_type_id
+	        );
+		}
         $this->paginate = array(
             'fields'=>array('Organization.id', 'Organization.name', 'ParentOrganization.id', 'ParentOrganization.name', 'Organization.enabled'),
             'recursive'=>0,
@@ -72,7 +59,7 @@ class OrganizationsController extends AppController {
 			$this->Organization->create();
 			if ($this->Organization->save($this->request->data)) {
 				$this->Session->setFlash(__('The organization has been saved.'));
-                return $this->redirect(array('action' => 'index', $this->request->data['Organization']['organization_type_id']));
+				return $this->redirect($_SESSION['HTTP_REFERER']);
 			} else {
 				$this->Session->setFlash(__('The organization could not be saved. Please, try again.'));
 			}
@@ -88,7 +75,7 @@ class OrganizationsController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Organization->save($this->request->data)) {
 				$this->Session->setFlash(__('The organization has been saved.'));
-				return $this->redirect(array('action' => 'index', $this->request->data['Organization']['organization_type_id']));
+				return $this->redirect($_SESSION['HTTP_REFERER']);
 			} else {
 				$this->Session->setFlash(__('The organization could not be saved. Please, try again.'));
 			}
@@ -118,6 +105,6 @@ class OrganizationsController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The organization could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect($_SESSION['HTTP_REFERER']);
 	}
 }

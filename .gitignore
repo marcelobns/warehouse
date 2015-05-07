@@ -8,6 +8,7 @@
 /build
 /dist
 /tags
+/node_modules
 
 # OS generated files #
 ######################
@@ -19,7 +20,10 @@
 Icon?
 ehthumbs.db
 Thumbs.db
+
 ftpsync.settings
+.remote-sync.json
 
 # IDE
+######################
 .idea/

@@ -53,6 +53,9 @@ class TradesController extends AppController {
                     break;
                 case 'create' :
                     $this->Session->write('Inventory.buyer_id', @$this->request->data['Trade']['buyer_id']);
+
+                    if($this->request->data['Stock'])
+
                     $num_ini = $this->request->data['Stock']['num'];
                     $num = $this->request->data['Stock']['num'];
                     $num_end = ($num_ini + ($this->request->data['Stock']['amount']-1));
@@ -87,16 +90,33 @@ class TradesController extends AppController {
                     }
                     break;
                 case 'num' :
-                    $num_ini = $this->request->data['Trade']['num'];
-                    $num = $this->request->data['Trade']['num'];
-                    $num_end = $this->request->data['Trade']['num_end'];
+                    $isInterval = strrpos($this->request->data['Trade']['num'], ":");                    
+                    $conditions = array('1=0');
+
+                    if($isInterval !== false){                                                                        
+                        $num = $this->request->data['Trade']['num'];
+                        $nums = split(':', $num);
+                        $num_ini = $nums[0];                        
+                        $num_end = $nums[1]; 
+                        $conditions = array(
+                            'Stock.stock_group_id'=>$this->request->data['Trade']['stock_group_id'],
+                            'Stock.num between '.$num_ini.' and '.$num_end,
+                            'Stock.id not in (select stock_id from trades where order_id = '. $order_id .')'
+                        );
+                    } else {
+                        $all = $this->request->data['Trade']['num'];                                            
+                        $conditions = array(
+                            'Stock.stock_group_id'=>$this->request->data['Trade']['stock_group_id'],
+                            'Stock.num in ('.$all.')',
+                            'Stock.id not in (select stock_id from trades where order_id = '. $order_id .')'
+                        );
+                    }
+
                     $Stocks = $this->Trade->Stock->find('all', array(
                         'recursive'=>-1,
-                        'conditions'=>array(
-                            'Stock.stock_group_id'=>$this->request->data['Trade']['stock_group_id'],
-                            'Stock.num between '.$num.' and '.$num_end
-                        )
+                        'conditions'=>$conditions
                     ));
+
                     foreach($Stocks as $key=>$value){
                         $data = array();
                         if($value['Stock']['stock_situation_id'] != $this->request->data['Trade']['stock_situation_id']){
@@ -118,13 +138,15 @@ class TradesController extends AppController {
                         if (!$this->Trade->saveall($data)) {
                             break;
                         }
-                    }
-                    if($num == $num_end) {
-                        if($num_ini == $num_end){
-                            $this->Session->setFlash(__('The trade has been saved.').' '.$num);
-                        }else{
-                            $this->Session->setFlash(__('The trade has been saved.').' '.$num_ini.' - '.$num_end);
-                        }
+                    }                    
+                    if(isset($num_end)) {                        
+                        $this->Session->setFlash(__('The trade has been saved.').' '.$num_ini.' - '.$num_end);                        
+                        return $this->redirect(array('controller'=>'orders', 'action' => 'edit', $order_id));
+                    } else if(isset($all) && isset($num)){
+                        $this->Session->setFlash(__('The trade has been saved.').' '.$all);                        
+                        return $this->redirect(array('controller'=>'orders', 'action' => 'edit', $order_id));
+                    } else if (sizeof($Stocks) == 0) {
+                        $this->Session->setFlash(__('The trade has been saved.'));
                         return $this->redirect(array('controller'=>'orders', 'action' => 'edit', $order_id));
                     } else {
                         $this->Session->setFlash(__('The trade could not be saved. Please, try again.').' '.$num);

@@ -22,6 +22,7 @@ class RolesController extends AppController {
  */
 	public function index() {
 		$this->Role->recursive = 0;
+		$this->Role->order = array('sort'=>'ASC');
 		$this->set('roles', $this->Paginator->paginate());
 	}
 
@@ -69,15 +70,18 @@ class RolesController extends AppController {
 			throw new NotFoundException(__('Invalid role'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
-			if ($this->Role->save($this->request->data)) {
+			if ($this->Role->saveAll($this->request->data)) {
 				$this->Session->setFlash(__('The role has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The role could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('Role.' . $this->Role->primaryKey => $id));
+			$options = array(
+				'recursive' => 1,
+				'conditions' => array('Role.' . $this->Role->primaryKey => $id));
 			$this->request->data = $this->Role->find('first', $options);
+			$this->request->data['Rule'] = $this->Control->rules($this->request->data['Rule']);
 		}
 	}
 

@@ -1,41 +1,17 @@
-<div class="orders index large">
-    <legend class="row">
-        <span class="col-lg-8">
-            <?php echo __('Orders'); ?>
-            <span class="no-print">
-                <?php echo $this->Html->link(' <i class="fa fa-refresh refresh"></i>', array('action' => 'index'), array('escape'=>false)); ?>
-                <?php echo $this->Html->link(' <i style="color: #d3d3d3" class="fa fa-print"></i>', array('action' => 'index'), array('escape'=>false)); ?>
-            </span>
-        </span>
-        <?=$this->element('form.search', array('model'=>'Order'));?>
-    </legend>
-	<table cellpadding="0" cellspacing="0" class="table-hover">
+<div class="orders index col-md-12">
+    <?=$this->element('legend.index', array('legend'=>__('Orders')));?>
+	<table class="table table-condensed table-hover">
         <thead>
             <tr>
-                <th><?php echo $this->Paginator->sort('id'); ?></th>
-                <th><?php echo $this->element('filter.date', array(
-                        'id' => 'datetime',
-                        'label' => __('Datetime'),
-                        'fields' => array('datetime_begin', 'datetime_end'),
-                    )); ?>
-                </th>
-                <th><?php echo $this->element('filter.select', array(
-                        'label' => __('Order Type'),
-                        'field' => 'order_type_id',
-                        'options' => @$orderTypes
-                    )); ?>
-                </th>
-                <th style="text-align: center"><?php echo $this->Paginator->sort('num'); ?></th>
-                <th><?php echo $this->Paginator->sort('seller_id'); ?></th>
-                <th><?php echo $this->element('filter.select', array(
-                        'label' => __('Buyer'),
-                        'field' => 'buyer_id',
-                        'options' => @$buyers
-                    )); ?>
-                </th>
-                <th class="no-print"><?php echo $this->Paginator->sort('done'); ?></th>
-                <th class="action-add no-print">
-                    <?php echo $this->Html->link('<i class="fa fa-plus-square-o"></i> '.__('New Order'),
+                <th>#</th>
+                <th>Data</th>
+                <th>Tipo de Registro</th>
+                <th>Número</th>
+                <th>Remetente</th>
+                <th>Destinatário</th>
+                <th class="no-print"></th>
+                <th class="actions no-print">
+                    <?php echo $this->Html->link(__('New Order'),
                         array('action' => 'add_type'),
                         array('data-toggle'=>'modal', 'data-target'=>'#modal', 'escape'=>false)); ?>
                 </th>
@@ -43,13 +19,13 @@
         </thead>
         <tbody>
         <?php foreach ($orders as $i=>$order): ?>
-        <tr style="font-size: 0.8em;">
-            <td style="color:gray;"><?php echo h($order['Order']['id']); ?>&nbsp;</td>
-            <td><?php echo date('d/m/Y', strtotime($order['Order']['date_time'])); ?>&nbsp;</td>
+        <tr>
+            <td class="text-muted"><?php echo h($order['Order']['id']); ?>&nbsp;</td>
+            <td><strong style="font-size: 1.02em"><?php echo date('d/m/Y', strtotime($order['Order']['date_time'])); ?>&nbsp;</strong></td>
             <td><?php echo h($order['OrderType']['name']); ?></td>
-            <td style="text-align:center;"><?php echo h(($order['Order']['num'] ? $order['Order']['num'].'/' : '').$order['Order']['reference_year']); ?>&nbsp;</td>
+            <td><strong style="font-size: 1.02em"><?php echo h(($order['Order']['num'] ? $order['Order']['num'].'/' : '').$order['Order']['reference_year']); ?>&nbsp;</strong></td>
             <td><?php echo h($order['Seller']['name']); ?></td>
-            <td><?php echo h($order['Buyer']['name']); ?></td>
+            <td><strong style="font-size: 1.02em"><?php echo (@$order['Buyer']['acronym'] ? '<u>'.$order['Buyer']['acronym'].'</u>'.' - ' : '').substr($order['Buyer']['name'], 0, 45); ?></strong></td>
             <td class="no-print">
                 <?php
                     if($order['Order']['canceled']){
@@ -59,7 +35,7 @@
                     }
                 ?>&nbsp;
             </td>
-            <td class="actions" style="font-size: 1.25em;">
+            <td class="actions" style="font-size: 1.2em;">
                 <?php echo $this->Html->link('<i class="fa fa-print fa-lg"></i>',
                     array('action' => 'print_order', $order['Order']['id']),
                     array('title'=>'Imprimir', 'escape'=>false, 'target'=>'_blank')); ?>
@@ -70,7 +46,7 @@
                     array('action' => 'add_type', $order['Order']['id']),
                     array('title'=>__('Reuse'), 'data-toggle'=>'modal', 'data-target'=>'#modal', 'escape'=>false)); ?>
                 <?php
-                    if($order['Order']['id'] >= $lasts[19]['Order']['id'] && !$order['Order']['canceled'])
+                    if($order['Order']['id'] >= @$lasts[19]['Order']['id'] && !$order['Order']['canceled'])
                         echo $this->Html->link('<i class="fa fa-pencil fa-lg"></i>',
                         array('action' => 'edit', $order['Order']['id']),
                         array('title'=>__('Edit'), 'escape'=>false));
@@ -92,8 +68,8 @@
 	</table>
 	<p>
 	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
+    	echo $this->Paginator->counter(array(
+    	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
 	));
 	?>	</p>
 	<div class="paging">
@@ -104,3 +80,10 @@
 	?>
 	</div>
 </div>
+<?php $this->start('script'); ?>
+<script type="text/javascript">
+    $(function(){
+        View.index();
+    });
+</script>
+<?php $this->end(); ?>
